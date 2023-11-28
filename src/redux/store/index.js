@@ -14,7 +14,7 @@ const persistConfig = {
       secretKey: process.env.REACT_APP_LOCALSTORAGEKEY,
     }),
   ],
-  // whitelist:[];
+  whitelist: [],
 };
 
 const rootReducer = combineReducers({

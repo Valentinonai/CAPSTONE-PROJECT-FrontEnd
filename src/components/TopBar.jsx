@@ -42,6 +42,7 @@ const TopBar = () => {
                   to={"/"}
                   onClick={() => {
                     logout();
+                    localStorage.removeItem("token");
                   }}
                 >
                   Logout
@@ -62,7 +63,7 @@ const TopBar = () => {
             }
             roundedCircle
             width={"50px"}
-            className="me-3"
+            className="me-3 d-none d-sm-block"
           />
           <Navbar.Toggle aria-controls="basic-navbar-nav" id="topbarButton" />
         </div>

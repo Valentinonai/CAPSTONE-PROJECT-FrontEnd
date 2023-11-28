@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap");
 :root {
   --colore-1: #5491f3;
   --colore-2: #60b2f8;
@@ -7,9 +8,10 @@
 }
 
 body {
-  background-color: var(--colore-1) !important;
-  /* background-image: linear-gradient(45deg, var(--colore-1), var(--colore-3)); */
+  /* background-color: var(--colore-1) !important; */
+  background-image: linear-gradient(45deg, var(--colore-1) 70%, var(--colore-3));
   color: var(--colore-testo);
+  font-family: "Roboto", sans-serif;
 }
 
 #mainContainer {
@@ -53,4 +55,21 @@ body {
 .dropdown-item:hover {
   background-color: transparent;
   transform: scale(1.1) !important;
+}
+
+.login_form {
+  background-color: var(--colore-1);
+  box-shadow: 0px 0px 15px 5px var(--colore-3);
+}
+
+#loginButtonForm {
+  background-image: linear-gradient(125deg, var(--colore-1) 30%, var(--colore-3));
+  box-shadow: 0px 0px 5px 1px var(--colore-3);
+}
+#loginButtonForm:hover {
+  opacity: 0.8;
+}
+#loginButtonForm:active {
+  opacity: 0.4;
+  box-shadow: 0px 0px 25px 5px var(--colore-3);
 }
