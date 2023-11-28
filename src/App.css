@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+:root {
+  --colore-1: #5491f3;
+  --colore-2: #60b2f8;
+  --colore-3: #4545f1;
+  --colore-4: #1e232c;
+  --colore-testo: #fefefe;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: var(--colore-1) !important;
+  /* background-image: linear-gradient(45deg, var(--colore-1), var(--colore-3)); */
+  color: var(--colore-testo);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+#mainContainer {
+  background-color: var(--colore-2);
+}
+
+#topBar {
+  background-color: var(--colore-4);
+}
+
+#topBar a {
+  color: var(--colore-testo);
+  text-decoration: none;
+}
+#topBar a:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 992px) {
+  #topBar a:hover {
+    transform: scale(1.02);
+  }
+  /* #topbarButton {
+    order: 3;
+  } */
+}
+@media screen and (min-width: 992px) {
+  #topbarUserSection {
+    order: 3;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#topbarButton {
+  background-color: var(--colore-1);
 }
-
-.App-link {
-  color: #61dafb;
+.topbarSelected {
+  text-decoration: underline !important;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-menu.show {
+  background-color: var(--colore-4);
+  border-color: gray;
+}
+.dropdown-item:hover {
+  background-color: transparent;
+  transform: scale(1.1) !important;
 }

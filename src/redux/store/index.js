@@ -4,6 +4,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import MainReducer from "../reducer/MainReducer";
 import persistStore from "redux-persist/es/persistStore";
+import UserReducer from "../reducer/UserReducer";
 
 const persistConfig = {
   key: "root",
@@ -18,6 +19,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   mainReducer: MainReducer,
+  userReducer: UserReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);
