@@ -1,14 +1,21 @@
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../redux/action/UserAction";
 
 const TopBar = () => {
-  const user = useSelector((state) => state.userReducer);
+  const user = useSelector((state) => state.userReducer.user);
   const loc = useLocation();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    console.log("CIAO");
+    dispatch(userLogout());
+  };
   return (
     <Navbar expand="lg" id="topBar">
-      {console.log(loc.pathname)}
+      {console.log(user)}
       <Container fluid="sm">
         <div>
           <Link to={"/"} className="me-3 mb-lg-0 mb-3">
@@ -17,19 +24,42 @@ const TopBar = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-center align-items-center" id="topbarUserSection">
-          <NavDropdown title="User" drop="down" align="end" id="basic-nav-dropdown" className="me-2">
-            <NavDropdown.Item>
-              <Link to={"/settings"}>Settings</Link>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <Link to={"/"}>Logout</Link>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <Link to={"/login"}>Login</Link>
-            </NavDropdown.Item>
+          <NavDropdown
+            title={user ? user.nome : "User"}
+            drop="down"
+            align="end"
+            id="basic-nav-dropdown"
+            className="me-2"
+          >
+            {user && (
+              <NavDropdown.Item>
+                <Link to={"/settings"}>Settings</Link>
+              </NavDropdown.Item>
+            )}
+            {user && (
+              <NavDropdown.Item>
+                <Link
+                  to={"/"}
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Logout
+                </Link>
+              </NavDropdown.Item>
+            )}
+            {!user && (
+              <NavDropdown.Item>
+                <Link to={"/login"}>Login</Link>
+              </NavDropdown.Item>
+            )}
           </NavDropdown>
           <Image
-            src="https://res.cloudinary.com/dzr77mvcs/image/upload/v1699804243/bqnqdcricxpzxojhihxz.webp"
+            src={
+              user
+                ? user.immagineUrl
+                : "https://res.cloudinary.com/dzr77mvcs/image/upload/v1699804243/bqnqdcricxpzxojhihxz.webp"
+            }
             roundedCircle
             width={"50px"}
             className="me-3"
