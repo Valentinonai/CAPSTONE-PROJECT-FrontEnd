@@ -79,20 +79,30 @@ const TopBar = () => {
             <Link
               to={"/"}
               className={
-                loc.pathname === "/" ? "topbarSelected ms-3 ms-lg-0 mb-2 mb-lg-0" : "ms-3 ms-lg-0 mb-2 mb-lg-0"
+                loc.pathname === "/"
+                  ? "topbarSelected ms-3 ms-lg-0 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                  : "ms-3 ms-lg-0 mb-2 mb-lg-0 mt-4 mt-lg-0"
               }
             >
               Home
             </Link>
             <Link
               to={"/store"}
-              className={loc.pathname === "/store" ? "topbarSelected ms-3 mb-2 mb-lg-0" : "ms-3 mb-2 mb-lg-0"}
+              className={
+                loc.pathname === "/store"
+                  ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                  : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+              }
             >
               Store
             </Link>
             <Link
               to={"/build"}
-              className={loc.pathname === "/build" ? "topbarSelected ms-3 mb-2 mb-lg-0" : "ms-3 mb-2 mb-lg-0"}
+              className={
+                loc.pathname === "/build"
+                  ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                  : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+              }
             >
               Build
             </Link>

@@ -36,7 +36,14 @@ body {
 }
 
 #topbarButton {
-  background-color: var(--colore-1);
+  background-color: var(--colore-2);
+  color: transparent;
+}
+#topbarButton:hover {
+  opacity: 0.8;
+}
+#topbarButton:active {
+  opacity: 0.4;
 }
 .topbarSelected {
   text-decoration: underline !important;
