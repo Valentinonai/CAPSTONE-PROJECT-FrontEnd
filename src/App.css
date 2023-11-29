@@ -69,6 +69,22 @@ body {
   opacity: 0.4;
   box-shadow: 0px 0px 25px 5px var(--colore-3);
 }
+.dropZoneModale {
+  margin: 0;
+  padding: 1rem;
+  width: 250px;
+  height: 100px;
+  border: 2px dashed rgba(0, 0, 0, 0.311);
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pDropZone {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 @media screen and (max-width: 991px) {
   #topBar a:hover {
     transform: scale(1.02);

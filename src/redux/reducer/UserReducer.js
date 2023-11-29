@@ -1,6 +1,7 @@
-import { USER_LOGOUT, USER_SAVE } from "../action/UserAction";
+import { SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
 
 const initialState = {
+  token: "",
   user: null,
 };
 
@@ -15,6 +16,12 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         user: null,
+        token: "",
+      };
+    case SAVE_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
       };
     default:
       return state;

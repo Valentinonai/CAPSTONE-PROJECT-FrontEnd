@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchGetUser, saveToken } from "../redux/action/UserAction";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const nav = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.userReducer.token);
 
   const loginSubmit = async () => {
     try {
@@ -18,7 +22,8 @@ const Login = () => {
       });
       if (risp.ok) {
         const data = await risp.json();
-        localStorage.setItem("token", data.token);
+        dispatch(saveToken(data.token));
+        dispatch(fetchGetUser(data.token));
         nav("/");
       } else throw new Error(risp.status);
     } catch (error) {

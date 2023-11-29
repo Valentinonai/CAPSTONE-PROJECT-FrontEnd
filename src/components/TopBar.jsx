@@ -2,16 +2,24 @@ import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../redux/action/UserAction";
+import { fetchGetUser, userLogout } from "../redux/action/UserAction";
+import { useEffect } from "react";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
+  const token = useSelector((state) => state.userReducer.token);
   const loc = useLocation();
   const dispatch = useDispatch();
 
   const logout = () => {
     dispatch(userLogout());
   };
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchGetUser(token));
+    }
+  }, []);
   return (
     <Navbar expand="lg" id="topBar">
       <Container fluid="sm">
@@ -61,6 +69,7 @@ const TopBar = () => {
             }
             roundedCircle
             width={"50px"}
+            height={"50px"}
             className="me-3 d-none d-sm-block"
           />
           <Navbar.Toggle aria-controls="basic-navbar-nav" id="topbarButton" />
