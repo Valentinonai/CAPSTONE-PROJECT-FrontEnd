@@ -1,4 +1,4 @@
-import { SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
+import { MODIFICA_OFF, MODIFICA_ON, SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
 
 const initialState = {
   token: "",
@@ -23,6 +23,7 @@ const UserReducer = (state = initialState, action) => {
         ...state,
         token: action.payload,
       };
+
     default:
       return state;
   }

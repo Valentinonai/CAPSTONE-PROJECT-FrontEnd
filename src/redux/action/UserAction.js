@@ -1,10 +1,14 @@
 export const USER_SAVE = "USER_SAVE";
 export const USER_LOGOUT = "USERLOGOUT";
 export const SAVE_TOKEN = "SAVE_TOKEN";
+export const MODIFICA_ON = "MODIFICA_ON";
+export const MODIFICA_OFF = "MODIFICA_OFF";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
 export const saveToken = (token) => ({ type: SAVE_TOKEN, payload: token });
+export const modificaOn = () => ({ type: MODIFICA_ON, action: true });
+export const modificaOff = () => ({ type: MODIFICA_OFF, action: false });
 
 export const fetchGetUser = (token) => {
   return async (dispatch) => {
