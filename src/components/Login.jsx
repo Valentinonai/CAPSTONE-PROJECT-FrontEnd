@@ -27,10 +27,8 @@ const Login = () => {
         dispatch(saveToken(data.token));
         dispatch(fetchGetUser(data.token));
         nav("/");
-      } else throw new Error(risp.status);
+      } else throw new Error("Utente non trovato");
     } catch (error) {
-      console.log(error.message);
-
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
         dispatch(errorHandler(false, ""));
@@ -40,7 +38,6 @@ const Login = () => {
 
   return (
     <>
-      {console.log(hasError)}
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="login_form mx-auto  p-4 mt-5" style={{ borderRadius: "20px" }}>
         <div className="mb-5">
@@ -58,7 +55,7 @@ const Login = () => {
             <Form.Control
               required
               value={email}
-              type="text"
+              type="email"
               placeholder="email"
               onChange={(e) => {
                 setEmail(e.target.value);

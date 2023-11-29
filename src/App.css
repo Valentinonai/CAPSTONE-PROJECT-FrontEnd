@@ -53,7 +53,8 @@ body {
   transform: scale(1) !important;
 }
 .login_form {
-  background-color: var(--colore-1);
+  /* background-color: var(--colore-1); */
+  background-image: radial-gradient(ellipse at right bottom, var(--colore-2), var(--colore-1), var(--colore-3));
   box-shadow: 0px 0px 15px 5px var(--colore-3);
   width: 50%;
 }
@@ -86,17 +87,53 @@ body {
   text-align: center;
 }
 #settingsImg {
-  width: 300px;
-  height: 300px;
   object-fit: cover;
   box-shadow: 0px 0px 10px 1px var(--colore-3);
   border-radius: 20px;
+  width: 300px;
+  height: 300px;
 }
 #modifica:hover {
   opacity: 0.8;
 }
 #modifica:active {
   opacity: 0.4;
+}
+#paginaSettings {
+  background-image: radial-gradient(
+    ellipse at right bottom,
+    var(--colore-2) 30%,
+    var(--colore-1) 60%,
+    var(--colore-2) 100%
+  );
+  border-radius: 40px;
+  box-shadow: 0px 0px 15px 5px var(--colore-3);
+}
+#paginaSettings p {
+  margin-block: 10px;
+}
+.inputSettings {
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid var(--colore-3) !important;
+  box-shadow: 0px 0px 15px 5px var(--colore-3);
+  width: 100%;
+  padding-inline: 8px;
+  caret-color: var(--colore-testo);
+  color: var(--colore-testo);
+}
+.inputSettings:focus {
+  box-shadow: none;
+  outline: none;
+}
+.inputSettings::placeholder {
+  color: var(--colore-testo);
+  opacity: 0.3;
+}
+#settingsMain {
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px 5px var(--colore-3);
+  padding: 20px;
 }
 @media screen and (max-width: 991px) {
   #topBar a:hover {
@@ -111,9 +148,15 @@ body {
     order: 3;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 460px) {
   #settingsImg {
     width: 200px;
     height: 200px;
+  }
+}
+@media screen and (max-width: 330px) {
+  #settingsImg {
+    width: 150px;
+    height: 150px;
   }
 }

@@ -49,7 +49,7 @@ export const signupFetch = (nome, cognome, email, password, nav, image) => {
         dispatch(fetchGetUser(data.token));
         dispatch(uploadUserImg(image, data.token));
         nav("/");
-      } else throw new Error(risp.status);
+      } else throw new Error("Utente non creato");
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

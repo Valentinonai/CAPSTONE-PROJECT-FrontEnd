@@ -36,67 +36,67 @@ const Settings = () => {
   };
 
   return (
-    <>
-      <h1 className="mt-5 ms-5">Benvenuto {user.nome}</h1>
+    <div id="paginaSettings" className="p-4 p-md-5 m-4 mt-5">
+      <h1 className="mx-xlg-5 mx-1 mx-lg-3">Benvenuto {user.nome}</h1>
       <Row>
-        <Col xs={12} md={6} lg={5}>
-          <div style={{ overflow: "hidden" }}>
-            <Image src={user.immagineUrl} id="settingsImg" className="mt-5 mb-3 ms-lg-5 ms-1" />
-          </div>
+        <Col xs={12} md={12} lg={5}>
+          <Image src={user.immagineUrl} id="settingsImg" className="mt-4 mt-lg-5 mb-3 mx-xlg-5 mx-1 mx-lg-3" />
         </Col>
-        <Col xs={12} md={6} lg={7}>
-          <div className="mt-5 me-3">
-            <Row xs={2} className="justify-content-between align-items-center mb-4">
-              <Col>
-                <h4 className="mb-4">Dati utente</h4>
+        <Col xs={12} md={12} lg={7}>
+          <div className="mt-5" id="settingsMain">
+            <Row className="justify-content-between align-items-center mb-4">
+              <Col xs={12}>
+                <div className="d-flex justify-content-between align-items-center">
+                  <h4 className="mb-3 mb-sm-4">Dati utente</h4>
+                  {modify === false ? (
+                    <Pencil
+                      onClick={() => {
+                        setModifica();
+                      }}
+                      style={{ cursor: "pointer" }}
+                      id="modifica"
+                      className="mb-2 mb-sm-4"
+                    />
+                  ) : (
+                    <XLg
+                      onClick={() => {
+                        setModifica();
+                      }}
+                      style={{ cursor: "pointer" }}
+                      id="modifica"
+                      className="mb-2 mb-sm-4"
+                    />
+                  )}
+                </div>
               </Col>
-              <Col className="text-end mb-4">
-                {modify === false ? (
-                  <Pencil
-                    onClick={() => {
-                      setModifica();
-                    }}
-                    style={{ cursor: "pointer" }}
-                    id="modifica"
-                  />
-                ) : (
-                  <XLg
-                    onClick={() => {
-                      setModifica();
-                    }}
-                    style={{ cursor: "pointer" }}
-                    id="modifica"
-                  />
-                )}
-              </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Nome:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>{user.nome}</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Cognome:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>{user.cognome}</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Data iscrizione</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>{user.data_creazione}</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Email</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>{user.email}</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Password:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>********</p>
                 ) : (
@@ -108,20 +108,19 @@ const Settings = () => {
                       setPassword(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
             </Row>
-            <Row xs={2} className="justify-content-between align-items-center mb-4">
-              <Col>
-                <h4 className="mb-4">Indirizzo di spedizione</h4>
+            <Row className="justify-content-between align-items-center mb-4">
+              <Col xs={12}>
+                <h4 className="mb-3  mb-sm-4 mt-2 mb-sm-2 mt-sm-2 mt-md-1">Indirizzo di spedizione</h4>
               </Col>
-              <Col className="text-end mb-4"></Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Via:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.via}</p>
                 ) : (
@@ -133,14 +132,14 @@ const Settings = () => {
                       setVia(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Numero:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.numero}</p>
                 ) : (
@@ -152,14 +151,14 @@ const Settings = () => {
                       setNumero(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Codice Postale:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.codice_postale}</p>
                 ) : (
@@ -171,14 +170,14 @@ const Settings = () => {
                       setCodice(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Paese:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.paese}</p>
                 ) : (
@@ -190,14 +189,14 @@ const Settings = () => {
                       setPaese(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Provincia:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.provincia}</p>
                 ) : (
@@ -209,14 +208,14 @@ const Settings = () => {
                       setProvincia(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Numero interno:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.indirizzoSpedizione && user.indirizzoSpedizione.numero_interno}</p>
                 ) : (
@@ -228,20 +227,19 @@ const Settings = () => {
                       setInterno(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
             </Row>
-            <Row xs={2} className="justify-content-between align-items-center">
-              <Col>
-                <h4 className="mb-4">Carta di credito</h4>
+            <Row className="justify-content-between align-items-center">
+              <Col xs={12}>
+                <h4 className="mb-3  mb-sm-4 mt-2 mb-sm-2 mt-sm-2 mt-md-1">Carta di credito</h4>
               </Col>
-              <Col className="text-end mb-4"></Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Numero carta:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.cartaDiCredito && user.cartaDiCredito.numero_carta}</p>
                 ) : (
@@ -253,14 +251,14 @@ const Settings = () => {
                       setNumCarta(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Cvv:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.cartaDiCredito && user.cartaDiCredito.cvv}</p>
                 ) : (
@@ -272,14 +270,14 @@ const Settings = () => {
                       setCvv(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 <p>Data di scadenza:</p>
               </Col>
-              <Col>
+              <Col xs={12} sm={6}>
                 {!modify ? (
                   <p>{user.cartaDiCredito && user.cartaDiCredito.data_di_scadenza}</p>
                 ) : (
@@ -291,12 +289,12 @@ const Settings = () => {
                       setScadenza(e.target.value);
                     }}
                     style={{ boxShadow: "none" }}
-                    className="input"
+                    className="inputSettings"
                   />
                 )}
               </Col>
-              <Col></Col>
-              <Col className="d-flex justify-content-end">
+
+              <Col className="d-flex justify-content-end" xs={12}>
                 {modify && (
                   <Button
                     className="mb-2 loginButtonForm"
@@ -312,7 +310,7 @@ const Settings = () => {
           </div>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 
