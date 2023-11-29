@@ -11,7 +11,7 @@ const Signup = () => {
 
   const signupFetch = async () => {
     try {
-      const risp = await fetch(`http://localhost:3001/auth/signup`, {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/auth/signup`, {
         method: "POST",
         body: JSON.stringify({ nome: nome, cognome: cognome, email: email, password: password }),
         headers: {

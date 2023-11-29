@@ -9,7 +9,7 @@ import Signup from "./components/Signup";
 
 function App() {
   return (
-    <Container fluid="sm" id="mainContainer" className="p-0" style={{ minHeight: "100vh" }}>
+    <Container fluid="sm" id="mainContainer" className="p-0 " style={{ minHeight: "100vh" }}>
       <BrowserRouter>
         <TopBar />
         <div className="p-3">

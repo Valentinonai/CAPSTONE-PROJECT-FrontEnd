@@ -9,7 +9,7 @@ const Login = () => {
 
   const loginSubmit = async () => {
     try {
-      const risp = await fetch(`http://localhost:3001/auth/login`, {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/auth/login`, {
         method: "POST",
         body: JSON.stringify({ email: email, password: password }),
         headers: {

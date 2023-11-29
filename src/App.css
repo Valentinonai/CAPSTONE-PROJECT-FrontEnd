@@ -16,6 +16,7 @@ body {
 
 #mainContainer {
   background-color: var(--colore-2);
+  /* box-shadow: 0 0 45px 15px var(--colore-3); */
 }
 
 #topBar {

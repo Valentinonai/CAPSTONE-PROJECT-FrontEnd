@@ -7,15 +7,16 @@ export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
 export const fetchGetUser = (token) => {
   return async (dispatch) => {
     const t = `Bearer ${token}`;
-    console.log(t);
+    console.log("SONO QUI");
     try {
-      const risp = await fetch(`http://localhost:3001/users/me`, {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/users/me`, {
         method: "GET",
         headers: {
           "content-type": "Application/json",
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(risp);
       if (risp.ok) {
         const data = await risp.json();
         dispatch(userSave(data));
