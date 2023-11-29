@@ -10,12 +10,10 @@ const TopBar = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
-    console.log("CIAO");
     dispatch(userLogout());
   };
   return (
     <Navbar expand="lg" id="topBar">
-      {console.log(user)}
       <Container fluid="sm">
         <div>
           <Link to={"/"} className="me-3 mb-lg-0 mb-3">

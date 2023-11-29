@@ -20,7 +20,6 @@ const Signup = () => {
       });
       if (risp.ok) {
         const data = await risp.json();
-        console.log(data);
         localStorage.setItem("token", data.token);
         nav("/");
       } else throw new Error(risp.status);
