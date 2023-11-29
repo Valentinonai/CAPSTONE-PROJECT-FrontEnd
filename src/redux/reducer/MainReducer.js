@@ -1,7 +1,11 @@
-import { MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
+import { ERROR_HANDLER, ERROR_OFF, ERROR_ON, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
 
 const initialState = {
   isModify: false,
+  hasError: {
+    value: false,
+    message: "",
+  },
 };
 
 const MainReducer = (state = initialState, action) => {
@@ -16,6 +20,15 @@ const MainReducer = (state = initialState, action) => {
         ...state,
         isModify: false,
       };
+    case ERROR_HANDLER:
+      return {
+        ...state,
+        hasError: {
+          value: action.payload.value,
+          message: action.payload.message,
+        },
+      };
+
     default:
       return state;
   }

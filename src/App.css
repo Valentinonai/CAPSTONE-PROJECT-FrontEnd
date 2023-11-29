@@ -89,7 +89,8 @@ body {
   width: 300px;
   height: 300px;
   object-fit: cover;
-  box-shadow: 0px 0px 5px 1px var(--colore-3);
+  box-shadow: 0px 0px 10px 1px var(--colore-3);
+  border-radius: 20px;
 }
 #modifica:hover {
   opacity: 0.8;
@@ -108,5 +109,11 @@ body {
 @media screen and (min-width: 992px) {
   #topbarUserSection {
     order: 3;
+  }
+}
+@media screen and (max-width: 360px) {
+  #settingsImg {
+    width: 200px;
+    height: 200px;
   }
 }

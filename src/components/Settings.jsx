@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import { Pencil, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { modificaOff, modificaOn } from "../redux/action/UserAction";
+import { modificaOff, modificaOn, modificaPasswordUtente } from "../redux/action/UserAction";
 
 const Settings = () => {
   const user = useSelector((state) => state.userReducer.user);
+  const token = useSelector((state) => state.userReducer.token);
   const modify = useSelector((state) => state.mainReducer.isModify);
-  const [nome, setNome] = useState(user.nome);
-  const [cognome, setCognome] = useState(user.cognome);
   const [password, setPassword] = useState();
   const [via, setVia] = useState(user.indirizzoSpedizione && user.indirizzoSpedizione.via);
   const [numero, setNumero] = useState(user.indirizzoSpedizione && user.indirizzoSpedizione.numero);
@@ -27,7 +26,14 @@ const Settings = () => {
     else dispatch(modificaOff());
   };
 
-  const save = () => {};
+  const save = () => {
+    console.log(password);
+    if (password !== "") {
+      dispatch(modificaPasswordUtente(password, token));
+      setPassword("");
+    }
+    setModifica();
+  };
 
   return (
     <>
@@ -35,7 +41,7 @@ const Settings = () => {
       <Row>
         <Col xs={12} md={6} lg={5}>
           <div style={{ overflow: "hidden" }}>
-            <Image src={user.immagineUrl} id="settingsImg" className="mt-5 ms-lg-5" />
+            <Image src={user.immagineUrl} id="settingsImg" className="mt-5 mb-3 ms-lg-5 ms-1" />
           </div>
         </Col>
         <Col xs={12} md={6} lg={7}>
@@ -67,39 +73,13 @@ const Settings = () => {
                 <p>Nome:</p>
               </Col>
               <Col>
-                {!modify ? (
-                  <p>{user.nome}</p>
-                ) : (
-                  <input
-                    type="text"
-                    value={nome}
-                    placeholder="nome"
-                    onChange={(e) => {
-                      setNome(e.target.value);
-                    }}
-                    style={{ boxShadow: "none" }}
-                    className="input"
-                  />
-                )}
+                <p>{user.nome}</p>
               </Col>
               <Col>
                 <p>Cognome:</p>
               </Col>
               <Col>
-                {!modify ? (
-                  <p>{user.cognome}</p>
-                ) : (
-                  <input
-                    type="text"
-                    value={cognome}
-                    placeholder="cognome"
-                    onChange={(e) => {
-                      setCognome(e.target.value);
-                    }}
-                    style={{ boxShadow: "none" }}
-                    className="input"
-                  />
-                )}
+                <p>{user.cognome}</p>
               </Col>
               <Col>
                 <p>Data iscrizione</p>

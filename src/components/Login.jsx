@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchGetUser, saveToken } from "../redux/action/UserAction";
+import { errorHandler, errorOff, errorOn, fetchGetUser, saveToken } from "../redux/action/UserAction";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -10,6 +10,7 @@ const Login = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector((state) => state.userReducer.token);
+  const hasError = useSelector((state) => state.mainReducer.hasError);
 
   const loginSubmit = async () => {
     try {
@@ -20,6 +21,7 @@ const Login = () => {
           "content-type": "Application/json",
         },
       });
+
       if (risp.ok) {
         const data = await risp.json();
         dispatch(saveToken(data.token));
@@ -28,63 +30,77 @@ const Login = () => {
       } else throw new Error(risp.status);
     } catch (error) {
       console.log(error.message);
+
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
     }
   };
 
   return (
-    <div className="login_form mx-auto  p-4 mt-5" style={{ borderRadius: "20px" }}>
-      <div className="mb-5">
-        <h2>Login</h2>
-      </div>
+    <>
+      {console.log(hasError)}
+      {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
+      <div className="login_form mx-auto  p-4 mt-5" style={{ borderRadius: "20px" }}>
+        <div className="mb-5">
+          <h2>Login</h2>
+        </div>
 
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          loginSubmit();
-        }}
-      >
-        <Form.Group className="mt-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            required
-            value={email}
-            type="text"
-            placeholder="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-            style={{ boxShadow: "none" }}
-            className="input"
-          />
-        </Form.Group>
-        <Form.Group className="mt-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            required
-            value={password}
-            type="password"
-            placeholder="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            style={{ boxShadow: "none" }}
-            className="input"
-          />
-        </Form.Group>
-        <Row className="d-flex justify-content-between mt-3 mb-2">
-          <Col xs={12} sm={6}>
-            <Link to={"/signup"} style={{ color: "white", fontWeight: "100", textDecoration: "none" }}>
-              SignUp
-            </Link>
-          </Col>
-          <Col xs={12} sm={6} className="text-end">
-            <Button className="mt-3 loginButtonForm" type="submit" style={{ width: "100px" }}>
-              Login
-            </Button>
-          </Col>
-        </Row>
-      </Form>
-    </div>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            loginSubmit();
+          }}
+        >
+          <Form.Group className="mt-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              value={email}
+              type="text"
+              placeholder="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              style={{ boxShadow: "none" }}
+              className="input"
+            />
+          </Form.Group>
+          <Form.Group className="mt-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              required
+              value={password}
+              type="password"
+              placeholder="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              style={{ boxShadow: "none" }}
+              className="input"
+            />
+          </Form.Group>
+          <Row className="d-flex justify-content-between mt-3 mb-2">
+            <Col xs={12} sm={6}>
+              <Link to={"/signup"} style={{ color: "white", fontWeight: "100", textDecoration: "none" }}>
+                SignUp
+              </Link>
+            </Col>
+            <Col xs={12} sm={6} className="text-end">
+              <Button
+                className="mt-3 loginButtonForm"
+                type="submit"
+                style={{ width: "100px" }}
+                disabled={hasError.value}
+              >
+                Login
+              </Button>
+            </Col>
+          </Row>
+        </Form>
+      </div>
+    </>
   );
 };
 
