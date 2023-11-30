@@ -4,6 +4,8 @@ export const SAVE_TOKEN = "SAVE_TOKEN";
 export const MODIFICA_ON = "MODIFICA_ON";
 export const MODIFICA_OFF = "MODIFICA_OFF";
 export const ERROR_HANDLER = "ERROR_HANDLER";
+export const SAVE_INDIRIZZO = "SAVE_INDIRIZZO";
+export const SAVE_CARTA = "SAVE_CARTA";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -11,6 +13,8 @@ export const saveToken = (token) => ({ type: SAVE_TOKEN, payload: token });
 export const modificaOn = () => ({ type: MODIFICA_ON, payload: true });
 export const modificaOff = () => ({ type: MODIFICA_OFF, payload: false });
 export const errorHandler = (value, message) => ({ type: ERROR_HANDLER, payload: { value: value, message: message } });
+export const salvaIndirizzo = (data) => ({ type: SAVE_INDIRIZZO, payload: data });
+export const salvaCarta = (data) => ({ type: SAVE_CARTA, payload: data });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -26,6 +30,7 @@ export const fetchGetUser = (token) => {
       if (risp.ok) {
         const data = await risp.json();
         dispatch(userSave(data));
+        console.log("USER: ", data);
       } else throw new Error(risp.message);
     } catch (error) {
       console.log(error.message);
@@ -99,9 +104,116 @@ export const modificaPasswordUtente = (password, token) => {
       if (risp.ok) {
         const data = await risp.json();
         dispatch(userSave(data));
+        dispatch(fetchGetUser(token));
       } else throw new Error(risp.status);
     } catch (error) {
       console.log(error.message);
+    }
+  };
+};
+
+//---------------------Crea Indirizzo--------------------------
+
+export const creaIndirizzo = (indirizzo, token) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/indirizzi/me`, {
+        method: "POST",
+        body: JSON.stringify(indirizzo),
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        const data = await risp.json();
+        dispatch(salvaIndirizzo(data));
+        dispatch(fetchGetUser(token));
+      } else throw new Error("Indirizzo non creato (tutti i campi sono obbligatori)");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
+};
+
+//-------------------------Modifica Indirizzo---------------------------
+
+export const modificaIndirizzo = (indirizzo, token) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/indirizzi/modifica_indirizzo/me`, {
+        method: "PUT",
+        body: JSON.stringify(indirizzo),
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        const data = await risp.json();
+        dispatch(salvaIndirizzo(data));
+        dispatch(fetchGetUser(token));
+      } else throw new Error("Indirizzo non modificato");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
+};
+//---------------------Crea Carta di credito--------------------------
+
+export const creaCarta = (carta, token) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/carte_di_credito/me`, {
+        method: "POST",
+        body: JSON.stringify(carta),
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        const data = await risp.json();
+        dispatch(salvaCarta(data));
+        dispatch(fetchGetUser(token));
+      } else throw new Error("Metodo di pagamento non creato (tutti i campi sono obbligatori)");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
+};
+
+//-------------------------Modifica Carta di credito---------------------------
+
+export const modificaCarta = (carta, token) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/carte_di_credito/modifica_carta/me`, {
+        method: "PUT",
+        body: JSON.stringify(carta),
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        const data = await risp.json();
+        dispatch(salvaCarta(data));
+      } else throw new Error("Metodo di pagamento non modificato");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
     }
   };
 };

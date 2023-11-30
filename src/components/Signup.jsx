@@ -48,7 +48,7 @@ const Signup = () => {
                     setNome(e.target.value);
                   }}
                   style={{ boxShadow: "none" }}
-                  className="input"
+                  className="inputSettings"
                 />
               </Form.Group>
             </Col>
@@ -64,7 +64,7 @@ const Signup = () => {
                     setCognome(e.target.value);
                   }}
                   style={{ boxShadow: "none" }}
-                  className="input"
+                  className="inputSettings"
                 />
               </Form.Group>
             </Col>
@@ -80,7 +80,7 @@ const Signup = () => {
                     setEmail(e.target.value);
                   }}
                   style={{ boxShadow: "none" }}
-                  className="input"
+                  className="inputSettings"
                 />
               </Form.Group>
             </Col>
@@ -96,7 +96,7 @@ const Signup = () => {
                     setPassword(e.target.value);
                   }}
                   style={{ boxShadow: "none" }}
-                  className="input"
+                  className="inputSettings"
                 />
               </Form.Group>
             </Col>

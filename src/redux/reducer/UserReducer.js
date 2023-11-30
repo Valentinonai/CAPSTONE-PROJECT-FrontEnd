@@ -5,7 +5,7 @@ const initialState = {
   user: null,
 };
 
-const UserReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_SAVE:
       return {
@@ -29,4 +29,4 @@ const UserReducer = (state = initialState, action) => {
   }
 };
 
-export default UserReducer;
+export default userReducer;

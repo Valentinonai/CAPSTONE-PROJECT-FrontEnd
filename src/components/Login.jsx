@@ -61,7 +61,7 @@ const Login = () => {
                 setEmail(e.target.value);
               }}
               style={{ boxShadow: "none" }}
-              className="input"
+              className="inputSettings"
             />
           </Form.Group>
           <Form.Group className="mt-3">
@@ -75,12 +75,12 @@ const Login = () => {
                 setPassword(e.target.value);
               }}
               style={{ boxShadow: "none" }}
-              className="input"
+              className="inputSettings"
             />
           </Form.Group>
           <Row className="d-flex justify-content-between mt-3 mb-2">
             <Col xs={12} sm={6}>
-              <Link to={"/signup"} style={{ color: "white", fontWeight: "100", textDecoration: "none" }}>
+              <Link to={"/signup"} style={{ fontWeight: "100", textDecoration: "none" }}>
                 SignUp
               </Link>
             </Col>

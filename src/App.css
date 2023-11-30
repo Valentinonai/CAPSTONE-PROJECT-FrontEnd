@@ -1,16 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap");
 :root {
-  --colore-1: #5491f3;
+  /* --colore-1: #5491f3;
   --colore-2: #60b2f8;
   --colore-3: #4545f1;
   --colore-4: #1e232c;
-  --colore-testo: #fefefe;
+  --colore-testo: #fefefe; */
+  --colore-1: #dbdada;
+  --colore-2: #fefefe;
+  --colore-3: #6a6969;
+  --colore-4: #1e232c;
+  --colore-testo: #000000;
+  --colore-button: #0082fb;
 }
 
 body {
-  /* background-color: var(--colore-1) !important; */
-  background-image: linear-gradient(45deg, var(--colore-1) 70%, var(--colore-3));
-  color: var(--colore-testo);
+  background-color: var(--colore-1);
+  /* background-image: linear-gradient(45deg, var(--colore-1) 70%, var(--colore-2)); */
+  /* color: var(--colore-testo); */
   font-family: "Roboto", sans-serif;
 }
 
@@ -24,7 +30,7 @@ body {
 }
 
 #topBar a {
-  color: var(--colore-testo);
+  color: var(--colore-2);
   text-decoration: none;
 }
 #topBar a:hover {
@@ -61,21 +67,24 @@ body {
 }
 .login_form {
   /* background-color: var(--colore-1); */
-  background-image: radial-gradient(ellipse at right bottom, var(--colore-2), var(--colore-1), var(--colore-3));
+  /* background-image: radial-gradient(ellipse at right bottom, var(--colore-2), var(--colore-1), var(--colore-2)); */
   box-shadow: 0px 0px 15px 5px var(--colore-3);
   width: 50%;
 }
 
 .loginButtonForm {
-  background-image: linear-gradient(125deg, var(--colore-1) 30%, var(--colore-3));
+  /* background-image: linear-gradient(125deg, var(--colore-1) 30%, var(--colore-2)); */
+  background-color: var(--colore-button);
+  color: var(--colore-testo);
   box-shadow: 0px 0px 5px 1px var(--colore-3);
+  border: none;
 }
 .loginButtonForm:hover {
   opacity: 0.8;
 }
 .loginButtonForm:active {
   opacity: 0.4;
-  box-shadow: 0px 0px 25px 5px var(--colore-3);
+  box-shadow: 0px 0px 10px 5px var(--colore-3);
 }
 .dropZoneModale {
   margin: 0;
@@ -87,6 +96,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .pDropZone {
   margin: 0;

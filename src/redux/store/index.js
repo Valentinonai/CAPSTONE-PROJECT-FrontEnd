@@ -2,9 +2,11 @@ import { configureStore, combineReducers, getDefaultMiddleware } from "@reduxjs/
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import { encryptTransform } from "redux-persist-transform-encrypt";
-import MainReducer from "../reducer/MainReducer";
 import persistStore from "redux-persist/es/persistStore";
-import UserReducer from "../reducer/UserReducer";
+import mainReducer from "../reducer/MainReducer";
+import userReducer from "../reducer/UserReducer";
+import indirizzoReducer from "../reducer/IndirizzoReducer";
+import cartaReducer from "../reducer/CartaReducer";
 
 const persistConfig = {
   key: "root",
@@ -18,8 +20,10 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  mainReducer: MainReducer,
-  userReducer: UserReducer,
+  mainReducer: mainReducer,
+  userReducer: userReducer,
+  indirizzoReducer: indirizzoReducer,
+  cartaReducer: cartaReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

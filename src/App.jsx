@@ -10,7 +10,7 @@ import Settings from "./components/Settings";
 
 function App() {
   return (
-    <Container fluid="sm" id="mainContainer" className="p-0 " style={{ minHeight: "100vh" }}>
+    <Container fluid="xxl" id="mainContainer" className="p-0 " style={{ minHeight: "100vh" }}>
       <BrowserRouter>
         <TopBar />
         <div className="p-3">

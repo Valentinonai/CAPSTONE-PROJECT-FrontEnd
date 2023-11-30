@@ -8,7 +8,7 @@ const initialState = {
   },
 };
 
-const MainReducer = (state = initialState, action) => {
+const mainReducer = (state = initialState, action) => {
   switch (action.type) {
     case MODIFICA_ON:
       return {
@@ -34,4 +34,4 @@ const MainReducer = (state = initialState, action) => {
   }
 };
 
-export default MainReducer;
+export default mainReducer;
