@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Alert, Button, Col, Image, Row, Spinner } from "react-bootstrap";
-import { CloudUpload, Pencil, XLg } from "react-bootstrap-icons";
+import { Pencil, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   creaCarta,
   creaIndirizzo,
-  errorHandler,
-  fetchGetUser,
-  isLoading,
   modificaCarta,
   modificaIndirizzo,
   modificaOff,
@@ -41,15 +38,19 @@ const Settings = () => {
     if (modify === false) dispatch(modificaOn());
     else {
       dispatch(modificaOff());
-      setVia(user.indirizzoSpedizione.via);
-      setNumero(user.indirizzoSpedizione.numero);
-      setCodice(user.indirizzoSpedizione.codice_postale);
-      setPaese(user.indirizzoSpedizione.paese);
-      setProvincia(user.indirizzoSpedizione.provincia);
-      setInterno(user.indirizzoSpedizione.numero_interno);
-      setNumCarta(user.cartaDiCredito.numero_carta);
-      setCvv(user.cartaDiCredito.cvv);
-      setScadenza(user.cartaDiCredito.data_di_scadenza);
+      if (user.indirizzoSpedizione) {
+        setVia(user.indirizzoSpedizione.via);
+        setNumero(user.indirizzoSpedizione.numero);
+        setCodice(user.indirizzoSpedizione.codice_postale);
+        setPaese(user.indirizzoSpedizione.paese);
+        setProvincia(user.indirizzoSpedizione.provincia);
+        setInterno(user.indirizzoSpedizione.numero_interno);
+      }
+      if (user.cartaDiCredito) {
+        setNumCarta(user.cartaDiCredito.numero_carta);
+        setCvv(user.cartaDiCredito.cvv);
+        setScadenza(user.cartaDiCredito.data_di_scadenza);
+      }
     }
   };
 
@@ -58,7 +59,7 @@ const Settings = () => {
       dispatch(modificaPasswordUtente(password, token));
       setPassword("");
     }
-    if (user.indirizzoSpedizione === null) {
+    if (!user.indirizzoSpedizione) {
       if (via && numero && codice && paese && provincia && interno) {
         dispatch(
           creaIndirizzo(
@@ -78,19 +79,19 @@ const Settings = () => {
       dispatch(
         modificaIndirizzo(
           {
-            via: via,
-            numero: numero,
-            codice_postale: codice,
-            paese: paese,
-            provincia: provincia,
-            numero_interno: interno,
+            via: via === "" ? null : via,
+            numero: numero === "" ? null : numero,
+            codice_postale: codice === "" ? null : codice,
+            paese: paese === "" ? null : paese,
+            provincia: provincia === "" ? null : provincia,
+            numero_interno: interno === "" ? null : interno,
           },
           token
         )
       );
     }
 
-    if (user.cartaDiCredito === null) {
+    if (!user.cartaDiCredito) {
       if (numCarta && cvv && scadenza) {
         dispatch(
           creaCarta(
@@ -107,9 +108,9 @@ const Settings = () => {
       dispatch(
         modificaCarta(
           {
-            numero_carta: numCarta,
-            cvv: cvv,
-            data_di_scadenza: scadenza,
+            numero_carta: numCarta === "" ? null : numCarta,
+            cvv: cvv === "" ? null : cvv,
+            data_di_scadenza: scadenza === "" ? null : scadenza,
           },
           token
         )
@@ -135,7 +136,7 @@ const Settings = () => {
         <Row>
           <Col xs={12} md={12} lg={5}>
             <div id="settingsImg" className="mt-4 mt-lg-5 mb-3 mx-xlg-5 mx-1 mx-lg-3">
-              <Image src={user.immagineUrl} width={"100%"} height={"100%"} style={{ objectFit: "cover" }} />
+              <Image src={user.immagineUrl} width={"100%"} height={"100%"} id="imgSettings" />
               <div id="overrideImg">
                 <Dropzone>
                   {({ getRootProps, getInputProps, acceptedFiles }) => (

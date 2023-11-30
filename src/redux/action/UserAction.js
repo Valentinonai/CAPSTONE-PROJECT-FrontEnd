@@ -119,6 +119,7 @@ export const modificaPasswordUtente = (password, token) => {
 
 export const creaIndirizzo = (indirizzo, token) => {
   return async (dispatch) => {
+    console.log(indirizzo);
     try {
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/indirizzi/me`, {
         method: "POST",

@@ -129,6 +129,9 @@ body {
   text-align: center;
   z-index: 3;
 }
+#imgSettings {
+  object-fit: "cover";
+}
 #overrideImg:hover {
   opacity: 1;
 }
