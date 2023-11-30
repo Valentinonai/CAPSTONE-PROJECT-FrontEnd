@@ -6,7 +6,7 @@ export const MODIFICA_OFF = "MODIFICA_OFF";
 export const ERROR_HANDLER = "ERROR_HANDLER";
 export const SAVE_INDIRIZZO = "SAVE_INDIRIZZO";
 export const SAVE_CARTA = "SAVE_CARTA";
-
+export const IS_LOADING = "IS_LOADING";
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
 export const saveToken = (token) => ({ type: SAVE_TOKEN, payload: token });
@@ -15,6 +15,7 @@ export const modificaOff = () => ({ type: MODIFICA_OFF, payload: false });
 export const errorHandler = (value, message) => ({ type: ERROR_HANDLER, payload: { value: value, message: message } });
 export const salvaIndirizzo = (data) => ({ type: SAVE_INDIRIZZO, payload: data });
 export const salvaCarta = (data) => ({ type: SAVE_CARTA, payload: data });
+export const isLoading = (value) => ({ type: IS_LOADING, payload: value });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -67,6 +68,7 @@ export const signupFetch = (nome, cognome, email, password, nav, image) => {
 export const uploadUserImg = (image, token) => {
   return async (dispatch) => {
     if (image) {
+      dispatch(isLoading(true));
       const formImg = new FormData();
       formImg.append("user_img", image);
       try {
@@ -80,6 +82,7 @@ export const uploadUserImg = (image, token) => {
         if (risp.ok) {
           const data = await risp.json();
           dispatch(fetchGetUser(token));
+          dispatch(isLoading(false));
         } else throw new Error(risp.status);
       } catch (error) {
         console.log(error.message);

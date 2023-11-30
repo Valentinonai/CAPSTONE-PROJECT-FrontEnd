@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Col, Image, Row } from "react-bootstrap";
-import { Pencil, XLg } from "react-bootstrap-icons";
+import { Alert, Button, Col, Image, Row, Spinner } from "react-bootstrap";
+import { CloudUpload, Pencil, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   creaCarta,
   creaIndirizzo,
   errorHandler,
   fetchGetUser,
+  isLoading,
   modificaCarta,
   modificaIndirizzo,
   modificaOff,
   modificaOn,
   modificaPasswordUtente,
+  uploadUserImg,
 } from "../redux/action/UserAction";
+import Dropzone from "react-dropzone";
 
 const Settings = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -30,6 +33,8 @@ const Settings = () => {
   const [cvv, setCvv] = useState(user.cartaDiCredito && user.cartaDiCredito.cvv);
   const [scadenza, setScadenza] = useState(user.cartaDiCredito && user.cartaDiCredito.data_di_scadenza);
   const dispatch = useDispatch();
+  const [image, setImage] = useState();
+  const load = useSelector((state) => state.mainReducer.isLoading);
 
   const setModifica = () => {
     console.log(modify);
@@ -112,6 +117,13 @@ const Settings = () => {
     }
     setModifica();
   };
+  const cambiaImg = (file) => {
+    setImage(file);
+    if (file !== undefined) {
+      dispatch(uploadUserImg(file, token));
+    }
+    return undefined;
+  };
   useEffect(() => {
     if (modify === true) dispatch(modificaOff());
   }, []);
@@ -122,7 +134,29 @@ const Settings = () => {
         <h1 className="mx-xlg-5 mx-1 mx-lg-3">Benvenuto {user.nome}</h1>
         <Row>
           <Col xs={12} md={12} lg={5}>
-            <Image src={user.immagineUrl} id="settingsImg" className="mt-4 mt-lg-5 mb-3 mx-xlg-5 mx-1 mx-lg-3" />
+            <div id="settingsImg" className="mt-4 mt-lg-5 mb-3 mx-xlg-5 mx-1 mx-lg-3">
+              <Image src={user.immagineUrl} width={"100%"} height={"100%"} style={{ objectFit: "cover" }} />
+              <div id="overrideImg">
+                <Dropzone>
+                  {({ getRootProps, getInputProps, acceptedFiles }) => (
+                    <>
+                      <div {...getRootProps()} style={{ width: "100%", height: "100%" }}>
+                        <input {...getInputProps()} className="dropZoneSettings" />
+                        {!load && (
+                          <p className="pDropZoneSettings">{acceptedFiles[0] ? "" : "Trascina un'immagine qui"}</p>
+                        )}
+                        {load && (
+                          <Spinner animation="border" role="status" className="spinnerSettings">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        )}
+                        {(acceptedFiles[0] = cambiaImg(acceptedFiles[0]))}
+                      </div>
+                    </>
+                  )}
+                </Dropzone>
+              </div>
+            </div>
           </Col>
           <Col xs={12} md={12} lg={7}>
             <div className="mt-5" id="settingsMain">

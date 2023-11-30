@@ -1,4 +1,4 @@
-import { ERROR_HANDLER, ERROR_OFF, ERROR_ON, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
+import { ERROR_HANDLER, ERROR_OFF, ERROR_ON, IS_LOADING, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
 
 const initialState = {
   isModify: false,
@@ -6,6 +6,7 @@ const initialState = {
     value: false,
     message: "",
   },
+  isLoading: false,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -28,7 +29,11 @@ const mainReducer = (state = initialState, action) => {
           message: action.payload.message,
         },
       };
-
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
     default:
       return state;
   }
