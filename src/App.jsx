@@ -10,17 +10,15 @@ import Settings from "./components/Settings";
 
 function App() {
   return (
-    <Container fluid="xxl" id="mainContainer" className="p-0 " style={{ minHeight: "100vh" }}>
+    <Container fluid="xxl" id="mainContainer" style={{ minHeight: "100vh" }}>
       <BrowserRouter>
         <TopBar />
-        <div className="p-3">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </BrowserRouter>
     </Container>
   );

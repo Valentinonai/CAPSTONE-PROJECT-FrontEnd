@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect } from "react";
+import { initializeConnect } from "react-redux/es/components/connect";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -22,7 +23,7 @@ const TopBar = () => {
   }, []);
   return (
     <>
-      <Navbar expand="lg" id="topBar" className="px-2">
+      <Navbar expand="lg" id="topBar" className="px-2" style={{ marginInline: "-12px" }}>
         <div>
           <Link to={"/"} className="me-3 mb-lg-0 mb-3">
             {" "}
