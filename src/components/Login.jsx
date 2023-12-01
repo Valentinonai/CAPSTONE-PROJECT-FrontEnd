@@ -21,7 +21,6 @@ const Login = () => {
           "content-type": "Application/json",
         },
       });
-
       if (risp.ok) {
         const data = await risp.json();
         dispatch(saveToken(data.token));

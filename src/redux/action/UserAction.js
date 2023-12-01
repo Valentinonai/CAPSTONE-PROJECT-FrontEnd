@@ -7,6 +7,9 @@ export const ERROR_HANDLER = "ERROR_HANDLER";
 export const SAVE_INDIRIZZO = "SAVE_INDIRIZZO";
 export const SAVE_CARTA = "SAVE_CARTA";
 export const IS_LOADING = "IS_LOADING";
+export const ELIMINA_ACCOUNT = "ELIMINA_ACCOUNT";
+export const ELIMINA_TOKEN = "ELIMINA_TOKEN";
+
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
 export const saveToken = (token) => ({ type: SAVE_TOKEN, payload: token });
@@ -16,6 +19,8 @@ export const errorHandler = (value, message) => ({ type: ERROR_HANDLER, payload:
 export const salvaIndirizzo = (data) => ({ type: SAVE_INDIRIZZO, payload: data });
 export const salvaCarta = (data) => ({ type: SAVE_CARTA, payload: data });
 export const isLoading = (value) => ({ type: IS_LOADING, payload: value });
+export const eliminaUser = () => ({ type: ELIMINA_ACCOUNT, payload: null });
+export const eliminaToken = () => ({ type: ELIMINA_TOKEN, payload: null });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -34,6 +39,7 @@ export const fetchGetUser = (token) => {
         console.log("USER: ", data);
       } else throw new Error(risp.message);
     } catch (error) {
+      dispatch(eliminaToken());
       console.log(error.message);
     }
   };
@@ -213,6 +219,36 @@ export const modificaCarta = (carta, token) => {
         const data = await risp.json();
         dispatch(salvaCarta(data));
       } else throw new Error("Metodo di pagamento non modificato");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
+};
+
+//----------------------------------Elimina account------------------------------------
+
+export const eliminaAccount = (token, nav) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/users/elimina/me`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(risp);
+      if (risp.ok) {
+        console.log("here");
+        dispatch(eliminaUser());
+        dispatch(errorHandler(true, "Account eliminato"));
+        setTimeout(() => {
+          dispatch(errorHandler(false, ""));
+          nav("/");
+        }, 2000);
+      } else throw new Error("Utente non eliminato");
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

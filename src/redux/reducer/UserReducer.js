@@ -1,4 +1,4 @@
-import { MODIFICA_OFF, MODIFICA_ON, SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
+import { ELIMINA_ACCOUNT, ELIMINA_TOKEN, SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
 
 const initialState = {
   token: "",
@@ -22,6 +22,17 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.payload,
+      };
+    case ELIMINA_ACCOUNT:
+      return {
+        ...state,
+        token: "",
+        user: null,
+      };
+    case ELIMINA_TOKEN:
+      return {
+        ...state,
+        token: "",
       };
 
     default:
