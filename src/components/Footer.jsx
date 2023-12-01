@@ -4,8 +4,8 @@ import "../style/footer.css";
 
 const Footer = () => {
   return (
-    <Container fluid="lg" className="Footer-container ">
-      <Row className="Footer">
+    <Container fluid="lg" className="Footer-container">
+      <Row className="Footer ">
         <Col sm={3} md={2}>
           <Row className="d-flex flex-column text-start">
             <Col>
