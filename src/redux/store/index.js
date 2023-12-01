@@ -7,6 +7,7 @@ import mainReducer from "../reducer/MainReducer";
 import userReducer from "../reducer/UserReducer";
 import indirizzoReducer from "../reducer/IndirizzoReducer";
 import cartaReducer from "../reducer/CartaReducer";
+import marketStoreReducer from "../reducer/MarketStoreReducer";
 
 const persistConfig = {
   key: "root",
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   userReducer: userReducer,
   indirizzoReducer: indirizzoReducer,
   cartaReducer: cartaReducer,
+  marketStoreReducer: marketStoreReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

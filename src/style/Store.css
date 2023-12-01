@@ -1,0 +1,65 @@
+#store {
+  background-image: linear-gradient(0deg, blue, white);
+  min-height: 100vh;
+  margin-inline: -12px;
+}
+.cardButton {
+  background-color: var(--colore-button);
+  color: var(--colore-testo);
+  box-shadow: 0px 0px 5px 1px var(--colore-3);
+  border: none;
+}
+.cardButton:hover {
+  opacity: 0.8;
+}
+.cardButton:active {
+  opacity: 0.4;
+  box-shadow: 0px 0px 10px 5px var(--colore-3);
+}
+
+.cardItemTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.imgCard {
+  height: 200px;
+  object-fit: cover;
+}
+.cardItem {
+  box-shadow: 0 0 10px 5px white;
+  border: none;
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+.cardItem:hover {
+  transform: scale(1.05);
+}
+.preferiti {
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: white;
+  font-size: 30px;
+}
+.preferiti:hover {
+  opacity: 0.8;
+}
+.preferiti:active {
+  opacity: 0.4;
+}
+@media screen and (max-width: 1199px) {
+  .imgCard {
+    height: 400px;
+    object-fit: cover;
+  }
+}
+@media screen and (max-width: 375px) {
+  .imgCard {
+    height: 350px;
+    object-fit: cover;
+  }
+}

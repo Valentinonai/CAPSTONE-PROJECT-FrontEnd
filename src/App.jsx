@@ -7,6 +7,7 @@ import TopBar from "./components/TopBar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Settings from "./components/Settings";
+import MarketStore from "./components/MarketStore";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/store" element={<MarketStore />} />
         </Routes>
       </BrowserRouter>
     </Container>
