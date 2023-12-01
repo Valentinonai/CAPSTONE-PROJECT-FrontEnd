@@ -78,3 +78,30 @@ export const rimuoviPreferiti = (elem, token) => {
     }
   };
 };
+
+//------------------Get by categoria---------------------------
+export const getByCategoria = (token, page, categoria) => {
+  return async (dispatch) => {
+    try {
+      dispatch(isLoading(true));
+      const risp = await fetch(
+        `${process.env.REACT_APP_BASEURL}/items/categoria?categoria=${categoria}&page=${page - 1}`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "Application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (risp.ok) {
+        const data = await risp.json();
+        console.log("SPECIFICO", data);
+        dispatch(getAllItems(data.content, data.totalPages));
+        dispatch(isLoading(false));
+      } else throw new Error(risp.message);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};

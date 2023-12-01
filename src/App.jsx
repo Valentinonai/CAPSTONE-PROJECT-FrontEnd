@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Settings from "./components/Settings";
 import MarketStore from "./components/MarketStore";
+import DettaglioItem from "./components/DettaglioItem";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/store" element={<MarketStore />} />
+          <Route path="/dettaglio/:item_id" element={<DettaglioItem />} />
         </Routes>
       </BrowserRouter>
     </Container>

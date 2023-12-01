@@ -4,10 +4,12 @@
   margin-inline: -12px;
 }
 .cardButton {
-  background-color: var(--colore-button);
+  /* background-color: var(--colore-button); */
+  background-image: linear-gradient(225deg, white, var(--colore-button));
   color: var(--colore-testo);
   box-shadow: 0px 0px 5px 1px var(--colore-3);
   border: none;
+  padding-inline: 25px;
 }
 .cardButton:hover {
   opacity: 0.8;
@@ -40,16 +42,22 @@
 .preferiti {
   cursor: pointer;
   position: absolute;
-  bottom: 0;
-  right: 10px;
-  color: white;
-  font-size: 30px;
+  bottom: 10px;
+  left: 10px;
+  color: rgb(93, 194, 234);
+  font-size: 25px;
 }
 .preferiti:hover {
   opacity: 0.8;
 }
 .preferiti:active {
   opacity: 0.4;
+}
+.soldout {
+  position: absolute;
+  bottom: -30px;
+  right: 10px;
+  padding: 8px;
 }
 @media screen and (max-width: 1199px) {
   .imgCard {

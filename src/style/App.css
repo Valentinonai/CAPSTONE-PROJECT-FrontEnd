@@ -67,7 +67,8 @@ body {
 }
 
 .loginButtonForm {
-  background-color: var(--colore-button);
+  /* background-color: var(--colore-button); */
+  background-image: linear-gradient(225deg, white, var(--colore-button));
   color: var(--colore-testo);
   box-shadow: 0px 0px 5px 1px var(--colore-3);
   border: none;

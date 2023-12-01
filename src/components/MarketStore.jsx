@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Col, Form, Pagination, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAll } from "../redux/action/MarketStoreAction";
+import { getAll, getByCategoria } from "../redux/action/MarketStoreAction";
 import CardVuota from "./CardVuota";
 import CardItemStore from "./CardItemStore";
 
@@ -15,26 +15,34 @@ const MarketStore = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
-  const fetchStore = (mypage) => {
-    switch (selezione) {
+  const fetchStore = (mypage, sel) => {
+    switch (sel) {
       case "Tutti":
         dispatch(getAll(token, mypage));
         break;
-      case "Scheda Madre":
+      case "Scheda_Madre":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
       case "Cpu":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
       case "Ram":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
       case "Case":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
-      case "Scheda Grafica":
+      case "Scheda_Grafica":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
       case "Alimentatore":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
-      case "Hard Disk":
+      case "Hard_Disk":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
       case "Ventole":
+        dispatch(getByCategoria(token, mypage, sel));
         break;
 
       default:
@@ -42,8 +50,8 @@ const MarketStore = () => {
     }
   };
   useEffect(() => {
-    fetchStore(page);
-  }, [selezione]);
+    fetchStore(page, "Tutti");
+  }, []);
   return (
     <div id="store">
       <Form className=" mb-5 mt-3" style={{ marginInline: "-12px" }}>
@@ -54,8 +62,10 @@ const MarketStore = () => {
             name="group1"
             type="radio"
             className="mx-2"
-            onSelect={() => {
-              setSelezione("Scheda Madre");
+            onClick={() => {
+              setSelezione("Tutti");
+              setPage(1);
+              fetchStore(1, "Tutti");
             }}
           />
           <Form.Check
@@ -63,8 +73,10 @@ const MarketStore = () => {
             name="group1"
             type="radio"
             className="mx-2"
-            onSelect={() => {
-              setSelezione("Scheda Madre");
+            onClick={() => {
+              setSelezione("Scheda_Madre");
+              setPage(1);
+              fetchStore(1, "Scheda_Madre");
             }}
           />
           <Form.Check
@@ -72,8 +84,10 @@ const MarketStore = () => {
             name="group1"
             type="radio"
             className="mx-2"
-            onSelect={() => {
+            onClick={() => {
               setSelezione("Cpu");
+              setPage(1);
+              fetchStore(1, "Cpu");
             }}
           />
           <Form.Check
@@ -81,8 +95,10 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
+            onClick={() => {
               setSelezione("Ram");
+              setPage(1);
+              fetchStore(1, "Ram");
             }}
           />
           <Form.Check
@@ -90,8 +106,10 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
+            onClick={() => {
               setSelezione("Case");
+              setPage(1);
+              fetchStore(1, "Case");
             }}
           />
           <Form.Check
@@ -99,8 +117,10 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
-              setSelezione("Scheda Grafica");
+            onClick={() => {
+              setSelezione("Scheda_Grafica");
+              setPage(1);
+              fetchStore(1, "Scheda_Grafica");
             }}
           />
           <Form.Check
@@ -108,8 +128,10 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
+            onClick={() => {
               setSelezione("Alimentatore");
+              setPage(1);
+              fetchStore(1, "Alimentatore");
             }}
           />
           <Form.Check
@@ -117,8 +139,10 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
-              setSelezione("Hard Disk");
+            onClick={() => {
+              setSelezione("Hard_Disk");
+              setPage(1);
+              fetchStore(1, "Hard_Disk");
             }}
           />
           <Form.Check
@@ -126,13 +150,15 @@ const MarketStore = () => {
             type="radio"
             name="group1"
             className="mx-2"
-            onSelect={() => {
+            onClick={() => {
               setSelezione("Ventole");
+              setPage(1);
+              fetchStore(1, "Ventole");
             }}
           />
         </div>
       </Form>
-      <h1 className="ms-0 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
+      <h1 className="ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
         STORE
       </h1>
       {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
@@ -166,7 +192,7 @@ const MarketStore = () => {
             <Pagination.Prev
               onClick={() => {
                 setPage(page - 1);
-                fetchStore(page - 1);
+                fetchStore(page - 1, selezione);
               }}
             />
           )}
@@ -177,7 +203,7 @@ const MarketStore = () => {
             <Pagination.Next
               onClick={() => {
                 setPage(page + 1);
-                fetchStore(page + 1);
+                fetchStore(page + 1, selezione);
               }}
             />
           )}

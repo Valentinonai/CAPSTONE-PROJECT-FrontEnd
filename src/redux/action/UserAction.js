@@ -36,7 +36,6 @@ export const fetchGetUser = (token) => {
       if (risp.ok) {
         const data = await risp.json();
         dispatch(userSave(data));
-        console.log("USER: ", data);
       } else throw new Error(risp.message);
     } catch (error) {
       dispatch(eliminaToken());
