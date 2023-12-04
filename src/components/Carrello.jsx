@@ -61,12 +61,14 @@ const Carrello = () => {
           )}
         </ListGroup>
         {/*   //!-----------------AGGIUNGERE SEZIONE BUILDS NEL CARRELLO-------------------------- */}
-        <div className=" mt-5 ">
-          {" "}
-          <Button variant="outline-secondary" className="w-100 shadow">
-            <span className="fs-4">Ordina</span>
-          </Button>
-        </div>
+        {carrelloItems.length !== 0 && (
+          <div className=" mt-5 ">
+            {" "}
+            <Button variant="outline-secondary" className="w-100 shadow">
+              <span className="fs-4">Ordina</span>
+            </Button>
+          </div>
+        )}
       </div>
       <Footer />
     </>

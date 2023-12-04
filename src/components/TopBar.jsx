@@ -6,6 +6,7 @@ import { fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect } from "react";
 import { initializeConnect } from "react-redux/es/components/connect";
 import { Cart } from "react-bootstrap-icons";
+import { clearCart } from "../redux/action/CarrelloActions";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -15,6 +16,7 @@ const TopBar = () => {
 
   const logout = () => {
     dispatch(userLogout());
+    dispatch(clearCart());
   };
 
   useEffect(() => {

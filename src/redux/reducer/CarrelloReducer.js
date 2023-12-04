@@ -1,4 +1,4 @@
-import { ADD_CART, MODIFY_QT, REMOVE_CART } from "../action/CarrelloActions";
+import { ADD_CART, CLEAR_CART, MODIFY_QT, REMOVE_CART } from "../action/CarrelloActions";
 
 const initialState = {
   items: [],
@@ -47,6 +47,11 @@ const CarrelloReducer = (state = initialState, action) => {
             return elem;
           }
         }),
+      };
+    case CLEAR_CART:
+      return {
+        items: [],
+        builds: [],
       };
     case REMOVE_CART: {
       return {
