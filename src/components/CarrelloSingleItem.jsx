@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { DashCircle, Pencil, PlusCircle, Trash } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,9 @@ const CarrelloSingleItem = ({ elem, index }) => {
   const eliminaCarrello = () => {
     dispatch(removeCarrello(elem.item));
   };
+  useEffect(() => {
+    setQt(elem.quantita);
+  }, [elem]);
   return (
     <Row>
       <Col xs={1} className="d-none d-md-block">
@@ -53,7 +56,7 @@ const CarrelloSingleItem = ({ elem, index }) => {
             className="me-2 buttonClick"
             onClick={() => {
               if (qt > 1) {
-                setQt((prevQt) => prevQt - 1);
+                setQt(qt - 1);
                 modificaQuantita(qt - 1);
               }
             }}
@@ -63,7 +66,7 @@ const CarrelloSingleItem = ({ elem, index }) => {
             className="ms-2 buttonClick"
             onClick={() => {
               if (qt < elem.item.quantità) {
-                setQt((prevQt) => prevQt + 1);
+                setQt(qt + 1);
                 modificaQuantita(qt + 1);
               }
             }}

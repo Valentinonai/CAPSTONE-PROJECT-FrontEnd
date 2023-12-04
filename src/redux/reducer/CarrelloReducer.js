@@ -25,7 +25,10 @@ const CarrelloReducer = (state = initialState, action) => {
             if (elem.item.id === action.payload.item.id) {
               return {
                 ...elem,
-                quantita: elem.quantita + action.payload.quantita,
+                quantita:
+                  elem.quantita + action.payload.quantita > elem.item.quantità
+                    ? elem.item.quantità
+                    : elem.quantita + action.payload.quantita,
               };
             } else {
               return elem;
