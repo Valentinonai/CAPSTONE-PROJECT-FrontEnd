@@ -11,7 +11,7 @@ const Carrello = () => {
 
   return (
     <>
-      <div id="carrello" className="m-3 p-1">
+      <div id="carrello" className="m-3 p-1 mt-5">
         <p className="ms-2 ms-md-4 my-5 h1" style={{ fontWeight: "bold", fontSize: "60px" }}>
           CARRELLO
         </p>
@@ -60,6 +60,7 @@ const Carrello = () => {
             ))
           )}
         </ListGroup>
+        {/*   //!-----------------AGGIUNGERE SEZIONE BUILDS NEL CARRELLO-------------------------- */}
         <div className=" mt-5 ">
           {" "}
           <Button variant="outline-secondary" className="w-100 shadow">

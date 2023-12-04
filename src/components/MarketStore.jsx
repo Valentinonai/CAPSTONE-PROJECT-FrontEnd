@@ -55,7 +55,7 @@ const MarketStore = () => {
   }, []);
   return (
     <>
-      <div id="store">
+      <div id="store" className="mt-5 mx-3 pt-4">
         <Form className=" mb-5 mt-3" style={{ marginInline: "-12px" }}>
           <div className="d-flex justify-content-center align-items-center flex-wrap">
             <Form.Check
