@@ -1,7 +1,4 @@
 #store {
-  /* background-image: linear-gradient(0deg, blue, white);
-  min-height: 100vh;
-  margin-inline: -12px; */
   background-image: radial-gradient(
     ellipse at right bottom,
     var(--colore-2) 30%,
@@ -15,7 +12,6 @@
   padding-inline: 10px;
 }
 .cardButton {
-  /* background-color: var(--colore-button); */
   background-image: linear-gradient(225deg, white, var(--colore-button));
   color: var(--colore-testo);
   box-shadow: 0px 0px 5px 1px var(--colore-3);

@@ -5,7 +5,7 @@ import { getAll, getByCategoria } from "../redux/action/MarketStoreAction";
 import CardVuota from "./CardVuota";
 import CardItemStore from "./CardItemStore";
 import Footer from "./Footer";
-
+import "../style/Store.css";
 const MarketStore = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
