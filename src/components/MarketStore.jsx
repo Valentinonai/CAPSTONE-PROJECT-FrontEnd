@@ -55,7 +55,7 @@ const MarketStore = () => {
   }, []);
   return (
     <>
-      <div id="store" className="mt-5 mx-3 pt-4">
+      <div id="store" className="mt-5 mx-1 pt-4">
         <Form className=" mb-5 mt-3" style={{ marginInline: "-12px" }}>
           <div className="d-flex justify-content-center align-items-center flex-wrap">
             <Form.Check
@@ -166,7 +166,7 @@ const MarketStore = () => {
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {/* ------------CARICAMENTO------------- */}
         {user && load && (
-          <Row xs={1} sm={2} md={3} lg={5} className="gy-5 mx-0 mx-md-4">
+          <Row xs={1} sm={2} md={3} lg={5} className="gy-5 mx-0 mx-md-2">
             {[...Array(10).keys()].map((elem) => (
               <Col>
                 {" "}
@@ -177,7 +177,7 @@ const MarketStore = () => {
         )}
         {/* ---------------------CREAZIONE PAGINA------------------- */}
         {user && items && (
-          <Row xs={1} sm={2} xl={5} className="gy-5 mx-0 mx-md-4">
+          <Row xs={1} sm={2} xl={5} className="gy-5 mx-0 mx-md-2">
             {items.map((elem) => (
               <Col>
                 <CardItemStore elem={elem} />
