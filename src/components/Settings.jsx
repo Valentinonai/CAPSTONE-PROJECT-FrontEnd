@@ -15,6 +15,7 @@ import {
 } from "../redux/action/UserAction";
 import Dropzone from "react-dropzone";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const Settings = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -465,6 +466,7 @@ const Settings = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <Footer />
     </>
   );
 };

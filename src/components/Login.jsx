@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
-      <div className="login_form mx-auto  p-4 mt-5" style={{ borderRadius: "20px" }}>
+      <div className="login_form mx-auto  p-4 mt-5">
         <div className="mb-5">
           <h2>Login</h2>
         </div>

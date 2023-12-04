@@ -16,13 +16,13 @@ const Build = () => {
     <>
       {!user && <h4 className="text-center">Effettua il login per accedere alla sezione build your pc</h4>}
       {user && (
-        <div className="mt-5 shadow mx-2 mx-md-5 pb-5" id="buildHero">
+        <div className="mt-5 mx-2 mx-md-5 pb-5" id="buildHero">
           <h1 className="ms-2 ms-md-4 mb-5 mt-4" style={{ fontWeight: "bold", fontSize: "60px" }}>
             BUILD YOUR PC
           </h1>
           <Row xs={1} md={2}>
             <Col>
-              <div className=" shadow" style={{ borderRadius: "20px", overflow: "hidden" }}>
+              <div className="" style={{ borderRadius: "20px", overflow: "hidden" }}>
                 <Image src={pc} width={"100%"} />
               </div>
             </Col>

@@ -61,8 +61,15 @@ body {
   transform: scale(1) !important;
 }
 .login_form {
-  box-shadow: 0px 0px 15px 5px var(--colore-3);
+  border-radius: 10px;
+  border: 1px solid grey;
   width: 50%;
+  background-image: radial-gradient(
+    ellipse at right bottom,
+    var(--colore-2) 30%,
+    var(--colore-1) 60%,
+    var(--colore-2) 100%
+  );
 }
 
 .loginButtonForm {
@@ -100,7 +107,6 @@ body {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0px 0px 10px 1px var(--colore-3);
   border-radius: 20px;
   width: 300px;
   height: 300px;
@@ -157,8 +163,8 @@ body {
     var(--colore-1) 60%,
     var(--colore-2) 100%
   );
-  border-radius: 40px;
-  box-shadow: 0px 0px 15px 5px var(--colore-3);
+  border-radius: 10px;
+  border: 1px solid grey;
 }
 #paginaSettings p {
   margin-block: 10px;
@@ -182,8 +188,8 @@ body {
   opacity: 0.3;
 }
 #settingsMain {
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px 5px var(--colore-3);
+  border-radius: 10px;
+  border: 1px solid grey;
   padding: 20px;
 }
 

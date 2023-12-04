@@ -50,7 +50,7 @@ const DettaglioItem = () => {
           <p className="h1 mt-4">{item.nome}</p>
           <Row className="mt-5">
             <Col xs={12} md={5}>
-              <div style={{ overflow: "hidden" }} className="rounded shadow">
+              <div style={{ overflow: "hidden" }} className="rounded ">
                 <Image src={item.immagineUrl} width={"100%"} />
               </div>
             </Col>
