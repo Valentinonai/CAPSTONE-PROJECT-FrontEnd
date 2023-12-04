@@ -8,6 +8,7 @@ import userReducer from "../reducer/UserReducer";
 import indirizzoReducer from "../reducer/IndirizzoReducer";
 import cartaReducer from "../reducer/CartaReducer";
 import marketStoreReducer from "../reducer/MarketStoreReducer";
+import CarrelloReducer from "../reducer/CarrelloReducer";
 
 const persistConfig = {
   key: "root",
@@ -17,7 +18,7 @@ const persistConfig = {
       secretKey: process.env.REACT_APP_LOCALSTORAGEKEY,
     }),
   ],
-  whitelist: ["userReducer"],
+  whitelist: ["userReducer", "carrelloReducer"],
 };
 
 const rootReducer = combineReducers({
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   indirizzoReducer: indirizzoReducer,
   cartaReducer: cartaReducer,
   marketStoreReducer: marketStoreReducer,
+  carrelloReducer: CarrelloReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

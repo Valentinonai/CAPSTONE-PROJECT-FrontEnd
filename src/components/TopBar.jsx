@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect } from "react";
 import { initializeConnect } from "react-redux/es/components/connect";
+import { Cart } from "react-bootstrap-icons";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -31,6 +32,9 @@ const TopBar = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-center align-items-center" id="topbarUserSection">
+          <Link to={"/carrello"}>
+            <Cart className="text-white me-4 fs-4" />
+          </Link>
           <NavDropdown
             title={user ? user.nome : "User"}
             drop="down"

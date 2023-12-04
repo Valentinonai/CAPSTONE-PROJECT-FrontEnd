@@ -9,6 +9,7 @@ import Signup from "./components/Signup";
 import Settings from "./components/Settings";
 import MarketStore from "./components/MarketStore";
 import DettaglioItem from "./components/DettaglioItem";
+import Carrello from "./components/Carrello";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/store" element={<MarketStore />} />
           <Route path="/dettaglio/:item_id" element={<DettaglioItem />} />
+          <Route path="/carrello" element={<Carrello />} />
         </Routes>
       </BrowserRouter>
     </Container>
