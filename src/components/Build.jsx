@@ -7,9 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 const Build = () => {
   const user = useSelector((state) => state.userReducer.user);
-  const token = useSelector((state) => state.userReducer.token);
-  const pagesNumber = useSelector((state) => state.marketStoreReducer.pagesNumber);
-  const load = useSelector((state) => state.mainReducer.isLoading);
   const nav = useNavigate();
 
   return (
@@ -40,6 +37,7 @@ const Build = () => {
                   variant="outline-dark"
                   onClick={() => {
                     nav("/build/scheda_madre");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                 >
                   Start

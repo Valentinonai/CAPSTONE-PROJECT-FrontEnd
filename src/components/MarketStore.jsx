@@ -55,7 +55,7 @@ const MarketStore = () => {
   }, []);
   return (
     <>
-      <div id="store" className="mt-5 mx-1 pt-4">
+      <div className="mt-5 mx-1 pt-4 store">
         <Form className=" mb-5 mt-3" style={{ marginInline: "-12px" }}>
           <div className="d-flex justify-content-center align-items-center flex-wrap">
             <Form.Check
@@ -195,6 +195,7 @@ const MarketStore = () => {
                 onClick={() => {
                   setPage(page - 1);
                   fetchStore(page - 1, selezione);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
             )}
@@ -206,6 +207,7 @@ const MarketStore = () => {
                 onClick={() => {
                   setPage(page + 1);
                   fetchStore(page + 1, selezione);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
             )}

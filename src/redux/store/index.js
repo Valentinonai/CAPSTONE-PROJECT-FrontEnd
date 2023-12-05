@@ -9,6 +9,7 @@ import indirizzoReducer from "../reducer/IndirizzoReducer";
 import cartaReducer from "../reducer/CartaReducer";
 import marketStoreReducer from "../reducer/MarketStoreReducer";
 import CarrelloReducer from "../reducer/CarrelloReducer";
+import BuildReducer from "../reducer/BuildReducer";
 
 const persistConfig = {
   key: "root",
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   cartaReducer: cartaReducer,
   marketStoreReducer: marketStoreReducer,
   carrelloReducer: CarrelloReducer,
+  buildReducer: BuildReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

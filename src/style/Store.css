@@ -1,4 +1,4 @@
-#store {
+.store {
   background-image: radial-gradient(
     ellipse at right bottom,
     var(--colore-2) 30%,
@@ -120,4 +120,8 @@
 
 #paginaDettaglio p {
   margin: 0;
+}
+
+.selezionato {
+  border: 1px solid red;
 }
