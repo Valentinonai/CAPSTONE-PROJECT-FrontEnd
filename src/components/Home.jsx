@@ -3,8 +3,15 @@ import hero from "../assets/pcCustom.jpg";
 import chiSiamo from "../assets/MotherBoard.jpg";
 import componenti from "../assets/componenti.jpg";
 import Footer from "./Footer";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { clearAll } from "../redux/action/BuildActions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearAll());
+  }, []);
   return (
     <>
       <Row className="shadow mb-5" id="heroSection">

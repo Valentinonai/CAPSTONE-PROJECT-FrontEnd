@@ -16,6 +16,7 @@ import {
 import Dropzone from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { clearAll } from "../redux/action/BuildActions";
 
 const Settings = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -135,6 +136,7 @@ const Settings = () => {
   };
   useEffect(() => {
     if (modify === true) dispatch(modificaOff());
+    dispatch(clearAll());
   }, []);
   return (
     <>

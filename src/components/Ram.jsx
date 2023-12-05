@@ -7,13 +7,14 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addSchedaMadre } from "../redux/action/BuildActions";
+import { addCpu, addRam, clearCpu } from "../redux/action/BuildActions";
 
-const SchedaMadre = () => {
+const Ram = () => {
   const token = useSelector((state) => state.userReducer.token);
   const load = useSelector((state) => state.mainReducer.isLoading);
   const user = useSelector((state) => state.userReducer.user);
   const hasError = useSelector((state) => state.mainReducer.hasError);
+  const schedaMadreSelezionata = useSelector((state) => state.buildReducer.scheda_madre);
   const nav = useNavigate();
   const [data, setData] = useState();
   const [page, setPage] = useState(1);
@@ -21,11 +22,13 @@ const SchedaMadre = () => {
   const dispatch = useDispatch();
   const [selezionato, setSelezionato] = useState();
 
-  const getAllSchedaMadre = async (p) => {
+  const getAllRamCompatibili = async (p) => {
     try {
       dispatch(isLoading(true));
       const risp = await fetch(
-        `${process.env.REACT_APP_BASEURL}/items/categoria?categoria=scheda_madre&page=${p - 1}`,
+        `${process.env.REACT_APP_BASEURL}/items/ram_schedamadre?scheda_madre_id=${schedaMadreSelezionata.id}&page=${
+          p - 1
+        }`,
         {
           method: "GET",
           headers: {
@@ -48,14 +51,13 @@ const SchedaMadre = () => {
     }
   };
 
-  const goToCpu = () => {
-    console.log(selezionato);
-    dispatch(addSchedaMadre(selezionato));
-    nav("/build/cpu");
+  const goToCase = () => {
+    dispatch(addRam(selezionato));
+    nav("/build/case");
   };
 
   useEffect(() => {
-    getAllSchedaMadre(1);
+    getAllRamCompatibili(1);
   }, []);
 
   return (
@@ -63,7 +65,7 @@ const SchedaMadre = () => {
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="mt-5 mx-1 pt-4 store">
         <h1 className="ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
-          SCHEDA MADRE
+          CPU
         </h1>
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {user && load && (
@@ -76,7 +78,7 @@ const SchedaMadre = () => {
             ))}
           </Row>
         )}
-        {user && data && (
+        {user && data && schedaMadreSelezionata && (
           <Row xs={1} sm={2} xl={5} className="gy-5 mx-0 mx-md-2">
             {data.map((elem) => (
               <Col>
@@ -90,7 +92,8 @@ const SchedaMadre = () => {
           <Button
             variant="outline-secondary"
             onClick={() => {
-              nav("/build");
+              nav("/build/cpu");
+              dispatch(clearCpu());
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
@@ -103,7 +106,7 @@ const SchedaMadre = () => {
               <Pagination.Prev
                 onClick={() => {
                   setPage(page - 1);
-                  getAllSchedaMadre(page - 1);
+                  getAllRamCompatibili(page - 1);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
@@ -115,7 +118,7 @@ const SchedaMadre = () => {
               <Pagination.Next
                 onClick={() => {
                   setPage(page + 1);
-                  getAllSchedaMadre(page + 1);
+                  getAllRamCompatibili(page + 1);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
@@ -125,7 +128,7 @@ const SchedaMadre = () => {
             variant="primary"
             className={!selezionato && "disabled"}
             onClick={() => {
-              goToCpu();
+              goToCase();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
@@ -137,4 +140,4 @@ const SchedaMadre = () => {
     </>
   );
 };
-export default SchedaMadre;
+export default Ram;

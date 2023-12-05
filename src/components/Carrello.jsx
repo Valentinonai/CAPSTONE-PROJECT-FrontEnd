@@ -1,14 +1,19 @@
 import { Button, Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 import { DashCircle, Pencil, PlusCircle, Trash } from "react-bootstrap-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CarrelloSingleItem from "./CarrelloSingleItem";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import { useEffect } from "react";
+import { clearAll } from "../redux/action/BuildActions";
 
 const Carrello = () => {
   const carrelloItems = useSelector((state) => state.carrelloReducer.items);
   const carrelloBuildes = useSelector((state) => state.carrelloReducer.bulds);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearAll());
+  }, []);
   return (
     <>
       <div id="carrello" className="m-3 p-1 mt-5">

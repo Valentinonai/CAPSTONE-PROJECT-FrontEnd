@@ -12,6 +12,8 @@ import DettaglioItem from "./components/DettaglioItem";
 import Carrello from "./components/Carrello";
 import Build from "./components/Build";
 import SchedaMadre from "./components/SchedaMadre";
+import Cpu from "./components/Cpu";
+import Ram from "./components/Ram";
 
 function App() {
   return (
@@ -28,9 +30,9 @@ function App() {
           <Route path="/carrello" element={<Carrello />} />
           <Route path="/build" element={<Build />} />
           <Route path="/build/scheda_madre" element={<SchedaMadre />} />
-          {/*<Route path="/build/cpu" element={<Cpu />} />
+          <Route path="/build/cpu" element={<Cpu />} />
           <Route path="/build/ram" element={<Ram />} />
-          <Route path="/build/case" element={<Case />} />
+          {/*<Route path="/build/case" element={<Case />} />
           <Route path="/build/scheda_grafica" element={<SchedaGrafica />} />
           <Route path="/build/hard_disk" element={<HardDisk />} />
           <Route path="/build/ventole" element={<Ventole />} />
