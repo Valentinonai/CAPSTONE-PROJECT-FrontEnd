@@ -21,9 +21,9 @@ const Build = () => {
       {user && (
         <>
           <div className="mt-5 mx-2 mx-md-5 pb-5" id="buildHero">
-            <h1 className="ms-2 ms-md-4 mb-5 mt-4" style={{ fontWeight: "bold", fontSize: "60px" }}>
+            <p className="h1 ms-2 ms-md-4 mb-5 mt-4" style={{ fontWeight: "bold", fontSize: "60px" }}>
               BUILD YOUR PC
-            </h1>
+            </p>
             <Row xs={1} md={2}>
               <Col>
                 <div className="" style={{ borderRadius: "20px", overflow: "hidden" }}>

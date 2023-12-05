@@ -163,9 +163,9 @@ const MarketStore = () => {
             />
           </div>
         </Form>
-        <h1 className="ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
+        <p className=" h1 ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
           STORE
-        </h1>
+        </p>
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {/* ------------CARICAMENTO------------- */}
         {user && load && (

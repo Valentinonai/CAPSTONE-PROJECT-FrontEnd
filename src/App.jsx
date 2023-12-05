@@ -19,6 +19,7 @@ import SchedaGrafica from "./components/SchedaGrafica";
 import HardDisk from "./components/HardDisk";
 import Ventole from "./components/Ventole";
 import Alimentatore from "./components/Alimentatore";
+import BuildDettaglio from "./components/BuildDettaglio";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
           <Route path="/build/hard_disk" element={<HardDisk />} />
           <Route path="/build/ventole" element={<Ventole />} />
           <Route path="/build/alimentatore" element={<Alimentatore />} />
-          {/* <Route path="/build/dettaglio" element={<BuildDettaglio />} /> */}
+          <Route path="/build/dettaglio" element={<BuildDettaglio />} />
         </Routes>
       </BrowserRouter>
     </Container>

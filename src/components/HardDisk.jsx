@@ -62,9 +62,9 @@ const HardDisk = () => {
     <>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="mt-5 mx-1 pt-4 store">
-        <h1 className="ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
-          SCHEDA GRAFICA
-        </h1>
+        <p className=" h1 ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
+          HARD DISK
+        </p>
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {user && load && (
           <Row xs={1} sm={2} md={3} lg={5} className="gy-5 mx-0 mx-md-2">
@@ -90,7 +90,7 @@ const HardDisk = () => {
           <Button
             variant="outline-secondary"
             onClick={() => {
-              nav("/build/ventole");
+              nav("/build/scheda_grafica");
               dispatch(clearSchedaGrafica());
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}

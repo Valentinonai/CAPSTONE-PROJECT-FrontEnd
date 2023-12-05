@@ -1,4 +1,12 @@
-import { ERROR_HANDLER, ERROR_OFF, ERROR_ON, IS_LOADING, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
+import {
+  ERROR_HANDLER,
+  ERROR_OFF,
+  ERROR_ON,
+  IS_LOADING,
+  MESSAGE_HANDLER,
+  MODIFICA_OFF,
+  MODIFICA_ON,
+} from "../action/UserAction";
 
 const initialState = {
   isModify: false,
@@ -7,6 +15,11 @@ const initialState = {
     message: "",
   },
   isLoading: false,
+
+  hasMessage: {
+    value: false,
+    message: "",
+  },
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -33,6 +46,14 @@ const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+    case MESSAGE_HANDLER:
+      return {
+        ...state,
+        hasMessage: {
+          value: action.payload.value,
+          message: action.payload.message,
+        },
       };
     default:
       return state;

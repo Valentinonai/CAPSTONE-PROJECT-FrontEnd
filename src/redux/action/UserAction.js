@@ -9,6 +9,7 @@ export const SAVE_CARTA = "SAVE_CARTA";
 export const IS_LOADING = "IS_LOADING";
 export const ELIMINA_ACCOUNT = "ELIMINA_ACCOUNT";
 export const ELIMINA_TOKEN = "ELIMINA_TOKEN";
+export const MESSAGE_HANDLER = "MESSAGE_HANDLER";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -21,6 +22,10 @@ export const salvaCarta = (data) => ({ type: SAVE_CARTA, payload: data });
 export const isLoading = (value) => ({ type: IS_LOADING, payload: value });
 export const eliminaUser = () => ({ type: ELIMINA_ACCOUNT, payload: null });
 export const eliminaToken = () => ({ type: ELIMINA_TOKEN, payload: null });
+export const messageHandler = (value, message) => ({
+  type: MESSAGE_HANDLER,
+  payload: { value: value, message: message },
+});
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {

@@ -144,7 +144,7 @@ const Settings = () => {
       {hasError.value && <Alert variant="danger">{hasError.message}</Alert>}
       {user && (
         <div id="paginaSettings" className="p-4 p-md-5 m-4 mt-5 ">
-          <h1 className="mx-xlg-5 mx-1 mx-lg-3">Benvenuto {user.nome}</h1>
+          <p className="h1 mx-xlg-5 mx-1 mx-lg-3">Benvenuto {user.nome}</p>
           <Row className="mb-3">
             <Col xs={12} md={12} lg={5} className="d-flex flex-column justify-content-between align-items-start">
               <div id="settingsImg" className="mt-4 mt-lg-5 mb-3 mx-xlg-5 mx-1 mx-lg-3">
