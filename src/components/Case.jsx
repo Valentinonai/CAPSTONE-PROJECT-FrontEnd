@@ -7,9 +7,9 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addCpu, addRam, clearCpu } from "../redux/action/BuildActions";
+import { addCase, addCpu, addRam, clearCpu, clearRam } from "../redux/action/BuildActions";
 
-const Ram = () => {
+const Case = () => {
   const token = useSelector((state) => state.userReducer.token);
   const load = useSelector((state) => state.mainReducer.isLoading);
   const user = useSelector((state) => state.userReducer.user);
@@ -22,13 +22,11 @@ const Ram = () => {
   const dispatch = useDispatch();
   const [selezionato, setSelezionato] = useState();
 
-  const getAllRamCompatibili = async (p) => {
+  const getAllCaseCompatibili = async (p) => {
     try {
       dispatch(isLoading(true));
       const risp = await fetch(
-        `${process.env.REACT_APP_BASEURL}/items/ram_schedamadre?scheda_madre_id=${schedaMadreSelezionata.id}&page=${
-          p - 1
-        }`,
+        `${process.env.REACT_APP_BASEURL}/items/case?formato=${schedaMadreSelezionata.formato}&page=${p - 1}`,
         {
           method: "GET",
           headers: {
@@ -51,13 +49,13 @@ const Ram = () => {
     }
   };
 
-  const goToCase = () => {
-    dispatch(addRam(selezionato));
-    nav("/build/case");
+  const goToSchedaGrafica = () => {
+    dispatch(addCase(selezionato));
+    nav("/build/scheda_grafica");
   };
 
   useEffect(() => {
-    getAllRamCompatibili(1);
+    getAllCaseCompatibili(1);
   }, []);
 
   return (
@@ -65,7 +63,7 @@ const Ram = () => {
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="mt-5 mx-1 pt-4 store">
         <h1 className="ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
-          RAM
+          CASE
         </h1>
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {user && load && (
@@ -92,8 +90,8 @@ const Ram = () => {
           <Button
             variant="outline-secondary"
             onClick={() => {
-              nav("/build/cpu");
-              dispatch(clearCpu());
+              nav("/build/ram");
+              dispatch(clearRam());
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
@@ -106,7 +104,7 @@ const Ram = () => {
               <Pagination.Prev
                 onClick={() => {
                   setPage(page - 1);
-                  getAllRamCompatibili(page - 1);
+                  getAllCaseCompatibili(page - 1);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
@@ -118,7 +116,7 @@ const Ram = () => {
               <Pagination.Next
                 onClick={() => {
                   setPage(page + 1);
-                  getAllRamCompatibili(page + 1);
+                  getAllCaseCompatibili(page + 1);
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
               />
@@ -128,7 +126,7 @@ const Ram = () => {
             variant="primary"
             className={!selezionato && "disabled"}
             onClick={() => {
-              goToCase();
+              goToSchedaGrafica();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
@@ -140,4 +138,4 @@ const Ram = () => {
     </>
   );
 };
-export default Ram;
+export default Case;

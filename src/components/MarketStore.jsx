@@ -54,6 +54,7 @@ const MarketStore = () => {
   useEffect(() => {
     fetchStore(page, "Tutti");
     dispatch(clearAll());
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
     <>

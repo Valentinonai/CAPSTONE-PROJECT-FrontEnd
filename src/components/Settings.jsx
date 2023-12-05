@@ -137,6 +137,7 @@ const Settings = () => {
   useEffect(() => {
     if (modify === true) dispatch(modificaOff());
     dispatch(clearAll());
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
     <>

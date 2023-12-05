@@ -14,6 +14,11 @@ import Build from "./components/Build";
 import SchedaMadre from "./components/SchedaMadre";
 import Cpu from "./components/Cpu";
 import Ram from "./components/Ram";
+import Case from "./components/Case";
+import SchedaGrafica from "./components/SchedaGrafica";
+import HardDisk from "./components/HardDisk";
+import Ventole from "./components/Ventole";
+import Alimentatore from "./components/Alimentatore";
 
 function App() {
   return (
@@ -32,11 +37,12 @@ function App() {
           <Route path="/build/scheda_madre" element={<SchedaMadre />} />
           <Route path="/build/cpu" element={<Cpu />} />
           <Route path="/build/ram" element={<Ram />} />
-          {/*<Route path="/build/case" element={<Case />} />
+          <Route path="/build/case" element={<Case />} />
           <Route path="/build/scheda_grafica" element={<SchedaGrafica />} />
           <Route path="/build/hard_disk" element={<HardDisk />} />
           <Route path="/build/ventole" element={<Ventole />} />
-          <Route path="/build/alimentatore" element={<Alimentatore />} /> */}
+          <Route path="/build/alimentatore" element={<Alimentatore />} />
+          {/* <Route path="/build/dettaglio" element={<BuildDettaglio />} /> */}
         </Routes>
       </BrowserRouter>
     </Container>

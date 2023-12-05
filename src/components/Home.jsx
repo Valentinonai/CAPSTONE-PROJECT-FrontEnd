@@ -11,6 +11,7 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(clearAll());
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
   return (
     <>

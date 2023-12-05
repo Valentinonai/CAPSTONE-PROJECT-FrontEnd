@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Dropzone from "react-dropzone";
@@ -21,7 +21,9 @@ const Signup = () => {
     console.log(nome, cognome, email, password);
     dispatch(signupFetch(nome, cognome, email, password, nav, image, token));
   };
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
