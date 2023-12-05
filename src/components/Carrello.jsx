@@ -58,7 +58,7 @@ const Carrello = () => {
               <ListGroupItem
                 key={`carrelloItem-${index}`}
                 style={{ backgroundColor: "transparent", border: "1px solid grey" }}
-                className="rounded my-1 py-3 shadow"
+                className="rounded my-1 py-3"
               >
                 <CarrelloSingleItem elem={elem} index={index} />
               </ListGroupItem>
@@ -69,7 +69,7 @@ const Carrello = () => {
         {carrelloItems.length !== 0 && (
           <div className=" mt-5 ">
             {" "}
-            <Button variant="outline-secondary" className="w-100 shadow">
+            <Button variant="outline-secondary" className="w-100 ">
               <span className="fs-4">Ordina</span>
             </Button>
           </div>

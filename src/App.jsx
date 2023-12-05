@@ -20,6 +20,7 @@ import HardDisk from "./components/HardDisk";
 import Ventole from "./components/Ventole";
 import Alimentatore from "./components/Alimentatore";
 import BuildDettaglio from "./components/BuildDettaglio";
+import MyBuilds from "./components/MyBuilds";
 
 function App() {
   return (
@@ -43,7 +44,8 @@ function App() {
           <Route path="/build/hard_disk" element={<HardDisk />} />
           <Route path="/build/ventole" element={<Ventole />} />
           <Route path="/build/alimentatore" element={<Alimentatore />} />
-          <Route path="/build/dettaglio" element={<BuildDettaglio />} />
+          <Route path="/build/dettaglio/:state" element={<BuildDettaglio />} />
+          <Route path="/my_builds" element={<MyBuilds />} />
         </Routes>
       </BrowserRouter>
     </Container>

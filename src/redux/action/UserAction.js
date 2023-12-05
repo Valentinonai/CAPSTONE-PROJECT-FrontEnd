@@ -10,6 +10,7 @@ export const IS_LOADING = "IS_LOADING";
 export const ELIMINA_ACCOUNT = "ELIMINA_ACCOUNT";
 export const ELIMINA_TOKEN = "ELIMINA_TOKEN";
 export const MESSAGE_HANDLER = "MESSAGE_HANDLER";
+export const GET_MY_BUILDS = "GET_MY_BUILDS";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -26,6 +27,8 @@ export const messageHandler = (value, message) => ({
   type: MESSAGE_HANDLER,
   payload: { value: value, message: message },
 });
+
+export const saveMyBuilds = (builds, p) => ({ type: GET_MY_BUILDS, payload: { builds: builds, pagesNumber: p } });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -253,6 +256,31 @@ export const eliminaAccount = (token, nav) => {
           nav("/");
         }, 2000);
       } else throw new Error("Utente non eliminato");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
+};
+
+//-----------------------------Get my builds---------------------------------
+
+export const getMyBuilds = (token, p) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/builds/user_builds/me?page=${p - 1}`, {
+        method: "GET",
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        const data = await risp.json();
+        dispatch(saveMyBuilds(data.content, data.totalPages));
+      } else throw new Error("Errore nel caricamento delle tue Builds");
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

@@ -63,7 +63,7 @@ const Alimentatore = () => {
 
   const goToBuildDettaglio = () => {
     dispatch(addAlimentatore(selezionato));
-    nav("/build/dettaglio");
+    nav(`/build/dettaglio/${0}`);
   };
 
   useEffect(() => {

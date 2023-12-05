@@ -3,12 +3,12 @@ import "../style/Build.css";
 import Footer from "./Footer";
 import { Alert, Button, Col, Image, ListGroup, Modal, Row } from "react-bootstrap";
 import pc from "../assets/pcCustom.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { clearAll } from "../redux/action/BuildActions";
 import { useEffect, useState } from "react";
 import { errorHandler, messageHandler } from "../redux/action/UserAction";
 
-const BuildDettaglio = () => {
+const BuildDettaglio = (save) => {
   const user = useSelector((state) => state.userReducer.user);
   const build = useSelector((state) => state.buildReducer);
   const token = useSelector((state) => state.userReducer.token);
@@ -17,6 +17,7 @@ const BuildDettaglio = () => {
   const [show, setShow] = useState(false);
   const hasError = useSelector((state) => state.mainReducer.hasError);
   const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
+  const param = useParams();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -31,6 +32,7 @@ const BuildDettaglio = () => {
       build.ventole.id,
       build.alimentatore.id,
     ];
+    window.scrollTo({ top: 0, behavior: "smooth" });
     try {
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/builds/me`, {
         method: "POST",
@@ -307,20 +309,36 @@ const BuildDettaglio = () => {
                 </Row>
               </ListGroup.Item>
             </ListGroup>
-            <div className="d-flex justify-content-end mt-5">
-              <Button variant="outline-danger" className="mx-2" onClick={handleShow}>
-                Elimina
-              </Button>
-              <Button
-                variant="primary"
-                className="mx-2"
-                onClick={() => {
-                  salvaBuild();
-                }}
-              >
-                Salva
-              </Button>
-            </div>
+            {console.log(param.state)}
+            {param.state === "0" ? (
+              <div className="d-flex justify-content-end mt-5">
+                <Button variant="outline-danger" className="mx-2" onClick={handleShow}>
+                  Elimina
+                </Button>
+                <Button
+                  variant="primary"
+                  className="mx-2"
+                  onClick={() => {
+                    salvaBuild();
+                  }}
+                >
+                  Salva
+                </Button>
+              </div>
+            ) : (
+              <div className="d-flex justify-content-end mt-5">
+                <Button
+                  variant="outline-secondary"
+                  className="mx-2"
+                  onClick={() => {
+                    dispatch(clearAll());
+                    window.history.back();
+                  }}
+                >
+                  Indietro
+                </Button>
+              </div>
+            )}
           </div>
           <Footer />
         </>

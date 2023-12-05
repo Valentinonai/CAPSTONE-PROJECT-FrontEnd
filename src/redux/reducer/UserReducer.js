@@ -1,8 +1,17 @@
-import { ELIMINA_ACCOUNT, ELIMINA_TOKEN, SAVE_TOKEN, USER_LOGOUT, USER_SAVE } from "../action/UserAction";
+import {
+  ELIMINA_ACCOUNT,
+  ELIMINA_TOKEN,
+  GET_MY_BUILDS,
+  SAVE_TOKEN,
+  USER_LOGOUT,
+  USER_SAVE,
+} from "../action/UserAction";
 
 const initialState = {
   token: "",
   user: null,
+  builds: null,
+  pagesNumber: 1,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -34,7 +43,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         token: "",
       };
-
+    case GET_MY_BUILDS:
+      return {
+        ...state,
+        builds: action.payload.builds,
+        pagesNumber: action.payload.pagesNumber,
+      };
     default:
       return state;
   }
