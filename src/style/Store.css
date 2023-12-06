@@ -125,3 +125,33 @@
 .selezionato {
   border: 1px solid red;
 }
+
+.accordion-button {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  position: relative;
+  top: 0px;
+}
+
+button.accordion-button.collapsed::after {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 10px);
+}
+button.accordion-button::after {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 10px);
+}
+button.accordion-button {
+  justify-content: center;
+  padding: 0;
+}
+button.accordion-button.collapsed {
+  justify-content: center;
+}
+
+div.accordion-item {
+  display: flex;
+  flex-direction: column;
+}

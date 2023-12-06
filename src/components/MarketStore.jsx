@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Form, Pagination, Row } from "react-bootstrap";
+import { Accordion, Col, Form, Pagination, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getAll, getByCategoria } from "../redux/action/MarketStoreAction";
 import CardVuota from "./CardVuota";
@@ -62,112 +62,120 @@ const MarketStore = () => {
 
       {user && (
         <>
-          <div className="mt-5 mx-1 pt-4 store">
-            <Form className=" mb-5 mt-3" style={{ marginInline: "-12px" }}>
-              <div className="d-flex justify-content-center align-items-center flex-wrap">
-                <Form.Check
-                  label="Tutti"
-                  defaultChecked
-                  name="group1"
-                  type="radio"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Tutti");
-                    setPage(1);
-                    fetchStore(1, "Tutti");
-                  }}
-                />
-                <Form.Check
-                  label="Scheda Madre"
-                  name="group1"
-                  type="radio"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Scheda_Madre");
-                    setPage(1);
-                    fetchStore(1, "Scheda_Madre");
-                  }}
-                />
-                <Form.Check
-                  label="Cpu"
-                  name="group1"
-                  type="radio"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Cpu");
-                    setPage(1);
-                    fetchStore(1, "Cpu");
-                  }}
-                />
-                <Form.Check
-                  label="Ram"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Ram");
-                    setPage(1);
-                    fetchStore(1, "Ram");
-                  }}
-                />
-                <Form.Check
-                  label="Case"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Case");
-                    setPage(1);
-                    fetchStore(1, "Case");
-                  }}
-                />
-                <Form.Check
-                  label="Scheda Grafica"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Scheda_Grafica");
-                    setPage(1);
-                    fetchStore(1, "Scheda_Grafica");
-                  }}
-                />
-                <Form.Check
-                  label="Alimentatore"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Alimentatore");
-                    setPage(1);
-                    fetchStore(1, "Alimentatore");
-                  }}
-                />
-                <Form.Check
-                  label="Hard Disk"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Hard_Disk");
-                    setPage(1);
-                    fetchStore(1, "Hard_Disk");
-                  }}
-                />
-                <Form.Check
-                  label="Ventole"
-                  type="radio"
-                  name="group1"
-                  className="mx-2"
-                  onClick={() => {
-                    setSelezione("Ventole");
-                    setPage(1);
-                    fetchStore(1, "Ventole");
-                  }}
-                />
-              </div>
-            </Form>
-            <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "50px" }}>
+          <div className="mt-5 mx-1 pt-4 store" style={{ position: "relative" }}>
+            <Accordion flush>
+              <Accordion.Item style={{ backgroundColor: "transparent" }}>
+                <Accordion.Header>Filtri</Accordion.Header>
+                <Accordion.Body>
+                  <Form className=" " style={{ marginInline: "-12px" }}>
+                    <div className="d-flex justify-content-center align-items-center flex-wrap">
+                      <Form.Check
+                        label="Tutti"
+                        defaultChecked
+                        name="group1"
+                        type="radio"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Tutti");
+                          setPage(1);
+                          fetchStore(1, "Tutti");
+                        }}
+                      />
+                      <Form.Check
+                        label="Scheda Madre"
+                        name="group1"
+                        type="radio"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Scheda_Madre");
+                          setPage(1);
+                          fetchStore(1, "Scheda_Madre");
+                        }}
+                      />
+                      <Form.Check
+                        label="Cpu"
+                        name="group1"
+                        type="radio"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Cpu");
+                          setPage(1);
+                          fetchStore(1, "Cpu");
+                        }}
+                      />
+                      <Form.Check
+                        label="Ram"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Ram");
+                          setPage(1);
+                          fetchStore(1, "Ram");
+                        }}
+                      />
+                      <Form.Check
+                        label="Case"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Case");
+                          setPage(1);
+                          fetchStore(1, "Case");
+                        }}
+                      />
+                      <Form.Check
+                        label="Scheda Grafica"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Scheda_Grafica");
+                          setPage(1);
+                          fetchStore(1, "Scheda_Grafica");
+                        }}
+                      />
+                      <Form.Check
+                        label="Alimentatore"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Alimentatore");
+                          setPage(1);
+                          fetchStore(1, "Alimentatore");
+                        }}
+                      />
+                      <Form.Check
+                        label="Hard Disk"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Hard_Disk");
+                          setPage(1);
+                          fetchStore(1, "Hard_Disk");
+                        }}
+                      />
+                      <Form.Check
+                        label="Ventole"
+                        type="radio"
+                        name="group1"
+                        className="mx-2"
+                        onClick={() => {
+                          setSelezione("Ventole");
+                          setPage(1);
+                          fetchStore(1, "Ventole");
+                        }}
+                      />
+                    </div>
+                  </Form>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+
+            <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5 mt-3" style={{ fontWeight: "bold", fontSize: "50px" }}>
               STORE
             </p>
 
