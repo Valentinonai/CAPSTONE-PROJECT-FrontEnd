@@ -1,6 +1,6 @@
-import { Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import { Cart, Trash } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addAlimentatore,
   addCase,
@@ -12,8 +12,12 @@ import {
   addVentole,
 } from "../redux/action/BuildActions";
 import { useNavigate } from "react-router-dom";
+import { errorHandler, messageHandler } from "../redux/action/UserAction";
 
-const SingleBuildDettaglio = ({ elem }) => {
+const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
+  const token = useSelector((state) => state.userReducer.token);
+  const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
+  const hasError = useSelector((state) => state.mainReducer.hasError);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const goToBuildDetail = () => {
@@ -49,7 +53,30 @@ const SingleBuildDettaglio = ({ elem }) => {
     }
     nav(`/build/dettaglio/${1}`);
   };
-  const eliminaBuild = () => {};
+  const eliminaBuild = async () => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/builds/cancella_build/${elem.id}/me`, {
+        method: "DELETE",
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (risp.ok) {
+        dispatch(messageHandler(true, "Build eliminata"));
+        setTimeout(() => {
+          dispatch(messageHandler(false, ""));
+          setPage(1);
+          getAllMyBuilds(1);
+        }, 2000);
+      } else throw new Error("Build non eliminata");
+    } catch (error) {
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
+    }
+  };
   return (
     <>
       <Row>

@@ -43,7 +43,7 @@ const MyBuilds = () => {
                     style={{ backgroundColor: "transparent", border: "1px solid grey" }}
                     className="rounded my-1 py-3"
                   >
-                    <SingleBuildDettaglio elem={elem} />
+                    <SingleBuildDettaglio elem={elem} getAllMyBuilds={getAllMyBuilds} setPage={setPage} />
                   </ListGroup.Item>
                 ))}
               </ListGroup>
