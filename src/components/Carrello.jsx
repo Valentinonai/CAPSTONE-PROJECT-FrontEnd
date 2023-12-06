@@ -74,9 +74,7 @@ const Carrello = () => {
               </ListGroupItem>
             ))
           )}
-          {carrelloItems.length > 0 &&
-            carrelloBuildes.length > 0 &&
-            carrelloBuildes.length > 0 &&
+          {carrelloBuildes.length > 0 &&
             carrelloBuildes.map((elem, index) => (
               <ListGroupItem
                 key={`carrelloItem-${index}`}

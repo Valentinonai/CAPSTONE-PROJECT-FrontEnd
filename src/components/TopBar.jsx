@@ -1,4 +1,4 @@
-import { Alert, Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Alert, Badge, Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import { clearAll } from "../redux/action/BuildActions";
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
+  const carrello = useSelector((state) => state.carrelloReducer);
   const loc = useLocation();
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ const TopBar = () => {
       dispatch(fetchGetUser(token));
     }
   }, []);
+  useEffect(() => {}, [carrello]);
   return (
     <>
       <Navbar expand="lg" id="topBar" className="px-2" style={{ marginInline: "-12px" }}>
@@ -36,9 +38,21 @@ const TopBar = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-center align-items-center" id="topbarUserSection">
-          <Link to={"/carrello"}>
-            <Cart className="text-white me-4 fs-4" />
-          </Link>
+          <div style={{ position: "relative" }}>
+            <Link to={"/carrello"}>
+              {" "}
+              <Cart className="text-white me-4 fs-4" />
+              <div
+                className={
+                  carrello.items.length || carrello.builds.length
+                    ? "badgeCarrello badgeCarrelloAttivo"
+                    : "badgeCarrello"
+                }
+              >
+                {carrello.items.reduce((tot, elem) => (tot += elem.quantita), 0) + carrello.builds.length}
+              </div>
+            </Link>
+          </div>
           <NavDropdown
             title={user ? user.nome : "User"}
             drop="down"
