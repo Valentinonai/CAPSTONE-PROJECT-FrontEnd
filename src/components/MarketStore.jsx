@@ -63,7 +63,7 @@ const MarketStore = () => {
       {user && (
         <>
           <div className="mt-5 mx-1 pt-4 store" style={{ position: "relative" }}>
-            <Accordion flush>
+            <Accordion defaultActiveKey="0" flush>
               <Accordion.Item style={{ backgroundColor: "transparent" }}>
                 <Accordion.Header>Filtri</Accordion.Header>
                 <Accordion.Body>
