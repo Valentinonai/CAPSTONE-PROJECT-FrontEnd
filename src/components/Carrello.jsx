@@ -20,10 +20,12 @@ const Carrello = () => {
   const nav = useNavigate();
   const hasError = useSelector((state) => state.mainReducer.hasError);
   const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
+  const [buildsNonOrdinate, setBuildsNonOrdinate] = useState();
+  const [itemsNonOrdinati, setItemsNonOrdinati] = useState();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [lgShow, setLgShow] = useState(false);
   const dispatch = useDispatch();
   const calcolaTot = () => {
     let tot = 0;
@@ -42,15 +44,24 @@ const Carrello = () => {
         },
       });
       const data = await risp.json();
-      console.log(data);
+      console.log("HERE");
       if (risp.ok) {
-        dispatch(messageHandler(true, "Ordine effettuato correttamente"));
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        setTimeout(() => {
-          dispatch(messageHandler(false, ""));
-          dispatch(clearCart());
-          nav("/");
-        }, 2000);
+        if (data.build_list && data.items_List && data.build_list.length === 0 && data.items_List.length === 0) {
+          console.log("DENTRO IF");
+          dispatch(messageHandler(true, "Ordine effettuato correttamente"));
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          setTimeout(() => {
+            dispatch(messageHandler(false, ""));
+            dispatch(clearCart());
+            nav("/");
+          }, 2000);
+        } else {
+          console.log("DENTRO ELSE");
+          console.log(data);
+          setBuildsNonOrdinate(data.build_list);
+          setItemsNonOrdinati(data.items_list);
+          setLgShow(true);
+        }
       } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
@@ -185,6 +196,56 @@ const Carrello = () => {
             Settings
           </Button>
         </Modal.Footer>
+      </Modal>
+      <Modal
+        size="lg"
+        show={lgShow}
+        onHide={() => {
+          setLgShow(false);
+          dispatch(clearCart());
+          nav("/");
+        }}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">Ordine incompleto</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            L'ordine è stato processato correttamente ma alcuni elementi non sono stati accettati dal momento che le
+            quantità scelte eccedono le nostre scorte a magazzino
+          </p>
+          {buildsNonOrdinate && buildsNonOrdinate.length > 0 && (
+            <>
+              <h4>Build non ordinate:</h4>
+              <ListGroup>
+                {buildsNonOrdinate.map((elem, index) => (
+                  <ListGroup.Item key={index}>
+                    <Row>
+                      <Col>Build n°{elem.id}</Col>
+                      <Col>{elem.prezzo.toFixed(2)}€</Col>
+                    </Row>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </>
+          )}
+          {itemsNonOrdinati && itemsNonOrdinati.length > 0 && (
+            <>
+              <h4>Items non ordinati:</h4>
+              <ListGroup>
+                {itemsNonOrdinati.map((elem, index) => (
+                  <ListGroup.Item key={index}>
+                    <Row>
+                      <Col>Items n°{elem.id}</Col>
+                      <Col>{elem.prezzo.toFixed(2)}€</Col>
+                    </Row>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </>
+          )}
+        </Modal.Body>
       </Modal>
     </>
   );
