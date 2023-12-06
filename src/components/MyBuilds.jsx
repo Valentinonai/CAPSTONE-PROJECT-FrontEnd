@@ -32,7 +32,7 @@ const MyBuilds = () => {
       {builds && (
         <>
           <div id="carrello" className="m-3 p-1 mt-5">
-            <p className="ms-2 ms-md-4 my-5 h1" style={{ fontWeight: "bold", fontSize: "60px" }}>
+            <p className="ms-0 ms-sm-2 ms-md-4 my-5 h1" style={{ fontWeight: "bold", fontSize: "50px" }}>
               MY BUILDS
             </p>
             <div className=" mt-5">

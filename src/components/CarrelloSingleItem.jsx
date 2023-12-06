@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { DashCircle, Pencil, PlusCircle, Trash } from "react-bootstrap-icons";
-import { useDispatch } from "react-redux";
-import { modifyQt, removeCarrello } from "../redux/action/CarrelloActions";
+import { useDispatch, useSelector } from "react-redux";
+import { modificaTot, modifyQt, removeCarrello } from "../redux/action/CarrelloActions";
 import { useNavigate } from "react-router-dom";
 
 const CarrelloSingleItem = ({ elem, index }) => {
@@ -16,9 +16,10 @@ const CarrelloSingleItem = ({ elem, index }) => {
   const eliminaCarrello = () => {
     dispatch(removeCarrello(elem.item));
   };
+
   useEffect(() => {
     setQt(elem.quantita);
-  }, [elem]);
+  }, [elem, qt]);
   return (
     <Row>
       <Col xs={1} className="d-none d-md-block">
@@ -27,7 +28,7 @@ const CarrelloSingleItem = ({ elem, index }) => {
           <p>{index + 1}</p>
         </div>
       </Col>
-      <Col xs={6} sm={5} md={4} className="text-truncate">
+      <Col xs={5} sm={5} md={4} className="text-truncate">
         <div
           onClick={() => {
             nav(`/dettaglio/${elem.item.id}`);
@@ -73,7 +74,7 @@ const CarrelloSingleItem = ({ elem, index }) => {
           />
         </div>
       </Col>
-      <Col xs={1}>
+      <Col xs={2} sm={1}>
         <Trash
           className="buttonClick"
           onClick={() => {

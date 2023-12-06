@@ -13,6 +13,7 @@ import {
 } from "../redux/action/BuildActions";
 import { useNavigate } from "react-router-dom";
 import { errorHandler, messageHandler } from "../redux/action/UserAction";
+import { addBuildCarrello } from "../redux/action/CarrelloActions";
 
 const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
   const token = useSelector((state) => state.userReducer.token);
@@ -77,6 +78,9 @@ const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
       }, 2000);
     }
   };
+  const aggiungiAlCarrello = () => {
+    dispatch(addBuildCarrello(elem));
+  };
   return (
     <>
       <Row>
@@ -104,7 +108,7 @@ const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
         </Col>
         <Col xs={2}>
           <div>
-            <Cart />
+            <Cart onClick={() => aggiungiAlCarrello()} className="buttonClick" />
           </div>
         </Col>
         <Col xs={1}>

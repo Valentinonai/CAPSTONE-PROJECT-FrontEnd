@@ -55,7 +55,7 @@ const DettaglioItem = () => {
               </div>
             </Col>
             <Col xs={12} md={7} className="mt-5 mt-md-0">
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Nome:</p>
                 </Col>
@@ -63,7 +63,7 @@ const DettaglioItem = () => {
                   <p>{item.nome}</p>
                 </Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Marca:</p>
                 </Col>
@@ -71,7 +71,7 @@ const DettaglioItem = () => {
                   <p>{item.marca}</p>
                 </Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Descrizione:</p>
                 </Col>
@@ -79,7 +79,7 @@ const DettaglioItem = () => {
                   <p>{item.descrizione}</p>
                 </Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Prezzo:</p>
                 </Col>
@@ -87,7 +87,7 @@ const DettaglioItem = () => {
                   <p>{item.prezzo}€</p>
                 </Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Data di rilascio:</p>
                 </Col>
@@ -95,20 +95,20 @@ const DettaglioItem = () => {
                   <p>{item.data_di_rilascio}</p>
                 </Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Stato:</p>
                 </Col>
                 <Col>{item.stato === "ATTIVO" ? <p>DISPONIBILE</p> : <p>FUORI PRODUZIONE</p>}</Col>
               </Row>
-              <Row>
+              <Row xs={1} sm={2} className="my-2 ">
                 <Col>
                   <p> Categoria:</p>
                 </Col>
                 <Col>{item.categoria}</Col>
               </Row>
               {item.categoria !== "CASE" && item.categoria !== "ALIMENTATORE" && (
-                <Row>
+                <Row xs={1} sm={2} className="my-2 ">
                   <Col>
                     <p> Potenza di picco:</p>
                   </Col>
@@ -117,61 +117,61 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "SCHEDA_MADRE" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Formato:</p>
                     </Col>
                     <Col>{item.formato}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Chipset:</p>
                     </Col>
                     <Col>{item.chipset}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p>Sockeet:</p>
                     </Col>
                     <Col>{item.socket}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Tipo di memoria:</p>
                     </Col>
                     <Col>{item.tipo_di_memoria}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Memoria massima supportata:</p>
                     </Col>
                     <Col>{item.max_memory_size}Gb</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p>Wifi:</p>
                     </Col>
                     <Col>{item.has_wifi ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Bluetooth:</p>
                     </Col>
                     <Col>{item.has_bluetooth ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> numero porte USB:</p>
                     </Col>
                     <Col>{item.numero_porte_usb}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Numero PCIe:</p>
                     </Col>
                     <Col>{item.numero_pcie}</Col>
                   </Row>{" "}
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Supporto Nvme_M2:</p>
                     </Col>
@@ -181,55 +181,55 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "CPU" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Socket:</p>
                     </Col>
                     <Col>{item.socket}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Numero Core:</p>
                     </Col>
                     <Col>{item.numero_core}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Numero Threads:</p>
                     </Col>
                     <Col>{item.numero_threads}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Boost Clock:</p>
                     </Col>
                     <Col>{item.max_boost_clock}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Cache L2:</p>
                     </Col>
                     <Col>{item.cache_l2}Mb</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Cache L3:</p>
                     </Col>
                     <Col>{item.cache_l3}Mb</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Temperatura massima:</p>
                     </Col>
                     <Col>{item.max_temperatura}°</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Grafica integrata:</p>
                     </Col>
                     <Col>{item.grafica_integrata ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Memoria di sistema:</p>
                     </Col>
@@ -239,19 +239,19 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "RAM" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Tipo di memoria:</p>
                     </Col>
                     <Col>{item.tipo_di_memoria}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Velocità:</p>
                     </Col>
                     <Col>{item.velocità}MHz</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Dimensione:</p>
                     </Col>
@@ -261,37 +261,37 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "CASE" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Formato:</p>
                     </Col>
                     <Col>{item.formato}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Numero ventole:</p>
                     </Col>
                     <Col>{item.num_ventole}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Dimensione ventole:</p>
                     </Col>
                     <Col>{item.dimensioneVentole}mm</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Larghezza:</p>
                     </Col>
                     <Col>{item.larghezza}mm</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Altezza:</p>
                     </Col>
                     <Col>{item.altezza}mm</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Lunghezza:</p>
                     </Col>
@@ -301,25 +301,25 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "SCHEDA_GRAFICA" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Boost Clock:</p>
                     </Col>
                     <Col>{item.boost_clock}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Dimensione memoria:</p>
                     </Col>
                     <Col>{item.dimensione_memoria}Gb</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Larghezza:</p>
                     </Col>
                     <Col>{item.larghezza}mm</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Lunghezza:</p>
                     </Col>
@@ -329,19 +329,19 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "ALIMENTATORE" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Potenza massima erogata:</p>
                     </Col>
                     <Col>{item.potenza_max_erogata}W</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Modulare:</p>
                     </Col>
                     <Col>{item.modulare ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Peso:</p>
                     </Col>
@@ -351,13 +351,13 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "HARD_DISK" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Nvme_M2:</p>
                     </Col>
                     <Col>{item.ms ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Capacità:</p>
                     </Col>
@@ -367,31 +367,31 @@ const DettaglioItem = () => {
               )}
               {item.categoria === "VENTOLE" && (
                 <>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Velocità minima:</p>
                     </Col>
                     <Col>{item.rpm_min}RPM</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Velocità massima:</p>
                     </Col>
                     <Col>{item.rpm_max}RPM</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Pwm:</p>
                     </Col>
                     <Col>{item.pwm ? "true" : "false"}</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Dimensione:</p>
                     </Col>
                     <Col>{item.dimensione}mm</Col>
                   </Row>
-                  <Row>
+                  <Row xs={1} sm={2} className="my-2 ">
                     <Col>
                       <p> Numero pezzi:</p>
                     </Col>

@@ -167,7 +167,7 @@ const MarketStore = () => {
                 />
               </div>
             </Form>
-            <p className=" h1 ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
+            <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "50px" }}>
               STORE
             </p>
 

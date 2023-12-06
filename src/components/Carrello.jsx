@@ -4,21 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import CarrelloSingleItem from "./CarrelloSingleItem";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { clearAll } from "../redux/action/BuildActions";
+import CarrelloSingleBuild from "./CarrelloSingleBuild";
 
 const Carrello = () => {
   const carrelloItems = useSelector((state) => state.carrelloReducer.items);
-  const carrelloBuildes = useSelector((state) => state.carrelloReducer.bulds);
+  const carrelloBuildes = useSelector((state) => state.carrelloReducer.builds);
+  const tot = useSelector((state) => state.carrelloReducer.totale);
   const dispatch = useDispatch();
+  const calcolaTot = () => {
+    let tot = 0;
+    for (let i = 0; i < carrelloItems.length; i++) tot = tot + carrelloItems[i].item.prezzo * carrelloItems[i].quantita;
+    for (let i = 0; i < carrelloBuildes.length; i++) tot = tot + carrelloBuildes[i].prezzo;
+    return tot;
+  };
   useEffect(() => {
     dispatch(clearAll());
   }, []);
+
   return (
     <>
       <div id="carrello" className="m-3 p-1 mt-5">
-        <p className="ms-2 ms-md-4 my-5 h1" style={{ fontWeight: "bold", fontSize: "60px" }}>
-          CARRELLO
+        <p className="ms-0 ms-sm-2 ms-md-4 my-5 h1" style={{ fontWeight: "bold", fontSize: "50px" }}>
+          CART
         </p>
         <ListGroup>
           <ListGroup.Item
@@ -30,7 +39,7 @@ const Carrello = () => {
                 {" "}
                 <p>N°</p>
               </Col>
-              <Col xs={6} sm={5} md={4}>
+              <Col xs={5} sm={5} md={4}>
                 {" "}
                 <p>Nome</p>
               </Col>
@@ -46,14 +55,15 @@ const Carrello = () => {
                 {" "}
                 <p>Quantità</p>
               </Col>
-              <Col xs={1}>
+              <Col xs={2} sm={1}>
                 <Trash />
               </Col>
             </Row>
           </ListGroup.Item>
-          {carrelloItems.length === 0 ? (
+          {carrelloItems.length === 0 && carrelloBuildes.length === 0 ? (
             <p className="text-center mt-4">Nessun elemento nel carrello</p>
           ) : (
+            carrelloItems.length > 0 &&
             carrelloItems.map((elem, index) => (
               <ListGroupItem
                 key={`carrelloItem-${index}`}
@@ -64,8 +74,23 @@ const Carrello = () => {
               </ListGroupItem>
             ))
           )}
+          {carrelloItems.length > 0 &&
+            carrelloBuildes.length > 0 &&
+            carrelloBuildes.length > 0 &&
+            carrelloBuildes.map((elem, index) => (
+              <ListGroupItem
+                key={`carrelloItem-${index}`}
+                style={{ backgroundColor: "transparent", border: "1px solid grey" }}
+                className="rounded my-1 py-3"
+              >
+                <CarrelloSingleBuild elem={elem} index={index} />
+              </ListGroupItem>
+            ))}
         </ListGroup>
-        {/*   //!-----------------AGGIUNGERE SEZIONE BUILDS NEL CARRELLO-------------------------- */}
+        <div>
+          <p className="h2 d-flex justify-content-end mt-4 me-3">Totale: {calcolaTot().toFixed(2)}€</p>
+        </div>
+
         {carrelloItems.length !== 0 && (
           <div className=" mt-5 ">
             {" "}

@@ -75,8 +75,8 @@ const Alimentatore = () => {
     <>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="mt-5 mx-1 pt-4 store">
-        <p className="h1 ms-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "60px" }}>
-          ALIMENTATORE
+        <p className="h1 ms-0 ms-sm-2 ms-md-4 mb-5" style={{ fontWeight: "bold", fontSize: "50px" }}>
+          POWER SUPPLY
         </p>
         {!user && <h4 className="text-center">Effettua il login per visualizzare i prodotti</h4>}
         {user && load && (
