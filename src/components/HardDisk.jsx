@@ -35,12 +35,12 @@ const HardDisk = () => {
           },
         }
       );
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         setData(data.content);
         setTotPages(data.totalPages);
         dispatch(isLoading(false));
-      } else throw new Error("Elementi non trovati");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

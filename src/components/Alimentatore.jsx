@@ -38,6 +38,7 @@ const Alimentatore = () => {
       schedaGraficaSelezionata.potenza_di_picco +
       hardDiskSelezionato.potenza_di_picco +
       ventoleSelezionate.potenza_di_picco * ventoleSelezionate.pezzi_per_pacco;
+    console.log(somma);
     try {
       dispatch(isLoading(true));
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/alimentatore?power=${somma}&page=${p - 1}`, {
@@ -47,12 +48,12 @@ const Alimentatore = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         setData(data.content);
         setTotPages(data.totalPages);
         dispatch(isLoading(false));
-      } else throw new Error("Elementi non trovati");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

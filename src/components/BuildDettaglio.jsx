@@ -42,13 +42,14 @@ const BuildDettaglio = (save) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
         dispatch(messageHandler(true, "Build salvata con successo"));
         setTimeout(() => {
           dispatch(messageHandler(false, ""));
           nav("/build");
         }, 2000);
-      } else throw new Error("Build non salvata");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -309,7 +310,6 @@ const BuildDettaglio = (save) => {
                 </Row>
               </ListGroup.Item>
             </ListGroup>
-            {console.log(param.state)}
             {param.state === "0" ? (
               <div className="d-flex justify-content-end mt-5">
                 <Button variant="outline-danger" className="mx-2" onClick={handleShow}>

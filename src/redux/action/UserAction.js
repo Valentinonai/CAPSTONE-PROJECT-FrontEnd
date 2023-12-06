@@ -41,10 +41,10 @@ export const fetchGetUser = (token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(userSave(data));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(eliminaToken());
       console.log(error.message);
@@ -62,13 +62,13 @@ export const signupFetch = (nome, cognome, email, password, nav, image) => {
           "content-type": "Application/json",
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(saveToken(data.token));
         dispatch(fetchGetUser(data.token));
         dispatch(uploadUserImg(image, data.token));
         nav("/");
-      } else throw new Error("Utente non creato");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -92,11 +92,11 @@ export const uploadUserImg = (image, token) => {
             Authorization: `Bearer ${token}`,
           },
         });
+        const data = await risp.json();
         if (risp.ok) {
-          const data = await risp.json();
           dispatch(fetchGetUser(token));
           dispatch(isLoading(false));
-        } else throw new Error(risp.status);
+        } else throw new Error(data.message);
       } catch (error) {
         console.log(error.message);
       }
@@ -117,11 +117,11 @@ export const modificaPasswordUtente = (password, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(userSave(data));
         dispatch(fetchGetUser(token));
-      } else throw new Error(risp.status);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }
@@ -142,11 +142,11 @@ export const creaIndirizzo = (indirizzo, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(salvaIndirizzo(data));
         dispatch(fetchGetUser(token));
-      } else throw new Error("Indirizzo non creato (tutti i campi sono obbligatori)");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -169,11 +169,11 @@ export const modificaIndirizzo = (indirizzo, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(salvaIndirizzo(data));
         dispatch(fetchGetUser(token));
-      } else throw new Error("Indirizzo non modificato");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -195,11 +195,11 @@ export const creaCarta = (carta, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(salvaCarta(data));
         dispatch(fetchGetUser(token));
-      } else throw new Error("Metodo di pagamento non creato (tutti i campi sono obbligatori)");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -222,10 +222,10 @@ export const modificaCarta = (carta, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(salvaCarta(data));
-      } else throw new Error("Metodo di pagamento non modificato");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -246,16 +246,15 @@ export const eliminaAccount = (token, nav) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(risp);
+      const data = await risp.json();
       if (risp.ok) {
-        console.log("here");
         dispatch(eliminaUser());
         dispatch(errorHandler(true, "Account eliminato"));
         setTimeout(() => {
           dispatch(errorHandler(false, ""));
           nav("/");
         }, 2000);
-      } else throw new Error("Utente non eliminato");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
@@ -277,10 +276,10 @@ export const getMyBuilds = (token, p) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(saveMyBuilds(data.content, data.totalPages));
-      } else throw new Error("Errore nel caricamento delle tue Builds");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {

@@ -22,12 +22,12 @@ const DettaglioItem = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         console.log(data);
         setItem(data);
         dispatch(isLoading(false));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }

@@ -49,9 +49,9 @@ const SingleBuildDettaglio = ({ elem }) => {
     }
     nav(`/build/dettaglio/${1}`);
   };
+  const eliminaBuild = () => {};
   return (
     <>
-      {console.log(elem)}
       <Row>
         <Col xs={4} sm={3}>
           <div
@@ -81,7 +81,12 @@ const SingleBuildDettaglio = ({ elem }) => {
           </div>
         </Col>
         <Col xs={1}>
-          <Trash className="buttonClick" onClick={() => {}} />
+          <Trash
+            className="buttonClick"
+            onClick={() => {
+              eliminaBuild();
+            }}
+          />
         </Col>
       </Row>
     </>

@@ -19,12 +19,12 @@ export const getAll = (token, page) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         console.log(data);
         dispatch(getAllItems(data.content, data.totalPages));
         dispatch(isLoading(false));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }
@@ -45,11 +45,11 @@ export const aggiungiPreferiti = (elem, token) => {
         },
       });
 
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(fetchGetUser(token));
         dispatch(isLoading(false));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }
@@ -68,11 +68,11 @@ export const rimuoviPreferiti = (elem, token) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(fetchGetUser(token));
         dispatch(isLoading(false));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }
@@ -94,12 +94,12 @@ export const getByCategoria = (token, page, categoria) => {
           },
         }
       );
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         console.log("SPECIFICO", data);
         dispatch(getAllItems(data.content, data.totalPages));
         dispatch(isLoading(false));
-      } else throw new Error(risp.message);
+      } else throw new Error(data.message);
     } catch (error) {
       console.log(error.message);
     }

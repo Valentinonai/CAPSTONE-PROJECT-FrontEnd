@@ -21,12 +21,12 @@ const Login = () => {
           "content-type": "Application/json",
         },
       });
+      const data = await risp.json();
       if (risp.ok) {
-        const data = await risp.json();
         dispatch(saveToken(data.token));
         dispatch(fetchGetUser(data.token));
         nav("/");
-      } else throw new Error("Utente non trovato");
+      } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
