@@ -141,9 +141,11 @@ const Carrello = () => {
               </ListGroupItem>
             ))}
         </ListGroup>
-        <div>
-          <p className="h2 d-flex justify-content-end mt-4 me-3">Totale: {calcolaTot().toFixed(2)}€</p>
-        </div>
+        {(carrelloItems.length > 0 || carrelloBuildes.length > 0) && (
+          <div>
+            <p className="h2 d-flex justify-content-end mt-4 me-3">Totale: {calcolaTot().toFixed(2)}€</p>
+          </div>
+        )}
 
         {(carrelloItems.length > 0 || carrelloBuildes.length > 0) && (
           <div className=" mt-5 ">
