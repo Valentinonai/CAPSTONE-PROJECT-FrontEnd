@@ -10,6 +10,7 @@ import cartaReducer from "../reducer/CartaReducer";
 import marketStoreReducer from "../reducer/MarketStoreReducer";
 import CarrelloReducer from "../reducer/CarrelloReducer";
 import BuildReducer from "../reducer/BuildReducer";
+import ChatReducer from "../reducer/ChatReducer";
 
 const persistConfig = {
   key: "root",
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   marketStoreReducer: marketStoreReducer,
   carrelloReducer: CarrelloReducer,
   buildReducer: BuildReducer,
+  chatReducer: ChatReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

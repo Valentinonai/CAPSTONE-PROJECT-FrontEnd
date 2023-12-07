@@ -1,3 +1,4 @@
+import { IS_LOADING_CHAT } from "../action/ChatActions";
 import { ERROR_HANDLER, IS_LOADING, MESSAGE_HANDLER, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
     value: false,
     message: "",
   },
+  isLoadingChat: false,
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -46,6 +48,11 @@ const mainReducer = (state = initialState, action) => {
           value: action.payload.value,
           message: action.payload.message,
         },
+      };
+    case IS_LOADING_CHAT:
+      return {
+        ...state,
+        isLoadingChat: action.payload,
       };
     default:
       return state;

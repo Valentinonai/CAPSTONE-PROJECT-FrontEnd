@@ -23,8 +23,11 @@ import BuildDettaglio from "./components/BuildDettaglio";
 import MyBuilds from "./components/MyBuilds";
 import MyOrders from "./components/MyOrders";
 import MyOrderDettaglio from "./components/MyOrderDettaglio";
+import { useSelector } from "react-redux";
+import Message from "./components/Message";
 
 function App() {
+  const user = useSelector((state) => state.userReducer.user);
   return (
     <Container fluid="xxl" id="mainContainer" style={{ minHeight: "100vh" }}>
       <BrowserRouter>
@@ -52,6 +55,7 @@ function App() {
           <Route path="/my_orders/:order_id" element={<MyOrderDettaglio />} />
         </Routes>
       </BrowserRouter>
+      {user && <Message />}
     </Container>
   );
 }
