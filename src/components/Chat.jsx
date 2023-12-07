@@ -8,20 +8,16 @@ const Chat = () => {
     messages.map((elem, index) =>
       index % 2 === 0 ? (
         <Row>
-          <Col xs={2}>
-            <p>bot</p>
-          </Col>
           <Col xs={10}>
-            <p className="chatBot bg-primary">{elem}</p>{" "}
+            <p className="chatBot">{elem}</p>{" "}
           </Col>
+          <Col xs={2}>{/* <p>bot</p> */}</Col>
         </Row>
       ) : (
         <Row>
+          <Col xs={2}>{/* <p>you</p> */}</Col>
           <Col xs={10}>
-            <p className="chatUtente bg-secondary">{elem}</p>{" "}
-          </Col>
-          <Col xs={2}>
-            <p>you</p>
+            <p className="chatUtente ">{elem}</p>{" "}
           </Col>
         </Row>
       )

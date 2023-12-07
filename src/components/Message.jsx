@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, Button, Form, Image, Offcanvas, Spinner } from "react-bootstrap";
+import { Button, Form, Image, Offcanvas, Spinner } from "react-bootstrap";
 import { ChevronCompactUp, ChevronCompactDown } from "react-bootstrap-icons";
 import "../style/message.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,16 +42,20 @@ const Message = () => {
             scroll="true"
             style={{ width: "250px" }}
           >
-            <Offcanvas.Header className="d-flex justify-content-between align-items-center ">
+            <Offcanvas.Header
+              className="d-flex justify-content-between align-items-center buttonClick"
+              onClick={toggleOffcanvas}
+              style={{ cursor: "pointer" }}
+            >
               <div className="d-flex align-items-center">
                 <Image src={user.immagineUrl} width={30} height={30} roundedCircle className="me-2" />
                 <p className="m-0"> Chat</p>
               </div>
-              <ChevronCompactDown onClick={toggleOffcanvas} style={{ cursor: "pointer" }} />
+              <ChevronCompactDown />
             </Offcanvas.Header>
             <hr className="m-0" />
             <Offcanvas.Body className="d-flex flex-column justify-content-between ">
-              <div className="d-flex flex-column ">
+              <div className="d-flex flex-column " style={{ overflow: "auto" }}>
                 {" "}
                 <Chat />
                 {isLoadingChat && (
