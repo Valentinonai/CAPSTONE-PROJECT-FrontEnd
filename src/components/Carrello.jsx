@@ -1,5 +1,5 @@
 import { Alert, Button, Col, ListGroup, ListGroupItem, Modal, Row } from "react-bootstrap";
-import { DashCircle, Pencil, PlusCircle, Trash } from "react-bootstrap-icons";
+import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import CarrelloSingleItem from "./CarrelloSingleItem";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { clearCart } from "../redux/action/CarrelloActions";
 const Carrello = () => {
   const carrelloItems = useSelector((state) => state.carrelloReducer.items);
   const carrelloBuildes = useSelector((state) => state.carrelloReducer.builds);
+  // eslint-disable-next-line no-unused-vars
   const tot = useSelector((state) => state.carrelloReducer.totale);
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
@@ -44,10 +45,11 @@ const Carrello = () => {
         },
       });
       const data = await risp.json();
-      console.log("HERE");
       if (risp.ok) {
-        if (data.build_list && data.items_List && data.build_list.length === 0 && data.items_List.length === 0) {
-          console.log("DENTRO IF");
+        if (
+          (data.build_list === undefined || data.build_list.length === 0) &&
+          (data.items_List === undefined || data.items_List.length === 0)
+        ) {
           dispatch(messageHandler(true, "Ordine effettuato correttamente"));
           window.scrollTo({ top: 0, behavior: "smooth" });
           setTimeout(() => {
@@ -56,8 +58,6 @@ const Carrello = () => {
             nav("/");
           }, 2000);
         } else {
-          console.log("DENTRO ELSE");
-          console.log(data);
           setBuildsNonOrdinate(data.build_list);
           setItemsNonOrdinati(data.items_list);
           setLgShow(true);
@@ -76,7 +76,6 @@ const Carrello = () => {
     } else {
       const builds_id = [];
       const items_id = [];
-
       carrelloBuildes.forEach((elem) => builds_id.push(elem.id));
       for (let i = 0; i < carrelloItems.length; i++) {
         for (let j = 0; j < carrelloItems[i].quantita; j++) items_id.push(carrelloItems[i].item.id);
@@ -86,6 +85,8 @@ const Carrello = () => {
   };
   useEffect(() => {
     dispatch(clearAll());
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

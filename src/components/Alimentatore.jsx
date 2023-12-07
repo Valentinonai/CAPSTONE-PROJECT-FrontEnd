@@ -38,7 +38,6 @@ const Alimentatore = () => {
       schedaGraficaSelezionata.potenza_di_picco +
       hardDiskSelezionato.potenza_di_picco +
       ventoleSelezionate.potenza_di_picco * ventoleSelezionate.pezzi_per_pacco;
-    console.log(somma);
     try {
       dispatch(isLoading(true));
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/alimentatore?power=${somma}&page=${p - 1}`, {
@@ -69,6 +68,7 @@ const Alimentatore = () => {
 
   useEffect(() => {
     getAllAlimentatoreCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

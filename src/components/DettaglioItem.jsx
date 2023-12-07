@@ -24,7 +24,6 @@ const DettaglioItem = () => {
       });
       const data = await risp.json();
       if (risp.ok) {
-        console.log(data);
         setItem(data);
         dispatch(isLoading(false));
       } else throw new Error(data.message);
@@ -35,6 +34,7 @@ const DettaglioItem = () => {
 
   useEffect(() => {
     getSingleItem(param.item_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

@@ -1,11 +1,9 @@
 import { Badge, Button, Card } from "react-bootstrap";
 import "../style/Store.css";
-import { Cart, DashCircle, Heart, HeartFill, PlusCircle } from "react-bootstrap-icons";
+import { Heart, HeartFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { aggiungiPreferiti, rimuoviPreferiti } from "../redux/action/MarketStoreAction";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { addCarrello } from "../redux/action/CarrelloActions";
 
 const CardItemBuild = ({ elem, selezionato, setSelezionato }) => {
   const user = useSelector((state) => state.userReducer.user);

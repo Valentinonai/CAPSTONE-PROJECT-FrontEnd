@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { errorHandler, errorOff, errorOn, fetchGetUser, saveToken } from "../redux/action/UserAction";
+import { errorHandler, fetchGetUser, saveToken } from "../redux/action/UserAction";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const nav = useNavigate();
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const token = useSelector((state) => state.userReducer.token);
   const hasError = useSelector((state) => state.mainReducer.hasError);
 

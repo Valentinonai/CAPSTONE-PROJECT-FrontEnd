@@ -1,4 +1,4 @@
-import { Alert, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Cart, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,8 +17,6 @@ import { addBuildCarrello } from "../redux/action/CarrelloActions";
 
 const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
   const token = useSelector((state) => state.userReducer.token);
-  const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
-  const hasError = useSelector((state) => state.mainReducer.hasError);
   const dispatch = useDispatch();
   const nav = useNavigate();
   const goToBuildDetail = () => {

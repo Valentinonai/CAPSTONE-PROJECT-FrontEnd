@@ -18,7 +18,6 @@ const Signup = () => {
   const hasError = useSelector((state) => state.mainReducer.hasError);
 
   const signup = () => {
-    console.log(nome, cognome, email, password);
     dispatch(signupFetch(nome, cognome, email, password, nav, image, token));
   };
   useEffect(() => {

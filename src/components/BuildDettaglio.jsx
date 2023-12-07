@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../style/Build.css";
 import Footer from "./Footer";
-import { Alert, Button, Col, Image, ListGroup, Modal, Row } from "react-bootstrap";
-import pc from "../assets/pcCustom.jpg";
+import { Alert, Button, Col, ListGroup, Modal, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { clearAll } from "../redux/action/BuildActions";
 import { useEffect, useState } from "react";

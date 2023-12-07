@@ -12,6 +12,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(clearAll());
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

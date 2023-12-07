@@ -7,7 +7,7 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addCpu, clearCpu, clearSchedaMadre } from "../redux/action/BuildActions";
+import { addCpu, clearSchedaMadre } from "../redux/action/BuildActions";
 
 const Cpu = () => {
   const token = useSelector((state) => state.userReducer.token);
@@ -56,6 +56,7 @@ const Cpu = () => {
 
   useEffect(() => {
     getAllCpuCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

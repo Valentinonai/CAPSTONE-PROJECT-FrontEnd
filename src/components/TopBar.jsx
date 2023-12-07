@@ -1,10 +1,9 @@
-import { Alert, Badge, Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect } from "react";
-import { initializeConnect } from "react-redux/es/components/connect";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
 import { clearAll } from "../redux/action/BuildActions";
@@ -26,6 +25,7 @@ const TopBar = () => {
     if (token) {
       dispatch(fetchGetUser(token));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {}, [carrello]);
   return (

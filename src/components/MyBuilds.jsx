@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { clearAll } from "../redux/action/BuildActions";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyBuilds, saveMyBuilds } from "../redux/action/UserAction";
+import { getMyBuilds } from "../redux/action/UserAction";
 import Footer from "./Footer";
-import { Alert, ListGroup, Pagination } from "react-bootstrap";
+import { Alert, Col, ListGroup, Pagination, Row } from "react-bootstrap";
 import SingleBuildDettaglio from "./SingleBuildDettaglio";
 
 const MyBuilds = () => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
   const builds = useSelector((state) => state.userReducer.builds);
@@ -24,6 +25,7 @@ const MyBuilds = () => {
     dispatch(clearAll());
     window.scrollTo({ top: 0, behavior: "smooth" });
     getAllMyBuilds(page);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
@@ -37,6 +39,32 @@ const MyBuilds = () => {
             </p>
             <div className=" mt-5">
               <ListGroup>
+                <ListGroup.Item
+                  style={{ backgroundColor: "transparent", border: "1px solid grey" }}
+                  className="rounded my-1 py-3"
+                >
+                  <Row>
+                    <Col xs={4} sm={3}>
+                      <div className="buttonClick">
+                        {" "}
+                        <p>N°</p>
+                      </div>
+                    </Col>
+                    <Col xs={3} sm={3} className="text-truncate d-none d-sm-block">
+                      <div>
+                        <p>Data creazione</p>
+                      </div>
+                    </Col>
+
+                    <Col xs={6} sm={3}>
+                      <div>
+                        {" "}
+                        <p>Prezzo</p>
+                      </div>
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+
                 {builds.map((elem, index) => (
                   <ListGroup.Item
                     key={`singleBuildDettaglio-${index}`}

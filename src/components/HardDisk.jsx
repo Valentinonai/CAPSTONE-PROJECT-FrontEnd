@@ -7,7 +7,7 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addHardDisk, addSchedaGrafica, clearCase, clearSchedaGrafica } from "../redux/action/BuildActions";
+import { addHardDisk, clearSchedaGrafica } from "../redux/action/BuildActions";
 
 const HardDisk = () => {
   const token = useSelector((state) => state.userReducer.token);
@@ -56,6 +56,7 @@ const HardDisk = () => {
 
   useEffect(() => {
     getAllHardDiskCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

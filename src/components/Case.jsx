@@ -7,7 +7,7 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addCase, addCpu, addRam, clearCpu, clearRam } from "../redux/action/BuildActions";
+import { addCase, clearRam } from "../redux/action/BuildActions";
 
 const Case = () => {
   const token = useSelector((state) => state.userReducer.token);
@@ -56,6 +56,7 @@ const Case = () => {
 
   useEffect(() => {
     getAllCaseCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

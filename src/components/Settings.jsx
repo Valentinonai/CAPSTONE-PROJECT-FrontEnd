@@ -34,6 +34,7 @@ const Settings = () => {
   const [cvv, setCvv] = useState(user && user.cartaDiCredito && user.cartaDiCredito.cvv);
   const [scadenza, setScadenza] = useState(user && user.cartaDiCredito && user.cartaDiCredito.data_di_scadenza);
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const [image, setImage] = useState();
   const load = useSelector((state) => state.mainReducer.isLoading);
   const [show, setShow] = useState(false);
@@ -43,7 +44,6 @@ const Settings = () => {
   const handleShow = () => setShow(true);
 
   const setModifica = () => {
-    console.log(modify);
     if (modify === false) dispatch(modificaOn());
     else {
       dispatch(modificaOff());
@@ -138,6 +138,7 @@ const Settings = () => {
     if (modify === true) dispatch(modificaOff());
     dispatch(clearAll());
     window.scrollTo({ top: 0, behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

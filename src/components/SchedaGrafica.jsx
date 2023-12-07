@@ -7,7 +7,7 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addCase, addCpu, addRam, addSchedaGrafica, clearCase, clearCpu, clearRam } from "../redux/action/BuildActions";
+import { addSchedaGrafica, clearCase } from "../redux/action/BuildActions";
 
 const SchedaGrafica = () => {
   const token = useSelector((state) => state.userReducer.token);
@@ -55,6 +55,7 @@ const SchedaGrafica = () => {
 
   useEffect(() => {
     getAllSchedaGraficaCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import { DashCircle, Pencil, PlusCircle, Trash } from "react-bootstrap-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { modificaTot, modify, removeBuildCarrello, removeCarrello } from "../redux/action/CarrelloActions";
+import { DashCircle, PlusCircle, Trash } from "react-bootstrap-icons";
+import { useDispatch } from "react-redux";
+import { removeBuildCarrello } from "../redux/action/CarrelloActions";
 import { useNavigate } from "react-router-dom";
 import {
   addAlimentatore,

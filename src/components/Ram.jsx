@@ -7,7 +7,7 @@ import CardVuota from "./CardVuota";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
 import CardItemBuild from "./CardItemBuild";
 import { ArrowLeft, ArrowRight } from "react-bootstrap-icons";
-import { addCpu, addRam, clearCpu } from "../redux/action/BuildActions";
+import { addRam, clearCpu } from "../redux/action/BuildActions";
 
 const Ram = () => {
   const token = useSelector((state) => state.userReducer.token);
@@ -58,6 +58,7 @@ const Ram = () => {
 
   useEffect(() => {
     getAllRamCompatibili(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

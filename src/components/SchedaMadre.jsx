@@ -49,13 +49,13 @@ const SchedaMadre = () => {
   };
 
   const goToCpu = () => {
-    console.log(selezionato);
     dispatch(addSchedaMadre(selezionato));
     nav("/build/cpu");
   };
 
   useEffect(() => {
     getAllSchedaMadre(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
