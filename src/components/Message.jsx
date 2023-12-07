@@ -84,7 +84,7 @@ const Message = () => {
                       onChange={(e) => {
                         setMessage(e.target.value);
                       }}
-                      style={{ boxShadow: "none" }}
+                      style={{ boxShadow: "none", fontSize: "12px" }}
                       className="inputSettings"
                     />
                   </Form.Group>
