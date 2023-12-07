@@ -21,6 +21,7 @@ import Ventole from "./components/Ventole";
 import Alimentatore from "./components/Alimentatore";
 import BuildDettaglio from "./components/BuildDettaglio";
 import MyBuilds from "./components/MyBuilds";
+import MyOrders from "./components/MyOrders";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/build/alimentatore" element={<Alimentatore />} />
           <Route path="/build/dettaglio/:state" element={<BuildDettaglio />} />
           <Route path="/my_builds" element={<MyBuilds />} />
+          <Route path="/my_orders" element={<MyOrders />} />
         </Routes>
       </BrowserRouter>
     </Container>

@@ -67,6 +67,11 @@ const TopBar = () => {
             )}
             {user && user.ruolo !== "INATTIVO" && (
               <NavDropdown.Item>
+                <Link to={"/my_orders"}>Miei Ordini</Link>
+              </NavDropdown.Item>
+            )}
+            {user && user.ruolo !== "INATTIVO" && (
+              <NavDropdown.Item>
                 <Link to={"/settings"}>Settings</Link>
               </NavDropdown.Item>
             )}
