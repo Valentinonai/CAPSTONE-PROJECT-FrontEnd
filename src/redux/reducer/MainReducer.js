@@ -1,12 +1,4 @@
-import {
-  ERROR_HANDLER,
-  ERROR_OFF,
-  ERROR_ON,
-  IS_LOADING,
-  MESSAGE_HANDLER,
-  MODIFICA_OFF,
-  MODIFICA_ON,
-} from "../action/UserAction";
+import { ERROR_HANDLER, IS_LOADING, MESSAGE_HANDLER, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
 
 const initialState = {
   isModify: false,

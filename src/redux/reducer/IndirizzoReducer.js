@@ -1,4 +1,4 @@
-import { MODIFICA_INDIRIZZO, SAVE_INDIRIZZO } from "../action/UserAction";
+import { SAVE_INDIRIZZO } from "../action/UserAction";
 
 const initialState = {
   indirizzo: null,
