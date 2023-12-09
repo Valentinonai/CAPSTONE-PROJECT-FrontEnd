@@ -1,4 +1,5 @@
 import {
+  ADD_THREAD,
   ELIMINA_ACCOUNT,
   ELIMINA_TOKEN,
   GET_MY_BUILDS,
@@ -8,6 +9,7 @@ import {
 } from "../action/UserAction";
 
 const initialState = {
+  thread: "",
   token: "",
   user: null,
   builds: null,
@@ -26,6 +28,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: null,
         token: "",
+        thread: "",
       };
     case SAVE_TOKEN:
       return {
@@ -37,6 +40,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         token: "",
         user: null,
+        thread: "",
       };
     case ELIMINA_TOKEN:
       return {
@@ -48,6 +52,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         builds: action.payload.builds,
         pagesNumber: action.payload.pagesNumber,
+      };
+    case ADD_THREAD:
+      return {
+        ...state,
+        thread: action.payload,
       };
     default:
       return state;

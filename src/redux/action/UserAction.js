@@ -11,6 +11,7 @@ export const ELIMINA_ACCOUNT = "ELIMINA_ACCOUNT";
 export const ELIMINA_TOKEN = "ELIMINA_TOKEN";
 export const MESSAGE_HANDLER = "MESSAGE_HANDLER";
 export const GET_MY_BUILDS = "GET_MY_BUILDS";
+export const ADD_THREAD = "ADD_THREAD";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -29,6 +30,8 @@ export const messageHandler = (value, message) => ({
 });
 
 export const saveMyBuilds = (builds, p) => ({ type: GET_MY_BUILDS, payload: { builds: builds, pagesNumber: p } });
+
+export const addThread = (data) => ({ type: ADD_THREAD, payload: data });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -67,6 +70,7 @@ export const signupFetch = (nome, cognome, email, password, nav, image) => {
         dispatch(saveToken(data.token));
         dispatch(fetchGetUser(data.token));
         dispatch(uploadUserImg(image, data.token));
+        dispatch(apriThread(data.token));
         nav("/");
       } else throw new Error(data.message);
     } catch (error) {
@@ -285,6 +289,29 @@ export const getMyBuilds = (token, p) => {
       setTimeout(() => {
         dispatch(errorHandler(false, ""));
       }, 2000);
+    }
+  };
+};
+
+//---------------------Apri Thread-------------------
+
+export const apriThread = (token) => {
+  return async (dispatch) => {
+    try {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/chat`, {
+        method: "POST",
+        headers: {
+          "content-type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await risp.json();
+      if (risp.ok) {
+        dispatch(addThread(data.thread));
+      } else throw new Error(data.message);
+    } catch (error) {
+      dispatch(eliminaToken());
+      console.log(error.message);
     }
   };
 };

@@ -238,6 +238,13 @@ body {
   font-size: 12px;
   border-radius: 10px;
 }
+#chatBody {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#chatBody::-webkit-scrollbar {
+  width: 0;
+}
 @media screen and (max-width: 991px) {
   #topBar a:hover {
     transform: scale(1.02);

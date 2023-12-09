@@ -8,11 +8,11 @@ export const aggiungiMessaggio = (message) => ({ type: AGGIUNGI_MESSAGGIO, paylo
 export const isLoadingChat = (value) => ({ type: IS_LOADING_CHAT, payload: value });
 export const resetChat = (value) => ({ type: RESET_CHAT, payload: "" });
 
-export const ottieniRisposta = (message, token) => {
+export const ottieniRisposta = (message, token, thread) => {
   return async (dispatch) => {
     try {
       dispatch(isLoadingChat(true));
-      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/chat`, {
+      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/chat/${thread}`, {
         method: "POST",
         body: JSON.stringify({ messaggio: message }),
         headers: {

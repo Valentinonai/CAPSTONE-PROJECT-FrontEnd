@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
 import { clearAll } from "../redux/action/BuildActions";
+import { isLoadingChat, resetChat } from "../redux/action/ChatActions";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -19,6 +20,8 @@ const TopBar = () => {
     dispatch(userLogout());
     dispatch(clearCart());
     dispatch(clearAll());
+    dispatch(resetChat());
+    dispatch(isLoadingChat(false));
   };
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { errorHandler, fetchGetUser, saveToken } from "../redux/action/UserAction";
+import { apriThread, errorHandler, fetchGetUser, saveToken } from "../redux/action/UserAction";
 
 const Login = () => {
   const [email, setEmail] = useState();
@@ -26,6 +26,7 @@ const Login = () => {
       if (risp.ok) {
         dispatch(saveToken(data.token));
         dispatch(fetchGetUser(data.token));
+        dispatch(apriThread(data.token));
         nav("/");
       } else throw new Error(data.message);
     } catch (error) {
