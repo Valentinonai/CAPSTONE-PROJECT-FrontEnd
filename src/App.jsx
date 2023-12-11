@@ -26,6 +26,7 @@ import MyOrderDettaglio from "./components/MyOrderDettaglio";
 import { useSelector } from "react-redux";
 import Message from "./components/Message";
 import Preferiti from "./components/Preferiti";
+import GraficoVendite from "./components/GraficoVendite";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -55,6 +56,7 @@ function App() {
           <Route path="/my_orders" element={<MyOrders />} />
           <Route path="/my_orders/:order_id" element={<MyOrderDettaglio />} />
           <Route path="/preferiti" element={<Preferiti />} />
+          {user && user.ruolo === "ADMIN" && <Route path="/vendite" element={<GraficoVendite />} />}
         </Routes>
       </BrowserRouter>
       {user && <Message />}

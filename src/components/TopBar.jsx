@@ -149,6 +149,18 @@ const TopBar = () => {
             >
               Build
             </Link>
+            {user && user.ruolo === "ADMIN" && (
+              <Link
+                to={"/vendite"}
+                className={
+                  loc.pathname === "/vendite"
+                    ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                    : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                }
+              >
+                Vendite
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
