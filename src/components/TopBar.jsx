@@ -75,11 +75,7 @@ const TopBar = () => {
                 <Link to={"/my_orders"}>Miei Ordini</Link>
               </NavDropdown.Item>
             )}
-            {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
-              <NavDropdown.Item>
-                <Link to={"/all_orders"}>All Orders</Link>
-              </NavDropdown.Item>
-            )}
+
             {user && user.ruolo !== "INATTIVO" && (
               <NavDropdown.Item>
                 <Link to={"/preferiti"}>Preferiti</Link>
@@ -165,6 +161,20 @@ const TopBar = () => {
               >
                 Vendite
               </Link>
+            )}
+            {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
+              <NavDropdown.Item>
+                <Link
+                  to={"/all_orders"}
+                  className={
+                    loc.pathname === "/all_orders"
+                      ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                      : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                  }
+                >
+                  All Orders
+                </Link>
+              </NavDropdown.Item>
             )}
           </Nav>
         </Navbar.Collapse>

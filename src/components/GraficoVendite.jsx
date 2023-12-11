@@ -4,6 +4,7 @@ import { errorHandler } from "../redux/action/UserAction";
 import { Alert } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import Footer from "./Footer";
 
 const GraficoVendite = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -16,7 +17,6 @@ const GraficoVendite = () => {
   const [elementi, setElementi] = useState();
   const [quantita, setQuantita] = useState();
   const [dati, setDati] = useState();
-  const [config, setConfig] = useState();
 
   const getAll = async () => {
     try {
@@ -62,7 +62,6 @@ const GraficoVendite = () => {
         }, 2000);
       }
     }
-    console.log("X:", x);
     x = x.filter((elem) => elem.pz_venduti > 0);
     x.sort((a, b) => {
       return b.pz_venduti - a.pz_venduti;
@@ -77,8 +76,6 @@ const GraficoVendite = () => {
       nomeElementi.push(element.nome);
       quantitaElementi.push(element.pz_venduti);
     });
-    console.log(nomeElementi);
-    console.log(quantitaElementi);
     setElementi(nomeElementi);
     setQuantita(quantitaElementi);
     setDati({
@@ -87,7 +84,7 @@ const GraficoVendite = () => {
         {
           indexAxis: "y",
           barPercentage: 0.8,
-          barThickness: "20",
+          barThickness: "18",
           offset: "200",
           label: "Quantità vendute",
           data: quantitaElementi,
@@ -109,15 +106,22 @@ const GraficoVendite = () => {
       {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>}
       {user && user.ruolo === "ADMIN" && dati && (
         <>
-          <div className="mt-5 mx-1 pt-4 store">
+          <div className="mt-5 mx-1 pt-4 store" style={{ overflowX: "scroll" }}>
             <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5 mt-3" style={{ fontWeight: "bold", fontSize: "50px" }}>
               {" "}
               GRAFICI
             </p>
-            <Bar data={dati} style={{ minWidth: "1200px", minHeight: "800px" }} />
+            <p className=" h2 ms-0 ms-sm-2 ms-md-4  mt-5" style={{ fontWeight: "bold" }}>
+              Prodotti venduti
+            </p>
+            <div style={{ minWidth: "1200px" }}>
+              {" "}
+              <Bar data={dati} />
+            </div>
           </div>
         </>
       )}
+      <Footer />
     </>
   );
 };
