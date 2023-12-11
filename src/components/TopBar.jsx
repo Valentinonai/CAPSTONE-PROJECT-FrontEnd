@@ -75,6 +75,11 @@ const TopBar = () => {
                 <Link to={"/my_orders"}>Miei Ordini</Link>
               </NavDropdown.Item>
             )}
+            {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
+              <NavDropdown.Item>
+                <Link to={"/all_orders"}>All Orders</Link>
+              </NavDropdown.Item>
+            )}
             {user && user.ruolo !== "INATTIVO" && (
               <NavDropdown.Item>
                 <Link to={"/preferiti"}>Preferiti</Link>

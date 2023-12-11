@@ -114,7 +114,7 @@ const GraficoVendite = () => {
               {" "}
               GRAFICI
             </p>
-            <Bar data={dati} height={"auto"} />
+            <Bar data={dati} style={{ minWidth: "1200px", minHeight: "800px" }} />
           </div>
         </>
       )}
