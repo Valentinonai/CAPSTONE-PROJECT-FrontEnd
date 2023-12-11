@@ -61,7 +61,8 @@ const CardItemStore = ({ elem }) => {
       <Card.Body className="d-flex flex-column align-items-start">
         <Card.Title className="cardItemTitle">{elem.nome}</Card.Title>
         <Card.Text>{elem.marca}</Card.Text>
-        <Card.Text>categoria: {elem.categoria}</Card.Text>
+        <Card.Text className="mb-0">categoria: </Card.Text>
+        <Card.Text>{elem.categoria}</Card.Text>
 
         <div className="d-flex justify-content-between align-items-center w-100">
           <Card.Text>
