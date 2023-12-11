@@ -12,6 +12,7 @@ export const ELIMINA_TOKEN = "ELIMINA_TOKEN";
 export const MESSAGE_HANDLER = "MESSAGE_HANDLER";
 export const GET_MY_BUILDS = "GET_MY_BUILDS";
 export const ADD_THREAD = "ADD_THREAD";
+export const CLEAR_BUILDS = "CLEAR_BUILDS";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -32,6 +33,7 @@ export const messageHandler = (value, message) => ({
 export const saveMyBuilds = (builds, p) => ({ type: GET_MY_BUILDS, payload: { builds: builds, pagesNumber: p } });
 
 export const addThread = (data) => ({ type: ADD_THREAD, payload: data });
+export const clearBuilds = () => ({ type: CLEAR_BUILDS, payload: null });
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {
@@ -50,7 +52,10 @@ export const fetchGetUser = (token) => {
       } else throw new Error(data.message);
     } catch (error) {
       dispatch(eliminaToken());
-      console.log(error.message);
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
     }
   };
 };
@@ -256,7 +261,6 @@ export const eliminaAccount = (token, nav) => {
         dispatch(errorHandler(true, "Account eliminato"));
         setTimeout(() => {
           dispatch(errorHandler(false, ""));
-          nav("/");
         }, 2000);
       } else throw new Error(data.message);
     } catch (error) {
@@ -282,6 +286,7 @@ export const getMyBuilds = (token, p) => {
       });
       const data = await risp.json();
       if (risp.ok) {
+        console.log(data);
         dispatch(saveMyBuilds(data.content, data.totalPages));
       } else throw new Error(data.message);
     } catch (error) {

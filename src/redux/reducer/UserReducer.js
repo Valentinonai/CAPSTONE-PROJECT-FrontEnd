@@ -1,5 +1,6 @@
 import {
   ADD_THREAD,
+  CLEAR_BUILDS,
   ELIMINA_ACCOUNT,
   ELIMINA_TOKEN,
   GET_MY_BUILDS,
@@ -57,6 +58,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         thread: action.payload,
+      };
+    case CLEAR_BUILDS:
+      return {
+        ...state,
+        builds: null,
       };
     default:
       return state;

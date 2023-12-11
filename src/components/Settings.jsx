@@ -3,6 +3,7 @@ import { Alert, Button, Col, Image, Modal, Row, Spinner } from "react-bootstrap"
 import { Pencil, Trash, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  clearBuilds,
   creaCarta,
   creaIndirizzo,
   eliminaAccount,
@@ -12,11 +13,14 @@ import {
   modificaOn,
   modificaPasswordUtente,
   uploadUserImg,
+  userLogout,
 } from "../redux/action/UserAction";
 import Dropzone from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { clearAll } from "../redux/action/BuildActions";
+import { clearCart } from "../redux/action/CarrelloActions";
+import { isLoadingChat, resetChat } from "../redux/action/ChatActions";
 
 const Settings = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -464,6 +468,13 @@ const Settings = () => {
             onClick={() => {
               handleClose();
               dispatch(eliminaAccount(token, nav));
+              dispatch(userLogout());
+              dispatch(clearCart());
+              dispatch(clearAll());
+              dispatch(resetChat());
+              dispatch(isLoadingChat(false));
+              dispatch(clearBuilds());
+              nav("/");
             }}
           >
             Elimina

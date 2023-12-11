@@ -46,11 +46,13 @@ const Carrello = () => {
         },
       });
       const data = await risp.json();
+      console.log(data.build_list, data.items_List);
       if (risp.ok) {
         if (
           (data.build_list === undefined || data.build_list.length === 0) &&
           (data.items_List === undefined || data.items_List.length === 0)
         ) {
+          console.log("DENTRO IF");
           dispatch(messageHandler(true, "Ordine effettuato correttamente"));
           window.scrollTo({ top: 0, behavior: "smooth" });
           setTimeout(() => {

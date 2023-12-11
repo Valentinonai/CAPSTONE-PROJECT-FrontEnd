@@ -2,7 +2,7 @@ import { Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetUser, userLogout } from "../redux/action/UserAction";
+import { clearBuilds, fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
@@ -22,6 +22,7 @@ const TopBar = () => {
     dispatch(clearAll());
     dispatch(resetChat());
     dispatch(isLoadingChat(false));
+    dispatch(clearBuilds());
   };
 
   useEffect(() => {

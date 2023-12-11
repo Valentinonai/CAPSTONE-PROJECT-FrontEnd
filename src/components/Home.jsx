@@ -1,14 +1,16 @@
-import { Col, Image, Row } from "react-bootstrap";
+import { Alert, Col, Image, Row } from "react-bootstrap";
 import hero from "../assets/pcCustom.jpg";
 import chiSiamo from "../assets/MotherBoard.jpg";
 import componenti from "../assets/componenti.jpg";
 import Footer from "./Footer";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearAll } from "../redux/action/BuildActions";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const hasError = useSelector((state) => state.mainReducer.hasError);
+  const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
   useEffect(() => {
     dispatch(clearAll());
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -16,6 +18,8 @@ const Home = () => {
   }, []);
   return (
     <>
+      {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
+      {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>}
       <Row className="shadow mb-5" id="heroSection">
         <Col xs={12} md={7}>
           <div className="text-white mt-5 me-2 me-sm-5 pt-0 pt-lg-5">
