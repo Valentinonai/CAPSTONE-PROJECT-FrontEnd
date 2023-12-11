@@ -77,7 +77,7 @@ const SingleBuildDettaglio = ({ elem, getAllMyBuilds, setPage }) => {
     }
   };
   const aggiungiAlCarrello = () => {
-    dispatch(addBuildCarrello(elem));
+    dispatch(addBuildCarrello(elem, 1));
   };
   return (
     <>

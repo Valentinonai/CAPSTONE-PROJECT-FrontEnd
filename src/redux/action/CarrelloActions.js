@@ -11,9 +11,11 @@ export const clearCart = (item) => ({ type: CLEAR_CART, payload: null });
 export const ADD_BUILD_CART = "ADD_BUILD_CART";
 export const REMOVE_BUILD_CART = "REMOVE_BUILD_CART";
 export const CLEAR_BUILD_CART = "CLEAR_BUILD_CART";
+export const MODIFY_QT_BUILD = "MODIFY_QT_BUILD";
 
-export const addBuildCarrello = (data) => ({ type: ADD_BUILD_CART, payload: data });
+export const addBuildCarrello = (build, q) => ({ type: ADD_BUILD_CART, payload: { build: build, quantita: q } });
 export const removeBuildCarrello = (data) => ({ type: REMOVE_BUILD_CART, payload: data });
+export const modifyQtBuild = (build, q) => ({ type: MODIFY_QT_BUILD, payload: { build: build, quantita: q } });
 export const clearBuildCart = (data) => ({ type: CLEAR_BUILD_CART, payload: null });
 
 export const MODIFICA_TOT = "MODIFICA_TOT";

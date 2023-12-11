@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Accordion, Alert, Col, Form, Pagination, Row } from "react-bootstrap";
+import { useEffect } from "react";
+import { Alert, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { clearMarket, getAll, getByCategoria, getSingleItem } from "../redux/action/MarketStoreAction";
+import { clearMarket, getSingleItem } from "../redux/action/MarketStoreAction";
 import CardVuota from "./CardVuota";
 import CardItemStore from "./CardItemStore";
 import Footer from "./Footer";
@@ -29,6 +29,7 @@ const Preferiti = () => {
   useEffect(() => {
     dispatch(clearMarket());
     getAllPreferiti();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   return (
     <>

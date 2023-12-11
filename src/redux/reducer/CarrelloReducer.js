@@ -4,6 +4,7 @@ import {
   CLEAR_CART,
   MODIFICA_TOT,
   MODIFY_QT,
+  MODIFY_QT_BUILD,
   REMOVE_BUILD_CART,
   REMOVE_CART,
 } from "../action/CarrelloActions";
@@ -71,19 +72,51 @@ const CarrelloReducer = (state = initialState, action) => {
       };
     }
     case ADD_BUILD_CART:
-      return {
-        ...state,
-        builds: [...state.builds, action.payload],
-      };
-    case REMOVE_BUILD_CART: {
-      const indexToRemove = state.builds.findIndex((elem) => elem.id === action.payload.id);
-      if (indexToRemove !== -1) {
+      let existingItem;
+      if (Array.isArray(state.builds) && state.builds.length > 0) {
+        existingItem = state.builds.find((elem) => elem.build.id === action.payload.build.id);
+      }
+      console.log(existingItem);
+      if (!existingItem) {
         return {
           ...state,
-          builds: [...state.builds.slice(0, indexToRemove), ...state.builds.slice(indexToRemove + 1)],
+          builds: [...state.builds, action.payload],
         };
-      } else return state;
-    }
+      } else {
+        return {
+          ...state,
+          builds: state.builds.map((elem) => {
+            if (elem.build.id === action.payload.build.id) {
+              return {
+                ...elem,
+                quantita: elem.quantita + action.payload.quantita,
+              };
+            } else {
+              return elem;
+            }
+          }),
+        };
+      }
+    case MODIFY_QT_BUILD:
+      return {
+        ...state,
+        builds: state.builds.map((elem) => {
+          console.log(elem.build.id, action.payload.build.id);
+          if (elem.build.id === action.payload.build.id) {
+            return {
+              ...elem,
+              quantita: action.payload.quantita,
+            };
+          } else {
+            return elem;
+          }
+        }),
+      };
+    case REMOVE_BUILD_CART:
+      return {
+        ...state,
+        builds: state.builds.filter((elem) => elem.build.id !== action.payload.id),
+      };
     case MODIFICA_TOT:
       return {
         ...state,

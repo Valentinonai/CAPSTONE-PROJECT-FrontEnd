@@ -52,7 +52,8 @@ const TopBar = () => {
                     : "badgeCarrello"
                 }
               >
-                {carrello.items.reduce((tot, elem) => (tot += elem.quantita), 0) + carrello.builds.length}
+                {carrello.items.reduce((tot, elem) => (tot += elem.quantita), 0) +
+                  carrello.builds.reduce((tot, elem) => (tot += elem.quantita), 0)}
               </div>
             </Link>
           </div>

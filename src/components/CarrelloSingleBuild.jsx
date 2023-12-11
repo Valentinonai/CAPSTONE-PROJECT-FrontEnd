@@ -1,7 +1,7 @@
 import { Col, Row } from "react-bootstrap";
 import { DashCircle, PlusCircle, Trash } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
-import { removeBuildCarrello } from "../redux/action/CarrelloActions";
+import { modifyQtBuild, removeBuildCarrello } from "../redux/action/CarrelloActions";
 import { useNavigate } from "react-router-dom";
 import {
   addAlimentatore,
@@ -13,40 +13,44 @@ import {
   addSchedaMadre,
   addVentole,
 } from "../redux/action/BuildActions";
+import { useState } from "react";
 
 const CarrelloSingleBuild = ({ elem, index }) => {
+  const [qt, setQt] = useState(elem.quantita);
   const dispatch = useDispatch();
   const nav = useNavigate();
-
+  const modificaQuantita = (q) => {
+    dispatch(modifyQtBuild(elem.build, q));
+  };
   const eliminaCarrello = () => {
-    dispatch(removeBuildCarrello(elem));
+    dispatch(removeBuildCarrello(elem.build));
   };
   const goToBuildDetail = () => {
-    for (let i = 0; i < elem.items.length; i++) {
-      switch (elem.items[i].categoria) {
+    for (let i = 0; i < elem.build.items.length; i++) {
+      switch (elem.build.items[i].categoria) {
         case "SCHEDA_MADRE":
-          dispatch(addSchedaMadre(elem.items[i]));
+          dispatch(addSchedaMadre(elem.build.items[i]));
           break;
         case "CPU":
-          dispatch(addCpu(elem.items[i]));
+          dispatch(addCpu(elem.build.items[i]));
           break;
         case "RAM":
-          dispatch(addRam(elem.items[i]));
+          dispatch(addRam(elem.build.items[i]));
           break;
         case "CASE":
-          dispatch(addCase(elem.items[i]));
+          dispatch(addCase(elem.build.items[i]));
           break;
         case "SCHEDA_GRAFICA":
-          dispatch(addSchedaGrafica(elem.items[i]));
+          dispatch(addSchedaGrafica(elem.build.items[i]));
           break;
         case "HARD_DISK":
-          dispatch(addHardDisk(elem.items[i]));
+          dispatch(addHardDisk(elem.build.items[i]));
           break;
         case "ALIMENTATORE":
-          dispatch(addAlimentatore(elem.items[i]));
+          dispatch(addAlimentatore(elem.build.items[i]));
           break;
         case "VENTOLE":
-          dispatch(addVentole(elem.items[i]));
+          dispatch(addVentole(elem.build.items[i]));
           break;
         default:
           break;
@@ -70,13 +74,13 @@ const CarrelloSingleBuild = ({ elem, index }) => {
           className="buttonClick"
         >
           {" "}
-          <p>Build n° {elem.id}</p>
+          <p>Build n° {elem.build.id}</p>
         </div>
       </Col>
       <Col xs={2} className="d-none d-sm-block">
         <div>
           {" "}
-          <p>{elem.prezzo.toFixed(2)}€</p>
+          <p>{(elem.build.prezzo * qt).toFixed(2)}€</p>
         </div>
       </Col>
       <Col xs={2} className="d-none d-md-block">
@@ -86,9 +90,25 @@ const CarrelloSingleBuild = ({ elem, index }) => {
       </Col>
       <Col xs={5} sm={4} md={2}>
         <div>
-          <DashCircle className="me-2 buttonClick" style={{ visibility: "hidden" }} />
-          {1}
-          <PlusCircle className="ms-2 buttonClick" style={{ visibility: "hidden" }} />
+          <div>
+            <DashCircle
+              className="me-2 buttonClick"
+              onClick={() => {
+                if (qt > 1) {
+                  setQt(qt - 1);
+                  modificaQuantita(qt - 1);
+                }
+              }}
+            />
+            {qt}
+            <PlusCircle
+              className="ms-2 buttonClick"
+              onClick={() => {
+                setQt(qt + 1);
+                modificaQuantita(qt + 1);
+              }}
+            />
+          </div>
         </div>
       </Col>
       <Col xs={2} sm={1}>

@@ -42,7 +42,7 @@ const CarrelloSingleItem = ({ elem, index }) => {
       <Col xs={2} className="d-none d-sm-block">
         <div>
           {" "}
-          <p>{elem.item.prezzo * qt}€</p>
+          <p>{(elem.item.prezzo * qt).toFixed(2)}€</p>
         </div>
       </Col>
       <Col xs={2} className="d-none d-md-block">

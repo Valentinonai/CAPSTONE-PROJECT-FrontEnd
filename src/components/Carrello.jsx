@@ -31,7 +31,8 @@ const Carrello = () => {
   const calcolaTot = () => {
     let tot = 0;
     for (let i = 0; i < carrelloItems.length; i++) tot = tot + carrelloItems[i].item.prezzo * carrelloItems[i].quantita;
-    for (let i = 0; i < carrelloBuildes.length; i++) tot = tot + carrelloBuildes[i].prezzo;
+    for (let i = 0; i < carrelloBuildes.length; i++)
+      tot = tot + carrelloBuildes[i].build.prezzo * carrelloBuildes[i].quantita;
     return tot;
   };
   const salvaOrdine = async (builds_id, items_id) => {
@@ -76,7 +77,9 @@ const Carrello = () => {
     } else {
       const builds_id = [];
       const items_id = [];
-      carrelloBuildes.forEach((elem) => builds_id.push(elem.id));
+      for (let i = 0; i < carrelloBuildes.length; i++) {
+        for (let j = 0; j < carrelloBuildes[i].quantita; j++) builds_id.push(carrelloBuildes[i].build.id);
+      }
       for (let i = 0; i < carrelloItems.length; i++) {
         for (let j = 0; j < carrelloItems[i].quantita; j++) items_id.push(carrelloItems[i].item.id);
       }
