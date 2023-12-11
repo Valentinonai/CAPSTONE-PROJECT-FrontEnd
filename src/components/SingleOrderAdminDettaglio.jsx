@@ -10,9 +10,9 @@ const SingleOrderAdminDettaglio = ({ elem, getAllOrders, p }) => {
   const token = useSelector((state) => state.userReducer.token);
   const dispatch = useDispatch();
 
-  //   const goToOrdineDetail = () => {
-  //     nav(`/my_orders/${elem.id}`);
-  //   };
+  const goToOrdineDetail = () => {
+    nav(`/my_orders/${elem.id}`);
+  };
   const modificaStatoOrdine = async (s) => {
     try {
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/ordini/${elem.id}?stato=${s}`, {
@@ -44,7 +44,7 @@ const SingleOrderAdminDettaglio = ({ elem, getAllOrders, p }) => {
             <div
               className="buttonClick"
               onClick={() => {
-                // goToOrdineDetail();
+                goToOrdineDetail();
               }}
             >
               {" "}
