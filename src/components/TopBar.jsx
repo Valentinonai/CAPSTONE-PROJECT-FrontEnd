@@ -152,14 +152,14 @@ const TopBar = () => {
             </Link>
             {user && user.ruolo === "ADMIN" && (
               <Link
-                to={"/vendite"}
+                to={"/statistiche"}
                 className={
-                  loc.pathname === "/vendite"
+                  loc.pathname === "/statistiche"
                     ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
                     : "ms-3 mb-2 mb-lg-0 mt-lg-0"
                 }
               >
-                Vendite
+                Statistiche
               </Link>
             )}
             {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
