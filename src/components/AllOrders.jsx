@@ -19,7 +19,6 @@ const AllOrders = () => {
 
   const getAllOrders = async (p) => {
     try {
-      console.log("NUMERO PAGINA", p);
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/ordini?page=${p - 1}`, {
         method: "GET",
         headers: {
