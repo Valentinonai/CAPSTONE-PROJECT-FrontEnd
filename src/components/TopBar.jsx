@@ -172,6 +172,20 @@ const TopBar = () => {
                 </Link>
               </NavDropdown.Item>
             )}
+            {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
+              <NavDropdown.Item>
+                <Link
+                  to={"/modifica_items"}
+                  className={
+                    loc.pathname === "/modifica_items"
+                      ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
+                      : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                  }
+                >
+                  Magazzino
+                </Link>
+              </NavDropdown.Item>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

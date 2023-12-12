@@ -28,6 +28,7 @@ import Message from "./components/Message";
 import Preferiti from "./components/Preferiti";
 import AllOrders from "./components/AllOrders";
 import Statistiche from "./components/Statistiche";
+import ModificaItems from "./components/ModificaItems";
 
 function App() {
   const user = useSelector((state) => state.userReducer.user);
@@ -59,6 +60,7 @@ function App() {
           <Route path="/preferiti" element={<Preferiti />} />
           {user && user.ruolo === "ADMIN" && <Route path="/statistiche" element={<Statistiche />} />}
           {user && user.ruolo === "ADMIN" && <Route path="/all_orders" element={<AllOrders />} />}
+          {user && user.ruolo === "ADMIN" && <Route path="/modifica_items" element={<ModificaItems />} />}
         </Routes>
       </BrowserRouter>
       {user && <Message />}
