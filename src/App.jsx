@@ -26,7 +26,6 @@ import MyOrderDettaglio from "./components/MyOrderDettaglio";
 import { useSelector } from "react-redux";
 import Message from "./components/Message";
 import Preferiti from "./components/Preferiti";
-import GraficoVendite from "./components/Statistiche";
 import AllOrders from "./components/AllOrders";
 import Statistiche from "./components/Statistiche";
 

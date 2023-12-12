@@ -1,27 +1,35 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { errorHandler, isLoading } from "../redux/action/UserAction";
-import { Alert } from "react-bootstrap";
+import { Alert, Spinner } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
+// eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
 import Footer from "./Footer";
 
 const Statistiche = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
+  // eslint-disable-next-line no-unused-vars
   const [items, setItems] = useState([]);
   const hasError = useSelector((state) => state.mainReducer.hasError);
   const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const [vendite, setVendite] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [elementi, setElementi] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [quantita, setQuantita] = useState();
   const [dati, setDati] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [likes, setLikes] = useState();
   const [dati2, setDati2] = useState();
+  const load = useSelector((state) => state.mainReducer.isLoading);
 
   const getAll = async () => {
     try {
+      dispatch(isLoading(true));
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items`, {
         method: "GET",
         headers: {
@@ -33,6 +41,7 @@ const Statistiche = () => {
       if (risp.ok) {
         setItems(data);
         pezziVenduti(data);
+        dispatch(isLoading(false));
       } else throw new Error(data.message);
     } catch (error) {
       dispatch(errorHandler(true, error.message));
@@ -46,6 +55,7 @@ const Statistiche = () => {
     let x = [];
     for (let i = 0; i < elementi.length; i++) {
       try {
+        dispatch(isLoading(true));
         const risp = await fetch(`${process.env.REACT_APP_BASEURL}/ordini/totale/${elementi[i].id}`, {
           method: "GET",
           headers: {
@@ -56,6 +66,7 @@ const Statistiche = () => {
         const data = await risp.json();
         if (risp.ok) {
           x.push({ nome: elementi[i].nome, id: elementi[i].id, pz_venduti: data });
+          dispatch(isLoading(false));
         } else throw new Error(data.message);
       } catch (error) {
         dispatch(errorHandler(true, error.message));
@@ -73,6 +84,7 @@ const Statistiche = () => {
   };
   const getLikes = async () => {
     try {
+      dispatch(isLoading(true));
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/users/likes`, {
         method: "GET",
         headers: {
@@ -83,6 +95,7 @@ const Statistiche = () => {
       const data = await risp.json();
       if (risp.ok) {
         setLikes(data);
+        dispatch(isLoading(false));
         graficoLikes(data.items_id, data.count_likes);
       } else throw new Error(data.message);
     } catch (error) {
@@ -93,6 +106,7 @@ const Statistiche = () => {
     }
   };
   const getSingleItemByID = async (id) => {
+    dispatch(isLoading(true));
     try {
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/${id}`, {
         method: "GET",
@@ -103,6 +117,7 @@ const Statistiche = () => {
       });
       const data = await risp.json();
       if (risp.ok) {
+        dispatch(isLoading(false));
         return data;
       } else throw new Error(data.message);
     } catch (error) {
@@ -166,13 +181,21 @@ const Statistiche = () => {
   useEffect(() => {
     getAll();
     getLikes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>}
-      {user && user.ruolo === "ADMIN" && dati && dati2 && (
+      {load && (
+        <div className="d-flex justify-content-center my-5">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )}
+      {user && user.ruolo === "ADMIN" && dati && dati2 && !load && (
         <>
           <div className="mt-5 mx-1 pt-4 store" style={{ overflowX: "scroll" }}>
             <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5 mt-3" style={{ fontWeight: "bold", fontSize: "50px" }}>
