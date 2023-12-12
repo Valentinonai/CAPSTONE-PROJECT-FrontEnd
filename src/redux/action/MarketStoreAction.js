@@ -25,7 +25,6 @@ export const getAll = (token, page) => {
       });
       const data = await risp.json();
       if (risp.ok) {
-        console.log(data);
         dispatch(getAllItems(data.content, data.totalPages));
         dispatch(isLoading(false));
       } else throw new Error(data.message);

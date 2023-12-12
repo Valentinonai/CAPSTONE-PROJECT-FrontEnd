@@ -107,7 +107,10 @@ export const uploadUserImg = (image, token) => {
           dispatch(isLoading(false));
         } else throw new Error(data.message);
       } catch (error) {
-        console.log(error.message);
+        dispatch(errorHandler(true, error.message));
+        setTimeout(() => {
+          dispatch(errorHandler(false, ""));
+        }, 2000);
       }
     }
   };
@@ -132,7 +135,10 @@ export const modificaPasswordUtente = (password, token) => {
         dispatch(fetchGetUser(token));
       } else throw new Error(data.message);
     } catch (error) {
-      console.log(error.message);
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
     }
   };
 };
@@ -141,7 +147,6 @@ export const modificaPasswordUtente = (password, token) => {
 
 export const creaIndirizzo = (indirizzo, token) => {
   return async (dispatch) => {
-    console.log(indirizzo);
     try {
       const risp = await fetch(`${process.env.REACT_APP_BASEURL}/indirizzi/me`, {
         method: "POST",
@@ -286,7 +291,6 @@ export const getMyBuilds = (token, p) => {
       });
       const data = await risp.json();
       if (risp.ok) {
-        console.log(data);
         dispatch(saveMyBuilds(data.content, data.totalPages));
       } else throw new Error(data.message);
     } catch (error) {
@@ -316,7 +320,10 @@ export const apriThread = (token) => {
       } else throw new Error(data.message);
     } catch (error) {
       dispatch(eliminaToken());
-      console.log(error.message);
+      dispatch(errorHandler(true, error.message));
+      setTimeout(() => {
+        dispatch(errorHandler(false, ""));
+      }, 2000);
     }
   };
 };
