@@ -118,14 +118,14 @@ const TopBar = () => {
           />
           <Navbar.Toggle aria-controls="basic-navbar-nav" id="topbarButton" />
         </div>
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className="mt-4 mt-lg-0 text-center">
           <Nav className="me-auto">
             <Link
               to={"/"}
               className={
                 loc.pathname === "/"
-                  ? "topbarSelected ms-3 ms-lg-0 mb-2 mb-lg-0 mt-4 mt-lg-0"
-                  : "ms-3 ms-lg-0 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                  ? "topbarSelected ms-3 ms-lg-0 mb-2 mb-lg-0  mt-lg-0"
+                  : "ms-3 ms-lg-0 mb-2 mb-lg-0  mt-lg-0"
               }
             >
               Home
@@ -133,9 +133,7 @@ const TopBar = () => {
             <Link
               to={"/store"}
               className={
-                loc.pathname === "/store"
-                  ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
-                  : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                loc.pathname === "/store" ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0" : "ms-3 mb-2 mb-lg-0 mt-lg-0"
               }
             >
               Store
@@ -143,9 +141,7 @@ const TopBar = () => {
             <Link
               to={"/build"}
               className={
-                loc.pathname === "/build"
-                  ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
-                  : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                loc.pathname === "/build" ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0" : "ms-3 mb-2 mb-lg-0 mt-lg-0"
               }
             >
               Build
@@ -155,7 +151,7 @@ const TopBar = () => {
                 to={"/statistiche"}
                 className={
                   loc.pathname === "/statistiche"
-                    ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                    ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
                     : "ms-3 mb-2 mb-lg-0 mt-lg-0"
                 }
               >
@@ -168,7 +164,7 @@ const TopBar = () => {
                   to={"/all_orders"}
                   className={
                     loc.pathname === "/all_orders"
-                      ? "topbarSelected ms-3 mb-2 mb-lg-0 mt-4 mt-lg-0"
+                      ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
                       : "ms-3 mb-2 mb-lg-0 mt-lg-0"
                   }
                 >

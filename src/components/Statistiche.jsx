@@ -6,6 +6,7 @@ import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
 import Footer from "./Footer";
+import { clearAll } from "../redux/action/BuildActions";
 
 const Statistiche = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -179,6 +180,7 @@ const Statistiche = () => {
     });
   };
   useEffect(() => {
+    dispatch(clearAll());
     getAll();
     getLikes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -211,7 +213,7 @@ const Statistiche = () => {
             </div>
             <hr />
             <p className=" h2 ms-0 ms-sm-2 ms-md-4  my-5" style={{ fontWeight: "bold" }}>
-              Prodotti con più LIKES
+              Prodotti con più LIKE
             </p>
             <div style={{ minWidth: "1200px" }} className="mb-5">
               {" "}
