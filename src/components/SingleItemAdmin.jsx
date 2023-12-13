@@ -129,7 +129,7 @@ const SingleItemAdmin = ({ elem, getAllItems, p }) => {
                 <Save
                   onClick={() => {
                     setModifica(false);
-                    salvaQuantita();
+                    q !== "" && prezzo !== "" && salvaQuantita();
                   }}
                   style={{ cursor: "pointer" }}
                   className="buttonClick"
