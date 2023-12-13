@@ -1,13 +1,14 @@
-import { Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, Form, Image, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { clearBuilds, fetchGetUser, userLogout } from "../redux/action/UserAction";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
 import { clearAll } from "../redux/action/BuildActions";
 import { isLoadingChat, resetChat } from "../redux/action/ChatActions";
+import InserimentoGenerico from "./InserimentoGenerico";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -15,6 +16,26 @@ const TopBar = () => {
   const carrello = useSelector((state) => state.carrelloReducer);
   const loc = useLocation();
   const dispatch = useDispatch();
+  const [cat, setCat] = useState();
+  const [lgShow, setLgShow] = useState(false);
+
+  const [nome, setNome] = useState();
+  const [marca, setMarca] = useState();
+  const [prezzo, setPrezzo] = useState();
+  const [descrizione, setDescrizione] = useState();
+  const [data_rilascio, setData_rilascio] = useState();
+  const [image, setImage] = useState();
+
+  const [input1, setInput1] = useState();
+  const [input2, setInput2] = useState();
+  const [input3, setInput3] = useState();
+  const [input4, setInput4] = useState();
+  const [input5, setInput5] = useState();
+  const [input6, setInput6] = useState();
+  const [input7, setInput7] = useState();
+  const [input8, setInput8] = useState();
+  const [input9, setInput9] = useState();
+  const [input10, setInput10] = useState();
 
   const logout = () => {
     dispatch(userLogout());
@@ -25,6 +46,7 @@ const TopBar = () => {
     dispatch(clearBuilds());
   };
 
+  const handleSubmit = () => {};
   useEffect(() => {
     if (token) {
       dispatch(fetchGetUser(token));
@@ -118,8 +140,8 @@ const TopBar = () => {
           />
           <Navbar.Toggle aria-controls="basic-navbar-nav" id="topbarButton" />
         </div>
-        <Navbar.Collapse id="basic-navbar-nav" className="mt-4 mt-lg-0 text-center">
-          <Nav className="me-auto">
+        <Navbar.Collapse id="basic-navbar-nav" className="mt-4 mt-lg-0">
+          <Nav className="me-auto d-flex justify-content-center align-items-center">
             <Link
               to={"/"}
               className={
@@ -159,36 +181,146 @@ const TopBar = () => {
               </Link>
             )}
             {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
-              <NavDropdown.Item>
-                <Link
-                  to={"/all_orders"}
-                  className={
-                    loc.pathname === "/all_orders"
-                      ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
-                      : "ms-3 mb-2 mb-lg-0 mt-lg-0"
-                  }
-                >
-                  All Orders
-                </Link>
-              </NavDropdown.Item>
+              <Link
+                to={"/all_orders"}
+                className={
+                  loc.pathname === "/all_orders"
+                    ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
+                    : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                }
+              >
+                All Orders
+              </Link>
             )}
             {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
-              <NavDropdown.Item>
-                <Link
-                  to={"/modifica_items"}
-                  className={
-                    loc.pathname === "/modifica_items"
-                      ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
-                      : "ms-3 mb-2 mb-lg-0 mt-lg-0"
-                  }
+              <Link
+                to={"/modifica_items"}
+                className={
+                  loc.pathname === "/modifica_items"
+                    ? "topbarSelected ms-3 mb-2 mb-lg-0  mt-lg-0"
+                    : "ms-3 mb-2 mb-lg-0 mt-lg-0"
+                }
+              >
+                Magazzino
+              </Link>
+            )}
+            {user && user.ruolo !== "INATTIVO" && user.ruolo === "ADMIN" && (
+              <DropdownButton
+                align="middle"
+                variant="outline-primary"
+                id="dropdown-basic-button"
+                title="Aggiungi"
+                className="ms-3"
+              >
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Scheda_madre");
+                    setLgShow(true);
+                  }}
                 >
-                  Magazzino
-                </Link>
-              </NavDropdown.Item>
+                  Scheda madre
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Cpu");
+                    setLgShow(true);
+                  }}
+                >
+                  Cpu
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Ram");
+                    setLgShow(true);
+                  }}
+                >
+                  Ram
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Case");
+                    setLgShow(true);
+                  }}
+                >
+                  Case
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Scheda_grafica");
+                    setLgShow(true);
+                  }}
+                >
+                  Scheda grafica
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Hard_disk");
+                    setLgShow(true);
+                  }}
+                >
+                  Hard disk
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Ventole");
+                    setLgShow(true);
+                  }}
+                >
+                  Ventole
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setCat("Alimentatore");
+                    setLgShow(true);
+                  }}
+                >
+                  Alimentatore
+                </Dropdown.Item>
+              </DropdownButton>
             )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+      <Modal
+        size="lg"
+        show={lgShow}
+        onHide={() => {
+          setNome("");
+          setMarca("");
+          setDescrizione("");
+          setData_rilascio("");
+          setImage("");
+          setPrezzo("");
+          setLgShow(false);
+        }}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-lg">Aggiungi {cat}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form noValidate onSubmit={handleSubmit}>
+            <Row className="mb-3 g-3" xs={2}>
+              <InserimentoGenerico
+                nome={nome}
+                marca={marca}
+                descrizione={descrizione}
+                data_rilascio={data_rilascio}
+                image={image}
+                prezzo={prezzo}
+                setNome={setNome}
+                setMarca={setMarca}
+                setDescrizione={setDescrizione}
+                setData_rilascio={setData_rilascio}
+                setImage={setImage}
+                setPrezzo={setPrezzo}
+              />
+            </Row>
+
+            <Button type="submit">Submit form</Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
