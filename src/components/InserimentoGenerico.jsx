@@ -17,6 +17,10 @@ const InserimentoGenerico = ({
   setDescrizione,
   image,
   setImage,
+  potenzaPicco,
+  setPotenzaPicco,
+  quantita,
+  setQuantita,
 }) => {
   const cambiaImg = (file) => {
     setImage(file);
@@ -75,6 +79,34 @@ const InserimentoGenerico = ({
             defaultValue={data_rilascio}
             onChange={(e) => {
               setData_rilascio(e.target.value);
+            }}
+          />
+        </Form.Group>
+      </Col>
+      <Col>
+        <Form.Group md="4" controlId="validationCustom01">
+          <Form.Label>Potenza di picco</Form.Label>
+          <Form.Control
+            required
+            type="number"
+            placeholder="Potenza di picco"
+            defaultValue={potenzaPicco}
+            onChange={(e) => {
+              setPotenzaPicco(e.target.value);
+            }}
+          />
+        </Form.Group>
+      </Col>
+      <Col>
+        <Form.Group md="4" controlId="validationCustom01">
+          <Form.Label>Quantità</Form.Label>
+          <Form.Control
+            required
+            type="number"
+            placeholder="Quantità"
+            defaultValue={quantita}
+            onChange={(e) => {
+              setQuantita(e.target.value);
             }}
           />
         </Form.Group>

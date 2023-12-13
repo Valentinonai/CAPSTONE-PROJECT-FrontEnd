@@ -9,6 +9,8 @@ import { clearCart } from "../redux/action/CarrelloActions";
 import { clearAll } from "../redux/action/BuildActions";
 import { isLoadingChat, resetChat } from "../redux/action/ChatActions";
 import InserimentoGenerico from "./InserimentoGenerico";
+import InserimentoSchedaMadre from "./InserimentoSchedaMadre";
+import { creaSchedaMadre } from "../redux/action/CreaProdotti";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -25,6 +27,8 @@ const TopBar = () => {
   const [descrizione, setDescrizione] = useState();
   const [data_rilascio, setData_rilascio] = useState();
   const [image, setImage] = useState();
+  const [potenzaPicco, setPotenzaPicco] = useState();
+  const [quantita, setQuantita] = useState();
 
   const [input1, setInput1] = useState();
   const [input2, setInput2] = useState();
@@ -46,7 +50,59 @@ const TopBar = () => {
     dispatch(clearBuilds());
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    switch (cat) {
+      case "Scheda_madre": {
+        creaSchedaMadre(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            formato: input1,
+            chipset: input2,
+            socket: input3,
+            tipo_di_memoria: input4,
+            max_memory_size: input5,
+            has_wifi: input6,
+            has_bluetooth: input7,
+            numero_porte_usb: input10,
+            numero_pcie: input9,
+            supporto_m2: input8,
+          },
+          dispatch,
+          cat,
+          token,
+          image
+        );
+        break;
+      }
+      default:
+        break;
+    }
+    setNome("");
+    setMarca("");
+    setDescrizione("");
+    setData_rilascio("");
+    setImage("");
+    setPrezzo("");
+    setQuantita("");
+    setPotenzaPicco("");
+    setInput1("");
+    setInput2("");
+    setInput3("");
+    setInput4("");
+    setInput5("");
+    setInput6("");
+    setInput7("");
+    setInput8("");
+    setInput9("");
+    setInput10("");
+    setLgShow(false);
+  };
   useEffect(() => {
     if (token) {
       dispatch(fetchGetUser(token));
@@ -291,6 +347,18 @@ const TopBar = () => {
           setData_rilascio("");
           setImage("");
           setPrezzo("");
+          setQuantita("");
+          setPotenzaPicco("");
+          setInput1("");
+          setInput2("");
+          setInput3("");
+          setInput4("");
+          setInput5("");
+          setInput6("");
+          setInput7("");
+          setInput8("");
+          setInput9("");
+          setInput10("");
           setLgShow(false);
         }}
         aria-labelledby="example-modal-sizes-title-lg"
@@ -299,7 +367,13 @@ const TopBar = () => {
           <Modal.Title id="example-modal-sizes-title-lg">Aggiungi {cat}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidate onSubmit={handleSubmit}>
+          <Form
+            noValidate
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <Row className="mb-3 g-3" xs={2}>
               <InserimentoGenerico
                 nome={nome}
@@ -314,10 +388,42 @@ const TopBar = () => {
                 setData_rilascio={setData_rilascio}
                 setImage={setImage}
                 setPrezzo={setPrezzo}
+                potenzaPicco={potenzaPicco}
+                setPotenzaPicco={setPotenzaPicco}
+                quantita={quantita}
+                setQuantita={setQuantita}
               />
+              <hr className="mt-4" />
+              <hr className="mt-4" />
+              {cat === "Scheda_madre" && (
+                <InserimentoSchedaMadre
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                  input4={input4}
+                  setInput4={setInput4}
+                  input5={input5}
+                  setInput5={setInput5}
+                  input6={input6}
+                  setInput6={setInput6}
+                  input7={input7}
+                  setInput7={setInput7}
+                  input8={input8}
+                  setInput8={setInput8}
+                  input9={input9}
+                  setInput9={setInput9}
+                  input10={input10}
+                  setInput10={setInput10}
+                />
+              )}
             </Row>
 
-            <Button type="submit">Submit form</Button>
+            <Button type="submit" className="my-4">
+              Submit form
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>
