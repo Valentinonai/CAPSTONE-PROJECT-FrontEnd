@@ -260,14 +260,13 @@ export const eliminaAccount = (token, nav) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await risp.json();
       if (risp.ok) {
         dispatch(eliminaUser());
-        dispatch(errorHandler(true, "Account eliminato"));
+        dispatch(messageHandler(true, "Account eliminato"));
         setTimeout(() => {
-          dispatch(errorHandler(false, ""));
+          dispatch(messageHandler(false, ""));
         }, 2000);
-      } else throw new Error(data.message);
+      } else throw new Error("Account non eliminato");
     } catch (error) {
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
