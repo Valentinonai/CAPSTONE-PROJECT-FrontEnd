@@ -25,6 +25,7 @@ import InserimentoSchedaMadre from "./InserimentoSchedaMadre";
 import { creaItem } from "../redux/action/CreaProdotti";
 import InserimentoCpu from "./InserimentoCpu";
 import InserimentoRam from "./InserimentoRam";
+import InserimentoCase from "./InserimentoCase";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -158,6 +159,31 @@ const TopBar = () => {
             velocità: input2,
             dimensione: input3,
             lista_schedemadri_id: input4.split("-"),
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Case": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            formato: input1,
+            num_ventole: input2,
+            larghezza: input3,
+            altezza: input4,
+            profondità: input5,
+            dimensione_ventole: input6,
           },
           dispatch,
           cat,
@@ -505,6 +531,22 @@ const TopBar = () => {
                   setInput3={setInput3}
                   input4={input4}
                   setInput4={setInput4}
+                />
+              )}
+              {cat === "Case" && (
+                <InserimentoCase
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                  input4={input4}
+                  setInput4={setInput4}
+                  input5={input5}
+                  setInput5={setInput5}
+                  input6={input6}
+                  setInput6={setInput6}
                 />
               )}
             </Row>
