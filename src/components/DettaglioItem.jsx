@@ -355,7 +355,7 @@ const DettaglioItem = () => {
                     <Col>
                       <p> Nvme_M2:</p>
                     </Col>
-                    <Col>{item.ms ? "true" : "false"}</Col>
+                    <Col>{item.m2 ? "true" : "false"}</Col>
                   </Row>
                   <Row xs={1} sm={2} className="my-2 ">
                     <Col>

@@ -27,6 +27,7 @@ import InserimentoCpu from "./InserimentoCpu";
 import InserimentoRam from "./InserimentoRam";
 import InserimentoCase from "./InserimentoCase";
 import InserimentoSchedaGrafica from "./InserimentoSchedaGrafica";
+import InserimentoHardDisk from "./InserimentoHardDisk";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -208,6 +209,27 @@ const TopBar = () => {
             lunghezza: input2,
             boost_clock: input3,
             dimensione_memoria: input4,
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Hard_disk": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            m2: input1,
+            capacita: input2,
           },
           dispatch,
           cat,
@@ -584,6 +606,9 @@ const TopBar = () => {
                   input4={input4}
                   setInput4={setInput4}
                 />
+              )}
+              {cat === "Hard_disk" && (
+                <InserimentoHardDisk input1={input1} setInput1={setInput1} input2={input2} setInput2={setInput2} />
               )}
             </Row>
 
