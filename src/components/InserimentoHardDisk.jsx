@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Col, Form } from "react-bootstrap";
 
 const InserimentoHardDisk = ({ input1, input2, setInput1, setInput2 }) => {

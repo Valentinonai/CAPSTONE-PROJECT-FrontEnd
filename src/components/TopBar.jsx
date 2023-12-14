@@ -28,6 +28,7 @@ import InserimentoRam from "./InserimentoRam";
 import InserimentoCase from "./InserimentoCase";
 import InserimentoSchedaGrafica from "./InserimentoSchedaGrafica";
 import InserimentoHardDisk from "./InserimentoHardDisk";
+import InserimentoAlimentatore from "./InserimentoAlimentatore";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -230,6 +231,28 @@ const TopBar = () => {
             quantita: quantita,
             m2: input1,
             capacita: input2,
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Alimentatore": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            potenza_max_erogata: input1,
+            modulare: input2,
+            peso: input3,
           },
           dispatch,
           cat,
@@ -609,6 +632,16 @@ const TopBar = () => {
               )}
               {cat === "Hard_disk" && (
                 <InserimentoHardDisk input1={input1} setInput1={setInput1} input2={input2} setInput2={setInput2} />
+              )}
+              {cat === "Alimentatore" && (
+                <InserimentoAlimentatore
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                />
               )}
             </Row>
 
