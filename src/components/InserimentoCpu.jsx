@@ -23,6 +23,7 @@ const InserimentoCpu = ({
 }) => {
   useEffect(() => {
     setInput8(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
