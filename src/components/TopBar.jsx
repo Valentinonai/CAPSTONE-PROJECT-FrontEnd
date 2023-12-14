@@ -14,7 +14,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { clearBuilds, fetchGetUser, userLogout } from "../redux/action/UserAction";
+import { clearBuilds, errorHandler, fetchGetUser, messageHandler, userLogout } from "../redux/action/UserAction";
 import { useEffect, useState } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
@@ -61,6 +61,20 @@ const TopBar = () => {
   const [input8, setInput8] = useState();
   const [input9, setInput9] = useState();
   const [input10, setInput10] = useState();
+
+  const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
+
+  const handleClose = () => {
+    dispatch(errorHandler(false, ""));
+    setShow(false);
+  };
+  const handleClose1 = () => {
+    dispatch(messageHandler(false, ""));
+    setShow1(false);
+  };
+  const handleShow = () => setShow(true);
+  const handleShow1 = () => setShow1(true);
 
   const logout = () => {
     dispatch(userLogout());
@@ -117,7 +131,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -145,7 +161,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -168,7 +186,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -193,7 +213,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -216,7 +238,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -237,7 +261,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -259,7 +285,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -283,7 +311,9 @@ const TopBar = () => {
           cat,
           token,
           image,
-          setLgShow
+          setLgShow,
+          handleShow,
+          handleShow1
         );
         break;
       }
@@ -535,8 +565,6 @@ const TopBar = () => {
         }}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
-        {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>}
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Aggiungi {cat}</Modal.Title>
         </Modal.Header>
@@ -689,6 +717,22 @@ const TopBar = () => {
             </Button>
           </Form>
         </Modal.Body>
+        {/* {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
+        {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>} */}
+      </Modal>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton className="bg-danger text-white">
+          <Modal.Title>Errore</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{hasError.message}</Modal.Body>
+      </Modal>
+
+      <Modal show={show1} onHide={handleClose1}>
+        <Modal.Header closeButton className="bg-success text-white">
+          <Modal.Title>Messaggio</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{hasMessage.message}</Modal.Body>
       </Modal>
     </>
   );

@@ -1,6 +1,6 @@
 import { errorHandler, messageHandler } from "./UserAction";
 
-export const creaItem = async (body, dispatch, path, token, image, setLgShow) => {
+export const creaItem = async (body, dispatch, path, token, image, setLgShow, handleShow, handleShow1) => {
   console.log(body);
   try {
     const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/${path.toLowerCase()}`, {
@@ -13,19 +13,18 @@ export const creaItem = async (body, dispatch, path, token, image, setLgShow) =>
     });
     const data = await risp.json();
     if (risp.ok) {
-      caricaImmagine(image, dispatch, data.id, token, setLgShow);
+      caricaImmagine(image, dispatch, data.id, token, setLgShow, handleShow, handleShow1);
     } else throw new Error(data.message ? data.message : data.errorsList);
   } catch (error) {
     dispatch(errorHandler(true, error.message));
-    setTimeout(() => {
-      dispatch(errorHandler(false, ""));
-      setLgShow(false);
-    }, 2000);
+    handleShow();
+    setLgShow(false);
   }
 };
 
-export const caricaImmagine = async (image, dispatch, id, token, setLgShow) => {
+export const caricaImmagine = async (image, dispatch, id, token, setLgShow, handleShow, handleShow1) => {
   if (image) {
+    console.log("IMMAGINE PRESENTE");
     const formImg = new FormData();
     formImg.append("item_img", image);
     try {
@@ -38,25 +37,21 @@ export const caricaImmagine = async (image, dispatch, id, token, setLgShow) => {
       });
       const data = risp.json();
       if (risp.ok) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        console.log("SALVATO IMMAGINE PRESENTE");
         dispatch(messageHandler(true, "Elemento salvato con successo"));
-        setTimeout(() => {
-          dispatch(messageHandler(false, ""));
-          setLgShow(false);
-        }, 2000);
+        handleShow1();
+        setLgShow(false);
       } else throw new Error(data.message);
     } catch (error) {
+      console.log("SALVATO ERRORE IMMAGINE");
       dispatch(errorHandler(true, error.message));
-      setTimeout(() => {
-        dispatch(errorHandler(false, ""));
-      }, 2000);
+      handleShow();
+      setLgShow(false);
     }
   } else {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log("SALVATO IMMAGINE NON PRESENTE");
     dispatch(messageHandler(true, "Elemento salvato con successo"));
-    setTimeout(() => {
-      dispatch(messageHandler(false, ""));
-      setLgShow(false);
-    }, 2000);
+    handleShow1();
+    setLgShow(false);
   }
 };
