@@ -1,4 +1,16 @@
-import { Button, Dropdown, DropdownButton, Form, Image, Modal, Nav, NavDropdown, Navbar, Row } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Dropdown,
+  DropdownButton,
+  Form,
+  Image,
+  Modal,
+  Nav,
+  NavDropdown,
+  Navbar,
+  Row,
+} from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,12 +22,15 @@ import { clearAll } from "../redux/action/BuildActions";
 import { isLoadingChat, resetChat } from "../redux/action/ChatActions";
 import InserimentoGenerico from "./InserimentoGenerico";
 import InserimentoSchedaMadre from "./InserimentoSchedaMadre";
-import { creaSchedaMadre } from "../redux/action/CreaProdotti";
+import { creaItem } from "../redux/action/CreaProdotti";
+import InserimentoCpu from "./InserimentoCpu";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
   const carrello = useSelector((state) => state.carrelloReducer);
+  const hasError = useSelector((state) => state.mainReducer.hasError);
+  const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
   const loc = useLocation();
   const dispatch = useDispatch();
   const [cat, setCat] = useState();
@@ -49,11 +64,30 @@ const TopBar = () => {
     dispatch(isLoadingChat(false));
     dispatch(clearBuilds());
   };
-
+  const svuotaCampi = () => {
+    setNome("");
+    setMarca("");
+    setDescrizione("");
+    setData_rilascio("");
+    setImage("");
+    setPrezzo("");
+    setQuantita("");
+    setPotenzaPicco("");
+    setInput1("");
+    setInput2("");
+    setInput3("");
+    setInput4("");
+    setInput5("");
+    setInput6("");
+    setInput7("");
+    setInput8("");
+    setInput9("");
+    setInput10("");
+  };
   const handleSubmit = () => {
     switch (cat) {
       case "Scheda_madre": {
-        creaSchedaMadre(
+        creaItem(
           {
             marca: marca,
             nome: nome,
@@ -76,32 +110,43 @@ const TopBar = () => {
           dispatch,
           cat,
           token,
-          image
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Cpu": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            socket: input1,
+            numero_core: input2,
+            numero_threads: input3,
+            max_boost_clock: input4,
+            cache_l2: input5,
+            cache_l3: input6,
+            max_temperatura: input7,
+            grafica_integrata: input8,
+            tipo_memoria_di_sistema: input9,
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
         );
         break;
       }
       default:
         break;
     }
-    setNome("");
-    setMarca("");
-    setDescrizione("");
-    setData_rilascio("");
-    setImage("");
-    setPrezzo("");
-    setQuantita("");
-    setPotenzaPicco("");
-    setInput1("");
-    setInput2("");
-    setInput3("");
-    setInput4("");
-    setInput5("");
-    setInput6("");
-    setInput7("");
-    setInput8("");
-    setInput9("");
-    setInput10("");
-    setLgShow(false);
+    svuotaCampi();
   };
   useEffect(() => {
     if (token) {
@@ -341,28 +386,13 @@ const TopBar = () => {
         size="lg"
         show={lgShow}
         onHide={() => {
-          setNome("");
-          setMarca("");
-          setDescrizione("");
-          setData_rilascio("");
-          setImage("");
-          setPrezzo("");
-          setQuantita("");
-          setPotenzaPicco("");
-          setInput1("");
-          setInput2("");
-          setInput3("");
-          setInput4("");
-          setInput5("");
-          setInput6("");
-          setInput7("");
-          setInput8("");
-          setInput9("");
-          setInput10("");
+          svuotaCampi();
           setLgShow(false);
         }}
         aria-labelledby="example-modal-sizes-title-lg"
       >
+        {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
+        {hasMessage.value && <Alert variant="success"> {hasMessage.message}</Alert>}
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Aggiungi {cat}</Modal.Title>
         </Modal.Header>
@@ -417,6 +447,28 @@ const TopBar = () => {
                   setInput9={setInput9}
                   input10={input10}
                   setInput10={setInput10}
+                />
+              )}
+              {cat === "Cpu" && (
+                <InserimentoCpu
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                  input4={input4}
+                  setInput4={setInput4}
+                  input5={input5}
+                  setInput5={setInput5}
+                  input6={input6}
+                  setInput6={setInput6}
+                  input7={input7}
+                  setInput7={setInput7}
+                  input8={input8}
+                  setInput8={setInput8}
+                  input9={input9}
+                  setInput9={setInput9}
                 />
               )}
             </Row>

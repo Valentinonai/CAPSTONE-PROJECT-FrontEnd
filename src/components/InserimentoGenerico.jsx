@@ -1,7 +1,5 @@
 import { Col, Form } from "react-bootstrap";
 import Dropzone from "react-dropzone";
-import { useDispatch } from "react-redux";
-import { uploadUserImg } from "../redux/action/UserAction";
 import { CloudUpload } from "react-bootstrap-icons";
 
 const InserimentoGenerico = ({
@@ -22,9 +20,6 @@ const InserimentoGenerico = ({
   quantita,
   setQuantita,
 }) => {
-  const cambiaImg = (file) => {
-    setImage(file);
-  };
   return (
     <>
       <Col>

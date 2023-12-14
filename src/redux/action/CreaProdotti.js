@@ -1,7 +1,7 @@
 import { errorHandler, messageHandler } from "./UserAction";
 
-export const creaSchedaMadre = async (body, dispatch, path, token, image) => {
-  console.log(`${process.env.REACT_APP_BASEURL}/items/${path.toLowerCase()}`);
+export const creaItem = async (body, dispatch, path, token, image, setLgShow) => {
+  console.log(body);
   try {
     const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/${path.toLowerCase()}`, {
       method: "POST",
@@ -13,17 +13,18 @@ export const creaSchedaMadre = async (body, dispatch, path, token, image) => {
     });
     const data = await risp.json();
     if (risp.ok) {
-      caricaImmagine(image, dispatch, data.id, token);
-    } else throw new Error(data.message);
+      caricaImmagine(image, dispatch, data.id, token, setLgShow);
+    } else throw new Error(data.message ? data.message : data.errorsList);
   } catch (error) {
     dispatch(errorHandler(true, error.message));
     setTimeout(() => {
       dispatch(errorHandler(false, ""));
+      setLgShow(false);
     }, 2000);
   }
 };
 
-export const caricaImmagine = async (image, dispatch, id, token) => {
+export const caricaImmagine = async (image, dispatch, id, token, setLgShow) => {
   if (image) {
     const formImg = new FormData();
     formImg.append("item_img", image);
@@ -37,9 +38,11 @@ export const caricaImmagine = async (image, dispatch, id, token) => {
       });
       const data = risp.json();
       if (risp.ok) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
         dispatch(messageHandler(true, "Elemento salvato con successo"));
         setTimeout(() => {
           dispatch(messageHandler(false, ""));
+          setLgShow(false);
         }, 2000);
       } else throw new Error(data.message);
     } catch (error) {
@@ -48,5 +51,12 @@ export const caricaImmagine = async (image, dispatch, id, token) => {
         dispatch(errorHandler(false, ""));
       }, 2000);
     }
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    dispatch(messageHandler(true, "Elemento salvato con successo"));
+    setTimeout(() => {
+      dispatch(messageHandler(false, ""));
+      setLgShow(false);
+    }, 2000);
   }
 };

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Col, Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 
 const InserimentoSchedaMadre = ({
   input1,
@@ -28,6 +28,7 @@ const InserimentoSchedaMadre = ({
     setInput6(false);
     setInput7(false);
     setInput8(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
