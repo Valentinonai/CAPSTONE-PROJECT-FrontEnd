@@ -26,6 +26,7 @@ import { creaItem } from "../redux/action/CreaProdotti";
 import InserimentoCpu from "./InserimentoCpu";
 import InserimentoRam from "./InserimentoRam";
 import InserimentoCase from "./InserimentoCase";
+import InserimentoSchedaGrafica from "./InserimentoSchedaGrafica";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -184,6 +185,29 @@ const TopBar = () => {
             altezza: input4,
             profondità: input5,
             dimensione_ventole: input6,
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Scheda_grafica": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            larghezza: input1,
+            lunghezza: input2,
+            boost_clock: input3,
+            dimensione_memoria: input4,
           },
           dispatch,
           cat,
@@ -547,6 +571,18 @@ const TopBar = () => {
                   setInput5={setInput5}
                   input6={input6}
                   setInput6={setInput6}
+                />
+              )}
+              {cat === "Scheda_grafica" && (
+                <InserimentoSchedaGrafica
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                  input4={input4}
+                  setInput4={setInput4}
                 />
               )}
             </Row>
