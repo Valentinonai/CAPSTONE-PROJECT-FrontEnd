@@ -29,6 +29,7 @@ import InserimentoCase from "./InserimentoCase";
 import InserimentoSchedaGrafica from "./InserimentoSchedaGrafica";
 import InserimentoHardDisk from "./InserimentoHardDisk";
 import InserimentoAlimentatore from "./InserimentoAlimentatore";
+import InserimentoVentole from "./InserimentoVentole";
 
 const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
@@ -253,6 +254,30 @@ const TopBar = () => {
             potenza_max_erogata: input1,
             modulare: input2,
             peso: input3,
+          },
+          dispatch,
+          cat,
+          token,
+          image,
+          setLgShow
+        );
+        break;
+      }
+      case "Ventole": {
+        creaItem(
+          {
+            marca: marca,
+            nome: nome,
+            descrizione: descrizione,
+            prezzo: prezzo,
+            data_di_rilascio: data_rilascio,
+            potenza_di_picco: potenzaPicco,
+            quantita: quantita,
+            rpm_min: input1,
+            rpm_max: input2,
+            pwm: input3,
+            dimensione: input4,
+            pezzi_per_pacco: input5,
           },
           dispatch,
           cat,
@@ -641,6 +666,20 @@ const TopBar = () => {
                   setInput2={setInput2}
                   input3={input3}
                   setInput3={setInput3}
+                />
+              )}
+              {cat === "Ventole" && (
+                <InserimentoVentole
+                  input1={input1}
+                  setInput1={setInput1}
+                  input2={input2}
+                  setInput2={setInput2}
+                  input3={input3}
+                  setInput3={setInput3}
+                  input4={input4}
+                  setInput4={setInput4}
+                  input5={input5}
+                  setInput5={setInput5}
                 />
               )}
             </Row>
