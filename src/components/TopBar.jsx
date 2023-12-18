@@ -713,7 +713,18 @@ const TopBar = () => {
         <Modal.Header closeButton className="bg-danger text-white">
           <Modal.Title>Errore</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{hasError.message}</Modal.Body>
+        <Modal.Body>
+          <ul>
+            {hasError.message.split(",").map((elem, index) => (
+              <li key={`Error-${index}`}>{elem}</li>
+            ))}
+          </ul>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
 
       <Modal show={show1} onHide={handleClose1}>
@@ -721,6 +732,11 @@ const TopBar = () => {
           <Modal.Title>Messaggio</Modal.Title>
         </Modal.Header>
         <Modal.Body>{hasMessage.message}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose1}>
+            Close
+          </Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
