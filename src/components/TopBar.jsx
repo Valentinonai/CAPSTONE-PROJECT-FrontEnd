@@ -2,7 +2,14 @@ import { Button, Dropdown, DropdownButton, Form, Image, Modal, Nav, NavDropdown,
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { clearBuilds, errorHandler, fetchGetUser, messageHandler, userLogout } from "../redux/action/UserAction";
+import {
+  clearBuilds,
+  creationErrors,
+  creationMessage,
+  fetchGetUser,
+  messageHandler,
+  userLogout,
+} from "../redux/action/UserAction";
 import { useEffect, useState } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";
@@ -23,8 +30,8 @@ const TopBar = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
   const carrello = useSelector((state) => state.carrelloReducer);
-  const hasError = useSelector((state) => state.mainReducer.hasError);
-  const hasMessage = useSelector((state) => state.mainReducer.hasMessage);
+  const hasError = useSelector((state) => state.mainReducer.creationErrors);
+  const hasMessage = useSelector((state) => state.mainReducer.creationMessage);
   const loc = useLocation();
   const dispatch = useDispatch();
   const [cat, setCat] = useState();
@@ -54,11 +61,11 @@ const TopBar = () => {
   const [show1, setShow1] = useState(false);
 
   const handleClose = () => {
-    dispatch(errorHandler(false, ""));
+    dispatch(creationErrors(false, ""));
     setShow(false);
   };
   const handleClose1 = () => {
-    dispatch(messageHandler(false, ""));
+    dispatch(creationMessage(false, ""));
     setShow1(false);
   };
   const handleShow = () => setShow(true);

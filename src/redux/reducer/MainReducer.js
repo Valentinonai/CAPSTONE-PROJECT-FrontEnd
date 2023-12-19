@@ -1,5 +1,13 @@
 import { IS_LOADING_CHAT } from "../action/ChatActions";
-import { ERROR_HANDLER, IS_LOADING, MESSAGE_HANDLER, MODIFICA_OFF, MODIFICA_ON } from "../action/UserAction";
+import {
+  CREATION_ERRORS,
+  CREATION_MESSAGE,
+  ERROR_HANDLER,
+  IS_LOADING,
+  MESSAGE_HANDLER,
+  MODIFICA_OFF,
+  MODIFICA_ON,
+} from "../action/UserAction";
 
 const initialState = {
   isModify: false,
@@ -7,9 +15,17 @@ const initialState = {
     value: false,
     message: "",
   },
+  creationErrors: {
+    value: false,
+    message: "",
+  },
   isLoading: false,
 
   hasMessage: {
+    value: false,
+    message: "",
+  },
+  creationMessage: {
     value: false,
     message: "",
   },
@@ -36,6 +52,14 @@ const mainReducer = (state = initialState, action) => {
           message: action.payload.message,
         },
       };
+    case CREATION_ERRORS:
+      return {
+        ...state,
+        creationErrors: {
+          value: action.payload.value,
+          message: action.payload.message,
+        },
+      };
     case IS_LOADING:
       return {
         ...state,
@@ -45,6 +69,14 @@ const mainReducer = (state = initialState, action) => {
       return {
         ...state,
         hasMessage: {
+          value: action.payload.value,
+          message: action.payload.message,
+        },
+      };
+    case CREATION_MESSAGE:
+      return {
+        ...state,
+        creationMessage: {
           value: action.payload.value,
           message: action.payload.message,
         },

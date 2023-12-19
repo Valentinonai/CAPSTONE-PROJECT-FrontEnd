@@ -13,6 +13,8 @@ export const MESSAGE_HANDLER = "MESSAGE_HANDLER";
 export const GET_MY_BUILDS = "GET_MY_BUILDS";
 export const ADD_THREAD = "ADD_THREAD";
 export const CLEAR_BUILDS = "CLEAR_BUILDS";
+export const CREATION_ERRORS = "CREATION_ERRORS";
+export const CREATION_MESSAGE = "CREATION_MESSAGE";
 
 export const userSave = (data) => ({ type: USER_SAVE, payload: data });
 export const userLogout = (data) => ({ type: USER_LOGOUT, payload: null });
@@ -34,6 +36,14 @@ export const saveMyBuilds = (builds, p) => ({ type: GET_MY_BUILDS, payload: { bu
 
 export const addThread = (data) => ({ type: ADD_THREAD, payload: data });
 export const clearBuilds = () => ({ type: CLEAR_BUILDS, payload: null });
+export const creationErrors = (value, message) => ({
+  type: CREATION_ERRORS,
+  payload: { value: value, message: message },
+});
+export const creationMessage = (value, message) => ({
+  type: CREATION_MESSAGE,
+  payload: { value: value, message: message },
+});
 
 //---------------------------------Get user---------------------------
 export const fetchGetUser = (token) => {

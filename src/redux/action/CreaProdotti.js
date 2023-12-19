@@ -1,4 +1,4 @@
-import { errorHandler, messageHandler } from "./UserAction";
+import { creationErrors, creationMessage } from "./UserAction";
 
 export const creaItem = async (body, dispatch, path, token, image, setLgShow, handleShow, handleShow1) => {
   console.log(body);
@@ -16,7 +16,7 @@ export const creaItem = async (body, dispatch, path, token, image, setLgShow, ha
       caricaImmagine(image, dispatch, data.id, token, setLgShow, handleShow, handleShow1);
     } else throw new Error(data.message ? data.message : data.errorsList);
   } catch (error) {
-    dispatch(errorHandler(true, error.message));
+    dispatch(creationErrors(true, error.message));
     handleShow();
     setLgShow(false);
   }
@@ -24,7 +24,6 @@ export const creaItem = async (body, dispatch, path, token, image, setLgShow, ha
 
 export const caricaImmagine = async (image, dispatch, id, token, setLgShow, handleShow, handleShow1) => {
   if (image) {
-    console.log("IMMAGINE PRESENTE");
     const formImg = new FormData();
     formImg.append("item_img", image);
     try {
@@ -38,19 +37,18 @@ export const caricaImmagine = async (image, dispatch, id, token, setLgShow, hand
       const data = risp.json();
       if (risp.ok) {
         console.log("SALVATO IMMAGINE PRESENTE");
-        dispatch(messageHandler(true, "Elemento salvato con successo"));
+        dispatch(creationMessage(true, "Elemento salvato con successo"));
         handleShow1();
         setLgShow(false);
       } else throw new Error(data.message);
     } catch (error) {
-      console.log("SALVATO ERRORE IMMAGINE");
-      dispatch(errorHandler(true, error.message));
+      dispatch(creationErrors(true, error.message));
       handleShow();
       setLgShow(false);
     }
   } else {
     console.log("SALVATO IMMAGINE NON PRESENTE");
-    dispatch(messageHandler(true, "Elemento salvato con successo"));
+    dispatch(creationMessage(true, "Elemento salvato con successo"));
     handleShow1();
     setLgShow(false);
   }
