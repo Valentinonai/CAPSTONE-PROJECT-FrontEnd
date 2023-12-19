@@ -2,14 +2,7 @@ import { Button, Dropdown, DropdownButton, Form, Image, Modal, Nav, NavDropdown,
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  clearBuilds,
-  creationErrors,
-  creationMessage,
-  fetchGetUser,
-  messageHandler,
-  userLogout,
-} from "../redux/action/UserAction";
+import { clearBuilds, creationErrors, creationMessage, fetchGetUser, userLogout } from "../redux/action/UserAction";
 import { useEffect, useState } from "react";
 import { Cart } from "react-bootstrap-icons";
 import { clearCart } from "../redux/action/CarrelloActions";

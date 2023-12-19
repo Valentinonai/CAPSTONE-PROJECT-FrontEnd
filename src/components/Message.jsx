@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Form, Image, Offcanvas, Spinner } from "react-bootstrap";
 import { ChevronCompactUp, ChevronCompactDown } from "react-bootstrap-icons";
 import "../style/message.css";
@@ -14,7 +14,9 @@ const Message = () => {
   const token = useSelector((state) => state.userReducer.token);
   const isLoadingChat = useSelector((state) => state.mainReducer.isLoadingChat);
   const thread = useSelector((state) => state.userReducer.thread);
+  const messages = useSelector((state) => state.chatReducer.messages);
   const toggleOffcanvas = () => {
+    scrollToBottom();
     setShow(!show);
   };
   const inviaRichiesta = () => {
@@ -22,6 +24,17 @@ const Message = () => {
     dispatch(ottieniRisposta(message, token, thread));
     setMessage("");
   };
+  const chatBodyRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [message, messages]);
   return (
     <>
       {user && (
@@ -55,12 +68,12 @@ const Message = () => {
             </Offcanvas.Header>
             <hr className="m-0" />
             <Offcanvas.Body className="d-flex flex-column justify-content-between ">
-              <div className="d-flex flex-column " id="chatBody">
+              <div className="d-flex flex-column " id="chatBody" ref={chatBodyRef}>
                 {" "}
                 <Chat />
                 {isLoadingChat && (
                   <div className="d-flex justify-content-center">
-                    <Spinner animation="border" role="status" variant="secondary">
+                    <Spinner animation="border" role="status" variant="secondary" className="mb-3">
                       <span className="visually-hidden">Loading...</span>
                     </Spinner>
                   </div>
