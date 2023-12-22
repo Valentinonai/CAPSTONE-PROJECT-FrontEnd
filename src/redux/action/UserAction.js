@@ -328,7 +328,6 @@ export const apriThread = (token) => {
         dispatch(addThread(data.thread));
       } else throw new Error(data.message);
     } catch (error) {
-      dispatch(eliminaToken());
       dispatch(errorHandler(true, error.message));
       setTimeout(() => {
         dispatch(errorHandler(false, ""));

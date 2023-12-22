@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Form, Image, Offcanvas, Spinner } from "react-bootstrap";
+import { Button, Col, Form, Image, Offcanvas, Row, Spinner } from "react-bootstrap";
 import { ChevronCompactUp, ChevronCompactDown } from "react-bootstrap-icons";
 import "../style/message.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -68,41 +68,54 @@ const Message = () => {
             </Offcanvas.Header>
             <hr className="m-0" />
             <Offcanvas.Body className="d-flex flex-column justify-content-between ">
-              <div className="d-flex flex-column " id="chatBody" ref={chatBodyRef}>
-                {" "}
-                <Chat />
-                {isLoadingChat && (
-                  <div className="d-flex justify-content-center">
-                    <Spinner animation="border" role="status" variant="secondary" className="mb-3">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+              {user.ruolo === "ADMIN" && (
+                <>
+                  <div className="d-flex flex-column " id="chatBody" ref={chatBodyRef}>
+                    {" "}
+                    <Chat />
+                    {isLoadingChat && (
+                      <div className="d-flex justify-content-center">
+                        <Spinner animation="border" role="status" variant="secondary" className="mb-3">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <div>
-                <hr className="m-0" />
-                <Form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    inviaRichiesta();
-                  }}
-                >
-                  <Form.Group className="mt-3">
-                    <Form.Label>Messaggio</Form.Label>
-                    <Form.Control
-                      required
-                      value={message}
-                      type="text"
-                      placeholder="Message"
-                      onChange={(e) => {
-                        setMessage(e.target.value);
+                  <div>
+                    <hr className="m-0" />
+                    <Form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        inviaRichiesta();
                       }}
-                      style={{ boxShadow: "none", fontSize: "12px" }}
-                      className="inputSettings"
-                    />
-                  </Form.Group>
-                </Form>
-              </div>
+                    >
+                      <Form.Group className="mt-3">
+                        <Form.Label>Messaggio</Form.Label>
+                        <Form.Control
+                          required
+                          value={message}
+                          type="text"
+                          placeholder="Message"
+                          onChange={(e) => {
+                            setMessage(e.target.value);
+                          }}
+                          style={{ boxShadow: "none", fontSize: "12px" }}
+                          className="inputSettings"
+                        />
+                      </Form.Group>
+                    </Form>
+                  </div>
+                </>
+              )}
+              {user.ruolo === "USER" && (
+                <>
+                  <Row>
+                    <Col xs={12}>
+                      <p className="chatBot bg-danger fs-6">Per motivi di chiamate API il ChatBot non è disponibile</p>{" "}
+                    </Col>
+                  </Row>
+                </>
+              )}
             </Offcanvas.Body>
           </Offcanvas>
         </>
