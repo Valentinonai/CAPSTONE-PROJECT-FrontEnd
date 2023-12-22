@@ -328,7 +328,7 @@ export const apriThread = (token) => {
         dispatch(addThread(data.thread));
       } else throw new Error(data.message);
     } catch (error) {
-      dispatch(errorHandler(true, error.message));
+      dispatch(errorHandler(true, "ChatBot non disponibile per motivi ti chiamate API"));
       setTimeout(() => {
         dispatch(errorHandler(false, ""));
       }, 2000);
