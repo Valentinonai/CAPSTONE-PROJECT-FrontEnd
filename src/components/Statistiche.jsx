@@ -199,7 +199,7 @@ const Statistiche = () => {
           </Spinner>
         </div>
       )}
-      {user && user.ruolo === "ADMIN" && !load && (
+      {user && user.ruolo === "ADMIN" && dati && dati2 && !load && (
         <>
           <div className="mt-5 mx-1 pt-4 store" style={{ overflowX: "scroll" }}>
             <p className=" h1 ms-0 ms-sm-2 ms-md-4 mb-5 mt-3" style={{ fontWeight: "bold", fontSize: "50px" }}>
