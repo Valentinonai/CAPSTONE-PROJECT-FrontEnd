@@ -47,6 +47,10 @@ const Settings = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [show1, setShow1] = useState(true);
+
+  const handleClose1 = () => setShow1(false);
+
   const setModifica = () => {
     if (modify === false) dispatch(modificaOn());
     else {
@@ -478,6 +482,26 @@ const Settings = () => {
             }}
           >
             Elimina
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={show1} onHide={handleClose1} id="modaleAlert">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <span style={{ fontSize: "50px" }}>ATTENZIONE!!!!!!!!!</span>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <span style={{ fontSize: "20px" }}>
+            Questo sito è stato progettato al solo scopo didattico{" "}
+            <span style={{ textDecoration: "underline", fontWeight: "bold", fontSize: "40px" }}>NON</span> inserire dati
+            reali che vi riguardano
+          </span>{" "}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose1}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

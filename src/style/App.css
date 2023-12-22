@@ -327,3 +327,17 @@ body {
     text-align: start;
   }
 }
+
+#modaleAlert {
+  box-shadow: 0 0 10px 20px red;
+  animation: anim 0.2s linear infinite alternate;
+}
+
+@keyframes anim {
+  0% {
+    box-shadow: 0 0 10px 20px red;
+  }
+  100% {
+    box-shadow: 0 0 0px 0px red;
+  }
+}
