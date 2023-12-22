@@ -108,24 +108,26 @@ const Statistiche = () => {
   };
   const getSingleItemByID = async (id) => {
     dispatch(isLoading(true));
-    try {
-      const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/${id}`, {
-        method: "GET",
-        headers: {
-          "content-type": "Application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await risp.json();
-      if (risp.ok) {
-        dispatch(isLoading(false));
-        return data;
-      } else throw new Error(data.message);
-    } catch (error) {
-      dispatch(errorHandler(true, error.message));
-      setTimeout(() => {
-        dispatch(errorHandler(false, ""));
-      }, 2000);
+    if (id !== undefined) {
+      try {
+        const risp = await fetch(`${process.env.REACT_APP_BASEURL}/items/${id}`, {
+          method: "GET",
+          headers: {
+            "content-type": "Application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await risp.json();
+        if (risp.ok) {
+          dispatch(isLoading(false));
+          return data;
+        } else throw new Error(data.message);
+      } catch (error) {
+        dispatch(errorHandler(true, error.message));
+        setTimeout(() => {
+          dispatch(errorHandler(false, ""));
+        }, 2000);
+      }
     }
   };
   const graficoLikes = async (items_id, likes) => {
