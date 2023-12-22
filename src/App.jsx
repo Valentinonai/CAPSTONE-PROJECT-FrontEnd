@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style/App.css";
 import Home from "./components/Home";
-import { Alert, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import TopBar from "./components/TopBar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
