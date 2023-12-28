@@ -111,7 +111,9 @@ const Message = () => {
                 <>
                   <Row>
                     <Col xs={12}>
-                      <p className="chatBot bg-danger fs-6">Per motivi di chiamate API il ChatBot non è disponibile</p>{" "}
+                      <p className="chatBot bg-danger fs-6">
+                        Per evitare troppe chiamate API il ChatBot non è al momento disponibile per gli utenti
+                      </p>{" "}
                     </Col>
                   </Row>
                 </>

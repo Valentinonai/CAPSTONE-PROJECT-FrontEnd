@@ -1,10 +1,15 @@
-import { Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { QuestionCircleFill, Gear, ShieldShaded } from "react-bootstrap-icons";
+import { Col, Container, Form, Image, Modal, Row } from "react-bootstrap";
+import { QuestionCircleFill, Gear, ShieldShaded, Github } from "react-bootstrap-icons";
 import "../style/footer.css";
 import { useState } from "react";
+import portfolio from "../assets/Portfolio.png";
+import buildMyPc from "../assets/BuildMyPc.png";
+import linkedin from "../assets/Linkedin.png";
+import Privacy from "./Privacy";
 
 const Footer = () => {
   const [lgShow, setLgShow] = useState(false);
+  const [lgShow1, setLgShow1] = useState(false);
   return (
     <>
       <Container fluid="lg" className="Footer-container">
@@ -22,7 +27,14 @@ const Footer = () => {
                 </p>
               </Col>
               <Col>
-                <p>Contatti</p>
+                <p
+                  style={{ fontWeight: "bold", cursor: "pointer", fontSize: "15px" }}
+                  onClick={() => {
+                    setLgShow1(true);
+                  }}
+                >
+                  Contatti{" "}
+                </p>
               </Col>
               <Col>
                 <p>Linee guida della comunity</p>
@@ -113,91 +125,105 @@ const Footer = () => {
         </Row>
         <p className="Footer-ultimo-link">Build_my_pc Corporation © 2023</p>
       </Container>
-      <Modal size="lg" show={lgShow} onHide={() => setLgShow(false)} aria-labelledby="example-modal-sizes-title-lg">
+      <Privacy lgShow={lgShow} setLgShow={setLgShow} />
+      <Modal
+        size="lg"
+        show={lgShow1}
+        fullscreen={true}
+        onHide={() => setLgShow1(false)}
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            <p className="">Privacy Policy per Sito Web a Scopo Didattico e Dimostrativo</p>
+          <Modal.Title>
+            {" "}
+            <p className="h1 mb-0">
+              {" "}
+              <span className="ps-2 ps-lg-5">VALENTINO NAI</span>
+            </p>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Gentile Utente,</p>
-
-          <p>
-            Benvenuto su <strong>BuildMyPc</strong>, un sito web creato esclusivamente a scopo didattico e dimostrativo.
-            Questo sito rappresenta l'esame finale di un corso di studi ed è stato pubblicato al solo scopo di
-            illustrare le funzionalità sviluppate durante il corso.
-          </p>
-
-          <p>
-            Prima di procedere con l'utilizzo del sito, ti invitiamo a leggere attentamente la seguente informativa
-            sulla privacy. Utilizzando il sito, accetti le disposizioni descritte di seguito.
-          </p>
-
-          <h4>1. Raccolta di Informazioni</h4>
-
-          <p>
-            Per testare le funzionalità del sito, agli utenti è richiesto di inserire i seguenti dati a scopo
-            dimostrativo:
-          </p>
-
-          <ul>
-            <li>Nome</li>
-            <li>Cognome</li>
-            <li>Indirizzo email</li>
-            <li>Password</li>
-            <li>Immagini</li>
-            <li>Indirizzo di spedizione</li>
-            <li>Dati della carta di credito</li>
-          </ul>
-
-          <p style={{ fontWeight: "bold", fontSize: "20px" }}>
-            Si sottolinea che i dati inseriti NON devono essere veritieri o corretti. L'inserimento di dati personali
-            sensibili è a scopo dimostrativo e l'utente è invitato a fornire dati NON veritieri. <br /> Si declina ogni
-            responsabilità sui dati inseriti.
-          </p>
-
-          <h4>2. Utilizzo dei Dati</h4>
-
-          <p>
-            I dati inseriti saranno utilizzati e conservati esclusivamente per testare le funzionalità del sito e non
-            saranno conservati, elaborati o utilizzati per altri scopi.{" "}
-            <span style={{ fontWeight: "bold" }}>Si declina ogni responsabilità sui dati inseriti</span>.
-          </p>
-
-          <h4>3. Responsabilità e Limitazioni</h4>
-
-          <p>
-            Il presente sito è creato esclusivamente a scopo didattico e dimostrativo. L'utente è consapevole che
-            l'inserimento di dati personali, sensibili o finanziari reali{" "}
-            <span style={{ fontWeight: "bold" }}>è FORTEMENTE SCONSIGLIATO e NON è necessario</span> per la navigazione
-            o la comprensione delle funzionalità del sito.
-          </p>
-
-          <p>
-            <strong>BuildMyPc</strong> declina ogni responsabilità per:
-          </p>
-
-          <ul>
-            <li>Dati inseriti</li>
-            <li>Utilizzo improprio dei dati inseriti dagli utenti.</li>
-            <li>Eventuali danni o perdite dei dati inseriti a scopo dimostrativo.</li>
-          </ul>
-
-          <h4>4. Modifiche alla Privacy Policy</h4>
-
-          <p>
-            Il <strong>BuildMyPc</strong> si riserva il diritto di apportare modifiche a questa Privacy Policy in
-            qualsiasi momento. Gli utenti saranno informati delle modifiche attraverso la pubblicazione della versione
-            aggiornata sul sito.
-          </p>
-
-          <p>Grazie per la tua comprensione e collaborazione.</p>
-
-          <p>Cordiali saluti,</p>
-
-          <p>
-            Il Team di <strong>BuildMyPc</strong>
-          </p>
+          <Container
+            className="my-3 py-5 d-flex flex-column justify-content-between align-items-center "
+            style={{ minHeight: "80%" }}
+          >
+            <Row xs={1} lg={4} className="mb-5 justify-content-center align-items-center g-5 text-center">
+              <Col>
+                <div style={{ overflow: "hidden", objectFit: "contain" }} className=" shadow buttonClick rounded">
+                  <a href="https://www.linkedin.com/in/valentinonaiwebdeveloper" target="_blank" rel="noreferrer">
+                    {" "}
+                    <Image src={linkedin} width={"100%"} rounded />
+                  </a>
+                </div>
+              </Col>
+              <Col>
+                <div>
+                  LinkedIn:{" "}
+                  <a href="https://www.linkedin.com/in/valentinonaiwebdeveloper" target="_blank" rel="noreferrer">
+                    /valentinonaiwebdeveloper
+                  </a>
+                </div>
+              </Col>
+              <Col>
+                <a
+                  href="https://github.com/Valentinonai"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  <div
+                    style={{ overflow: "hidden", objectFit: "contain" }}
+                    className=" shadow buttonClick rounded p-5 d-flex flex-column justify-content-center align-items-center"
+                  >
+                    {" "}
+                    <Github className="fs-1 mb-2" />
+                    <p>Valentinonai</p>
+                  </div>
+                </a>
+              </Col>
+              <Col>
+                <div>
+                  GitHub:{" "}
+                  <a href="https://github.com/Valentinonai" target="_blank" rel="noreferrer">
+                    github.com/Valentinonai
+                  </a>
+                </div>
+              </Col>
+            </Row>
+            <Row xs={1} lg={4} className=" justify-content-center align-items-center g-5 text-center">
+              <Col>
+                <div style={{ overflow: "hidden", objectFit: "contain" }} className=" shadow buttonClick">
+                  <a href="https://valentinonai.netlify.app" target="_blank" rel="noreferrer">
+                    {" "}
+                    <Image src={portfolio} width={"100%"} rounded />
+                  </a>
+                </div>
+              </Col>
+              <Col>
+                <div>
+                  Portfolio:{" "}
+                  <a href="https://valentinonai.netlify.app" target="_blank" rel="noreferrer">
+                    valentinonai.netlify.app
+                  </a>
+                </div>
+              </Col>
+              <Col>
+                <div style={{ overflow: "hidden", objectFit: "contain" }} className=" shadow buttonClick">
+                  <a href="https://capstoneproject-buildmypc.netlify.app" target="_blank" rel="noreferrer">
+                    <Image src={buildMyPc} width={"100%"} rounded />
+                  </a>
+                </div>
+              </Col>
+              <Col>
+                <div>
+                  BuildMyPc project: <br />
+                  <a href="https://capstoneproject-buildmypc.netlify.app" target="_blank" rel="noreferrer">
+                    capstoneproject-buildmypc.netlify.app
+                  </a>
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </Modal.Body>
       </Modal>
     </>

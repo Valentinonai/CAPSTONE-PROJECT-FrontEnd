@@ -5,6 +5,7 @@ import Dropzone from "react-dropzone";
 import { CloudUpload } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { signupFetch } from "../redux/action/UserAction";
+import Privacy from "./Privacy";
 
 const Signup = () => {
   const [nome, setNome] = useState();
@@ -16,7 +17,7 @@ const Signup = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.userReducer.token);
   const hasError = useSelector((state) => state.mainReducer.hasError);
-
+  const [lgShow, setLgShow] = useState();
   const signup = () => {
     dispatch(signupFetch(nome, cognome, email, password, nav, image, token));
   };
@@ -25,6 +26,25 @@ const Signup = () => {
   }, []);
   return (
     <>
+      <Alert variant="danger" id="modaleAlert">
+        <span style={{ fontSize: "25px" }}>ATTENZIONE :</span>{" "}
+        <span style={{ fontSize: "18px" }}>
+          Questo sito è stato progettato al solo scopo didattico{" "}
+          <span style={{ textDecoration: "underline", fontWeight: "bold", fontSize: "20px" }}>NON</span> inserire dati
+          reali che vi riguardano.
+        </span>
+        <br />
+        <br />
+        <p
+          className="mb-0"
+          style={{ fontWeight: "bold", cursor: "pointer", fontSize: "15px" }}
+          onClick={() => {
+            setLgShow(true);
+          }}
+        >
+          Vai alla privacy policy
+        </p>
+      </Alert>
       {hasError.value && <Alert variant="danger">ERRORE: {hasError.message}</Alert>}
       <div className="login_form mx-auto  p-4 mt-5" style={{ borderRadius: "20px" }}>
         <div className="mb-5">
@@ -136,6 +156,7 @@ const Signup = () => {
           </div>
         </Form>
       </div>
+      <Privacy lgShow={lgShow} setLgShow={setLgShow} />
     </>
   );
 };
