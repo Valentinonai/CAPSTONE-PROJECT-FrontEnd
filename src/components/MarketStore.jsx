@@ -7,6 +7,7 @@ import CardItemStore from "./CardItemStore";
 import Footer from "./Footer";
 import "../style/Store.css";
 import { clearAll } from "../redux/action/BuildActions";
+import { Link } from "react-router-dom";
 const MarketStore = () => {
   const user = useSelector((state) => state.userReducer.user);
   const token = useSelector((state) => state.userReducer.token);
@@ -59,7 +60,11 @@ const MarketStore = () => {
   }, []);
   return (
     <>
-      {!user && <h4 className="text-center mt-5">Effettua il login per visualizzare i prodotti</h4>}
+      {!user && (
+        <h4 className="text-center mt-5">
+          Effettua il <Link to={"/login"}>login</Link> per visualizzare i prodotti
+        </h4>
+      )}
 
       {user && (
         <>

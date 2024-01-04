@@ -3,7 +3,7 @@ import "../style/Build.css";
 import Footer from "./Footer";
 import { Button, Col, Image, Row } from "react-bootstrap";
 import pc from "../assets/pcCustom.jpg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearAll } from "../redux/action/BuildActions";
 import { useEffect } from "react";
 
@@ -18,7 +18,11 @@ const Build = () => {
   }, []);
   return (
     <>
-      {!user && <h4 className="text-center my-5">Effettua il login per accedere alla sezione build your pc</h4>}
+      {!user && (
+        <h4 className="text-center my-5">
+          Effettua il <Link to={"/login"}>login</Link> per accedere alla sezione build your pc
+        </h4>
+      )}
       {user && (
         <>
           <div className="mt-5 mx-2 mx-md-5 pb-5" id="buildHero">
