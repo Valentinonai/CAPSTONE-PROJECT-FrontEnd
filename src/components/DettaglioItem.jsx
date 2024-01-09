@@ -131,7 +131,7 @@ const DettaglioItem = () => {
                   </Row>
                   <Row xs={1} sm={2} className="my-2 ">
                     <Col>
-                      <p>Sockeet:</p>
+                      <p>Socket:</p>
                     </Col>
                     <Col>{item.socket}</Col>
                   </Row>
