@@ -144,7 +144,7 @@ const Statistiche = () => {
           barPercentage: 0.8,
           barThickness: "30",
           offset: "200",
-          label: "Quantità vendute",
+          label: "Likes",
           data: likes.slice(0, 12),
           backgroundColor: ["rgba(255, 99, 132, 0.6)", "rgba(54, 162, 235, 0.6)", "rgba(255, 206, 86, 0.6)"],
           borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"],
